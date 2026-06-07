@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<meta name="theme-color" content="#1a1208"/>
+<meta name="description" content="Dodo Boutique Kariakoo – Fashion, Accessories & More"/>
+<title>Dodo Boutique | Kariakoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#F0D080;--gold-dark:#9a7530;
+  --dark:#1a1208;--dark2:#2a1e0a;--dark3:#3a2c14;
+  --cream:#FAF5E9;--cream2:#F0E8D0;--cream3:#E5D8B8;
+  --text:#1a1208;--muted:#7a6840;--white:#fff;
+  --red:#C0392B;--green:#1a7a3c;
+  --radius:12px;--shadow:0 8px 32px rgba(26,18,8,.18);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* ── ANIMATED CURSOR TRAIL ── */
+.cursor-dot{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .3s;mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .12s ease,border-color .3s;opacity:.6}
+
+/* ── SPLASH ── */
+#splash{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .8s,transform .8s}
+#splash.hide{opacity:0;pointer-events:none;transform:scale(1.06)}
+.splash-logo{width:120px;height:120px;margin-bottom:24px;animation:splashPulse 1.5s ease infinite alternate}
+@keyframes splashPulse{from{opacity:.7;transform:scale(.95) rotate(-2deg)}to{opacity:1;transform:scale(1.05) rotate(2deg)}}
+.splash-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,6vw,52px);color:var(--gold);letter-spacing:6px;font-weight:300;animation:fadeIn .6s ease .2s both}
+.splash-sub{color:var(--cream3);font-size:13px;letter-spacing:4px;margin-top:8px;text-transform:uppercase;animation:fadeIn .6s ease .4s both}
+.splash-bar{width:160px;height:2px;background:var(--dark3);margin-top:40px;border-radius:2px;overflow:hidden;animation:fadeIn .6s ease .6s both}
+.splash-fill{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light));animation:splashLoad 1.8s ease forwards}
+@keyframes splashLoad{from{width:0}to{width:100%}}
+.splash-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.s-particle{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;animation:sParticle 3s ease-in-out infinite}
+@keyframes sParticle{0%{opacity:0;transform:translateY(0) scale(0)}50%{opacity:.8}100%{opacity:0;transform:translateY(-100px) scale(1.5)}}
+
+/* ── NAV ── */
+nav.topnav{position:sticky;top:0;z-index:100;background:rgba(26,18,8,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.2)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:64px}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);letter-spacing:3px;font-weight:400;display:flex;align-items:center;gap:10px;cursor:pointer;transition:.3s}
+.nav-brand:hover{color:var(--gold-light);letter-spacing:4px}
+.nav-brand svg{width:32px;height:32px}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{color:var(--cream3);text-decoration:none;font-size:13px;padding:8px 12px;border-radius:6px;letter-spacing:1px;transition:.2s;cursor:pointer;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:50%;width:0;height:1px;background:var(--gold);transition:.3s;transform:translateX(-50%)}
+.nav-links a:hover::after,.nav-links a.active::after{width:60%}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.cart-btn{background:var(--gold);color:var(--dark);border:none;border-radius:8px;padding:9px 16px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.25s;position:relative;overflow:hidden}
+.cart-btn::before{content:'';position:absolute;inset:0;background:var(--gold-light);transform:scaleX(0);transform-origin:left;transition:.3s;z-index:0}
+.cart-btn:hover::before{transform:scaleX(1)}
+.cart-btn>*{position:relative;z-index:1}
+.cart-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,.4)}
+.cart-count{background:var(--dark);color:var(--gold);border-radius:50%;width:18px;height:18px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:600;transition:.3s}
+.cart-count.bump{animation:bump .3s ease}
+@keyframes bump{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
+.icon-btn{background:none;border:1px solid rgba(201,168,76,.3);color:var(--gold);border-radius:8px;padding:9px 11px;cursor:pointer;font-size:16px;transition:.2s;line-height:1}
+.icon-btn:hover{background:rgba(201,168,76,.15);border-color:var(--gold);transform:rotate(15deg)}
+.seller-only-btn{position:relative}
+.seller-only-btn::after{content:'SELLER';position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:1px;color:rgba(201,168,76,.5);white-space:nowrap;pointer-events:none}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--cream);margin:4px 0;border-radius:2px;transition:.3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mobile-menu{display:none;position:fixed;inset:64px 0 0;background:rgba(26,18,8,.99);backdrop-filter:blur(16px);z-index:99;flex-direction:column;padding:20px;gap:2px;border-top:1px solid rgba(201,168,76,.15);overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--cream);text-decoration:none;font-size:17px;padding:13px 16px;border-radius:8px;letter-spacing:1px;font-family:'Cormorant Garamond',serif;border-bottom:1px solid rgba(201,168,76,.08);transition:.2s;cursor:pointer;display:flex;align-items:center;gap:10px}
+.mobile-menu a:hover{color:var(--gold);background:rgba(201,168,76,.08);padding-left:24px}
+
+/* ── PAGES ── */
+.page{display:none;animation:pageIn .4s ease}.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HERO ── */
+.hero{position:relative;background:var(--dark);min-height:calc(100svh - 64px);display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(201,168,76,.18) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(201,168,76,.1) 0%,transparent 50%)}
+.hero-grid{position:absolute;inset:0;opacity:.04;background-image:linear-gradient(var(--gold) 1px,transparent 1px),linear-gradient(90deg,var(--gold) 1px,transparent 1px);background-size:60px 60px;animation:gridShift 20s linear infinite}
+@keyframes gridShift{from{transform:translate(0,0)}to{transform:translate(60px,60px)}}
+.hero-content{position:relative;max-width:1200px;margin:0 auto;padding:60px 20px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-tag{display:inline-block;border:1px solid rgba(201,168,76,.5);color:var(--gold);font-size:11px;letter-spacing:4px;padding:6px 16px;border-radius:20px;margin-bottom:24px;text-transform:uppercase;animation:fadeIn .6s ease .3s both;position:relative;overflow:hidden}
+.hero-tag::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(201,168,76,.1),transparent);animation:shimmer 2.5s ease infinite}
+@keyframes shimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,72px);color:var(--white);line-height:1.08;font-weight:300;margin-bottom:20px;animation:slideUp .8s ease .4s both}
+.hero-title em{color:var(--gold);font-style:italic}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-desc{color:rgba(240,232,208,.7);font-size:clamp(14px,1.5vw,16px);line-height:1.7;max-width:420px;margin-bottom:36px;animation:fadeIn .6s ease .6s both}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;animation:fadeIn .6s ease .8s both}
+.btn-primary{background:var(--gold);color:var(--dark);padding:14px 28px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;letter-spacing:1px;cursor:pointer;border:none;transition:.25s;text-decoration:none;display:inline-block;position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;inset:0;background:var(--gold-light);transform:scaleX(0);transform-origin:left;transition:.3s;z-index:0}
+.btn-primary:hover::after{transform:scaleX(1)}
+.btn-primary>*,.btn-primary{z-index:1}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.4)}
+.btn-outline{background:transparent;color:var(--cream);padding:14px 28px;border-radius:8px;border:1px solid rgba(240,232,208,.3);font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-visual{display:flex;justify-content:center;align-items:center;animation:heroFloat 4s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-16px) rotate(1deg)}}
+.hero-dodo-wrap::before{content:'';position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.2) 0%,transparent 70%);animation:auraPulse 3s ease infinite}
+@keyframes auraPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+.hero-dodo-wrap{position:relative}
+.hero-badges{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;animation:fadeIn .6s ease 1s both}
+.badge{background:rgba(240,232,208,.06);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 16px;text-align:center;transition:.3s;cursor:default}
+.badge:hover{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.5);transform:translateY(-3px)}
+.badge-num{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);font-weight:500}
+.badge-txt{font-size:11px;color:rgba(240,232,208,.5);letter-spacing:1px}
+
+/* ── SECTIONS ── */
+.section{max-width:1200px;margin:0 auto;padding:60px 20px}
+.section-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:400;color:var(--dark)}
+.section-title span{color:var(--gold)}
+.section-sub{color:var(--muted);font-size:14px;margin-top:4px}
+.see-all{color:var(--gold);font-size:13px;text-decoration:none;border-bottom:1px solid transparent;transition:.2s;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif}
+.see-all:hover{border-bottom-color:var(--gold)}
+
+/* ── CATEGORIES ── */
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.cat{padding:8px 20px;border-radius:20px;border:1px solid var(--cream3);background:var(--white);font-size:13px;cursor:pointer;transition:.25s;color:var(--muted)}
+.cat.active,.cat:hover{background:var(--dark);color:var(--gold);border-color:var(--dark);transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,18,8,.15)}
+
+/* ── PRODUCTS ── */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 12px rgba(26,18,8,.07);transition:.3s cubic-bezier(.34,1.56,.64,1);cursor:pointer;animation:fadeUp .5s ease both}
+.product-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 40px rgba(26,18,8,.15)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.product-img{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--cream2),var(--cream3));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.product-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(26,18,8,.05));pointer-events:none}
+.product-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.product-card:hover .product-img-inner{transform:scale(1.12) rotate(2deg)}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--dark);color:var(--gold);font-size:10px;letter-spacing:2px;padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.product-badge.sale{background:var(--red);color:var(--white)}
+.product-info{padding:14px 16px}
+.product-name{font-size:14px;font-weight:500;margin-bottom:4px}
+.product-cat{font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:10px}
+.product-foot{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500}
+.product-price .old{font-size:13px;color:var(--muted);text-decoration:line-through;margin-right:6px}
+.add-btn{background:var(--dark);color:var(--gold);border:none;border-radius:7px;padding:8px 12px;font-size:12px;cursor:pointer;transition:.25s;font-family:'DM Sans',sans-serif;position:relative;overflow:hidden}
+.add-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:.25s;z-index:0}
+.add-btn:hover::before{transform:scaleY(1)}
+.add-btn:hover{color:var(--dark)}
+.add-btn span{position:relative;z-index:1}
+
+/* ── WISHLIST heart ── */
+.wish-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:.3s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(4px);z-index:2}
+.wish-btn:hover{background:var(--white);transform:scale(1.25)}
+.wish-btn.loved{color:#e24b4a;animation:heartBeat .4s ease}
+@keyframes heartBeat{0%{transform:scale(1)}30%{transform:scale(1.4)}60%{transform:scale(0.9)}100%{transform:scale(1)}}
+
+/* ── CART ── */
+.cart-overlay{position:fixed;inset:0;background:rgba(26,18,8,.6);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100vw);background:var(--white);z-index:201;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(26,18,8,.2)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-hd{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--cream2);background:var(--dark)}
+.cart-hd h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--gold)}
+.close-btn{background:none;border:1px solid rgba(201,168,76,.3);cursor:pointer;color:var(--gold);font-size:18px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:.2s}
+.close-btn:hover{background:rgba(201,168,76,.2)}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.cart-empty-icon{font-size:48px;margin-bottom:16px;animation:bounce 2s ease infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--cream2);align-items:center;animation:fadeIn .3s ease both}
+.cart-item-img{width:60px;height:70px;border-radius:8px;background:var(--cream2);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-name{font-size:13px;font-weight:500;margin-bottom:2px}
+.cart-item-price{font-size:13px;color:var(--muted)}
+.cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty-btn{width:26px;height:26px;border-radius:5px;border:1px solid var(--cream3);background:none;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.15s}
+.qty-btn:hover{background:var(--dark);color:var(--gold);border-color:var(--dark)}
+.qty-num{font-size:13px;font-weight:500;min-width:18px;text-align:center}
+.cart-remove{margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;transition:.2s;padding:4px}
+.cart-remove:hover{color:var(--red);transform:scale(1.2)}
+.cart-foot{padding:20px 24px;border-top:1px solid var(--cream2);background:var(--cream)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.cart-total-lbl{font-size:14px;color:var(--muted)}
+.cart-total-amt{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500}
+.checkout-btn{width:100%;background:var(--dark);color:var(--gold);border:none;border-radius:10px;padding:16px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;letter-spacing:1px;transition:.25s;position:relative;overflow:hidden}
+.checkout-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.3s;z-index:0}
+.checkout-btn:hover::before{transform:scaleX(1)}
+.checkout-btn:hover{color:var(--dark)}
+.checkout-btn span{position:relative;z-index:1}
+
+/* ── WISHLIST DRAWER ── */
+.wishlist-drawer{position:fixed;top:0;left:0;bottom:0;width:min(360px,100vw);background:var(--white);z-index:201;transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:8px 0 40px rgba(26,18,8,.15)}
+.wishlist-drawer.open{transform:translateX(0)}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(26,18,8,.75);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:16px;backdrop-filter:blur(4px)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--white);border-radius:16px;width:100%;max-width:560px;max-height:90svh;overflow-y:auto;transform:scale(.93) translateY(20px);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.modal-overlay.open .modal{transform:scale(1) translateY(0)}
+.modal-hd{padding:24px 28px 16px;border-bottom:1px solid var(--cream2);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--white);z-index:2}
+.modal-hd h2{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400}
+.modal-body{padding:24px 28px}
+.form-group{margin-bottom:18px}
+.form-label{display:block;font-size:12px;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
+.form-input{width:100%;padding:12px 14px;border:1px solid var(--cream3);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--cream);color:var(--dark);transition:.2s}
+.form-input:focus{outline:none;border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-select{width:100%;padding:12px 14px;border:1px solid var(--cream3);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--cream);color:var(--dark);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a6840' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:.2s}
+.form-select:focus{outline:none;border-color:var(--gold)}
+.order-summary-box{background:var(--cream);border-radius:10px;padding:16px;margin-bottom:20px;border:1px solid var(--cream3)}
+.order-summary-title{font-size:12px;letter-spacing:1.5px;color:var(--muted);margin-bottom:10px;text-transform:uppercase}
+.order-line{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid var(--cream2)}
+.order-line:last-child{border:none;font-weight:500;padding-top:8px}
+.submit-btn{width:100%;background:var(--dark);color:var(--gold);border:none;border-radius:10px;padding:16px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;letter-spacing:1px;transition:.25s;margin-top:8px;position:relative;overflow:hidden}
+.submit-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.3s;z-index:0}
+.submit-btn:hover::before{transform:scaleX(1)}
+.submit-btn:hover{color:var(--dark)}
+.submit-btn>*,.submit-btn{z-index:1;position:relative}
+
+/* ── PAYMENT GRID ── */
+.pay-section-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:14px 0 8px;font-weight:500}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+.pay-btn{display:flex;align-items:center;gap:8px;padding:11px 12px;border-radius:10px;border:2px solid var(--cream3);background:var(--white);cursor:pointer;font-size:13px;font-weight:500;transition:.25s;font-family:'DM Sans',sans-serif;color:var(--dark)}
+.pay-btn:hover{border-color:rgba(201,168,76,.5);transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,18,8,.1)}
+.pay-btn.selected{border-color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-2px);box-shadow:0 4px 12px rgba(201,168,76,.2)}
+.pay-icon{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.pay-name{font-size:12px;font-weight:600;line-height:1.2}
+.pay-sub{font-size:10px;color:var(--muted)}
+
+/* ── SUCCESS ── */
+.success-msg{text-align:center;padding:36px 20px}
+.success-icon{font-size:52px;margin-bottom:16px;animation:popIn .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(0) rotate(-10deg)}to{transform:scale(1) rotate(0)}}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:8px}
+.success-sub{color:var(--muted);font-size:13px;line-height:1.6}
+.action-row{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.pay-now-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:.2s;width:100%}
+.pay-now-btn:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+
+/* ── ABOUT ── */
+.about-hero{background:var(--dark);padding:80px 20px;text-align:center;position:relative;overflow:hidden}
+.about-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,168,76,.12),transparent 70%)}
+.about-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,64px);color:var(--white);font-weight:300;margin-bottom:16px}
+.about-hero h1 em{color:var(--gold);font-style:italic}
+.about-hero p{color:rgba(240,232,208,.65);max-width:560px;margin:0 auto;font-size:15px;line-height:1.7}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:48px}
+.about-card{background:var(--white);border-radius:var(--radius);padding:28px;box-shadow:0 2px 12px rgba(26,18,8,.06);transition:.3s;border:1px solid transparent}
+.about-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.2);box-shadow:0 16px 40px rgba(26,18,8,.12)}
+.about-icon{font-size:32px;margin-bottom:14px;display:block;animation:fadeIn .5s ease both}
+.about-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;margin-bottom:8px}
+.about-card p{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ── MAP ── */
+.map-embed-wrap{border-radius:16px;overflow:hidden;margin-top:24px;box-shadow:var(--shadow);border:3px solid var(--cream3);position:relative}
+.map-embed-wrap iframe{display:block;width:100%;height:380px;border:0}
+.map-overlay-card{position:absolute;top:14px;left:14px;background:rgba(26,18,8,.92);backdrop-filter:blur(8px);border-radius:10px;padding:12px 16px;border:1px solid rgba(201,168,76,.3);max-width:220px}
+.map-overlay-card h4{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);font-weight:400;margin-bottom:4px}
+.map-overlay-card p{font-size:11px;color:rgba(240,232,208,.7);line-height:1.4}
+.map-dir-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:var(--gold);color:var(--dark);padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;transition:.2s}
+.map-dir-btn:hover{background:var(--gold-light)}
+.map-info-row{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
+.map-info-item{flex:1;min-width:160px;background:var(--white);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(26,18,8,.06)}
+.map-info-icon{font-size:20px;flex-shrink:0}
+.map-info-item h4{font-size:12px;font-weight:600;margin-bottom:3px}
+.map-info-item p{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* ── CONTACT ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.contact-info h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;margin-bottom:16px}
+.contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.ci-icon{width:40px;height:40px;border-radius:8px;background:var(--cream2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;transition:.2s}
+.contact-item:hover .ci-icon{background:var(--dark);transform:rotate(10deg)}
+.ci-txt h4{font-size:11px;letter-spacing:1.5px;color:var(--muted);margin-bottom:2px;text-transform:uppercase}
+.ci-txt a,.ci-txt p{font-size:14px;color:var(--dark);text-decoration:none;display:block}
+.ci-txt a:hover{color:var(--gold)}
+.contact-form-box{background:var(--white);border-radius:var(--radius);padding:28px;box-shadow:0 4px 24px rgba(26,18,8,.08)}
+.contact-form-box h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:20px}
+.social-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.soc-btn{display:flex;align-items:center;gap:7px;padding:10px 16px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:500;border:1px solid var(--cream3);color:var(--dark);background:var(--white);transition:.25s;cursor:pointer}
+.soc-btn:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(26,18,8,.12);border-color:rgba(201,168,76,.4)}
+.soc-icon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);color:rgba(240,232,208,.5);padding:48px 20px 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h2{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);font-weight:400;letter-spacing:3px;margin-bottom:10px}
+.footer-brand p{font-size:13px;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:12px;letter-spacing:2px;color:rgba(240,232,208,.7);margin-bottom:14px;text-transform:uppercase}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:8px}
+.footer-col ul li a{color:rgba(240,232,208,.45);text-decoration:none;font-size:13px;transition:.2s;cursor:pointer}
+.footer-col ul li a:hover{color:var(--gold);padding-left:4px}
+.footer-bottom{border-top:1px solid rgba(201,168,76,.15);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:12px}
+.fsocials{display:flex;gap:8px;flex-wrap:wrap}
+.fsoc{width:36px;height:36px;border-radius:8px;border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;transition:.25s;cursor:pointer}
+.fsoc:hover{border-color:var(--gold);background:rgba(201,168,76,.15);transform:translateY(-3px) scale(1.1)}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(26,18,8,.97);backdrop-filter:blur(12px);border-top:1px solid rgba(201,168,76,.15);z-index:100;padding:8px 0 env(safe-area-inset-bottom)}
+.bottom-nav-inner{display:flex;justify-content:space-around;align-items:center}
+.bnav-btn{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 8px;color:rgba(240,232,208,.4);font-size:9px;letter-spacing:.5px;transition:.2s;min-width:48px}
+.bnav-btn.active{color:var(--gold)}
+.bnav-btn.active .bnav-icon{transform:scale(1.2)}
+.bnav-icon{font-size:19px;line-height:1;transition:.2s}
+
+/* ══════════════════════════════
+   SETTINGS PIN LOCK
+══════════════════════════════ */
+.pin-overlay{position:fixed;inset:0;background:rgba(26,18,8,.95);z-index:500;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);animation:fadeIn .3s ease}
+.pin-box{background:var(--white);border-radius:20px;padding:40px 36px;text-align:center;max-width:380px;width:100%;box-shadow:0 20px 60px rgba(26,18,8,.4);animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+.pin-logo{font-size:40px;margin-bottom:16px}
+.pin-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;margin-bottom:6px;color:var(--dark)}
+.pin-sub{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.5}
+.pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:24px}
+.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--cream3);background:transparent;transition:.2s}
+.pin-dot.filled{background:var(--gold);border-color:var(--gold)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:220px;margin:0 auto}
+.pin-key{width:100%;aspect-ratio:1;border-radius:12px;border:1px solid var(--cream3);background:var(--cream);font-size:18px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--dark);transition:.2s;display:flex;align-items:center;justify-content:center}
+.pin-key:hover{background:var(--dark);color:var(--gold);border-color:var(--dark);transform:scale(1.08)}
+.pin-key:active{transform:scale(.94)}
+.pin-key.del{font-size:14px;color:var(--muted)}
+.pin-key.del:hover{color:var(--red);background:rgba(192,57,43,.08)}
+.pin-err{color:var(--red);font-size:13px;margin-top:12px;opacity:0;transition:.3s;height:20px}
+.pin-err.show{opacity:1;animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.pin-hint{font-size:11px;color:var(--muted);margin-top:16px}
+.change-pin-row{margin-top:20px;padding-top:16px;border-top:1px solid var(--cream2)}
+.change-pin-btn{background:none;border:1px solid var(--cream3);color:var(--muted);border-radius:8px;padding:8px 16px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
+.change-pin-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ══════════════════════════════
+   SETTINGS PAGE
+══════════════════════════════ */
+.settings-page{max-width:820px;margin:0 auto;padding:40px 20px 100px}
+.s-back{display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;color:var(--muted);font-size:14px;font-family:'DM Sans',sans-serif;margin-bottom:28px;padding:0;transition:.2s}
+.s-back:hover{color:var(--gold)}
+.s-page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,40px);font-weight:400;margin-bottom:6px}
+.s-page-title span{color:var(--gold)}
+.s-subtitle{color:var(--muted);font-size:14px;margin-bottom:36px}
+.s-section{background:var(--white);border-radius:16px;padding:24px 28px;margin-bottom:20px;box-shadow:0 2px 12px rgba(26,18,8,.06);animation:fadeUp .4s ease both}
+.s-section-hd{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.s-section-hd::after{content:'';flex:1;height:1px;background:var(--cream3)}
+.s-row{display:flex;align-items:flex-start;gap:16px;padding:14px 0;border-bottom:1px solid var(--cream2)}
+.s-row:last-child{border:none;padding-bottom:0}
+.s-ico{width:40px;height:40px;border-radius:10px;background:var(--cream2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:2px}
+.s-info{flex:1}
+.s-label{font-size:14px;font-weight:500;margin-bottom:3px}
+.s-desc{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.5}
+.s-input{width:100%;padding:10px 12px;border:1px solid var(--cream3);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);color:var(--dark);transition:.2s}
+.s-input:focus{outline:none;border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+.s-toggle{display:flex;align-items:center;gap:10px}
+.tog{position:relative;width:44px;height:24px;flex-shrink:0}
+.tog input{opacity:0;width:0;height:0;position:absolute}
+.tog-slider{position:absolute;inset:0;background:var(--cream3);border-radius:12px;cursor:pointer;transition:.3s}
+.tog-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:var(--white);border-radius:50%;transition:.3s;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+input:checked+.tog-slider{background:var(--gold)}
+input:checked+.tog-slider::before{transform:translateX(20px)}
+.tog-lbl{font-size:13px;color:var(--muted)}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.link-card{border:1px solid var(--cream3);border-radius:12px;padding:14px;background:var(--cream);transition:.2s}
+.link-card:hover{border-color:rgba(201,168,76,.3);box-shadow:0 4px 12px rgba(26,18,8,.06)}
+.link-card-hd{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.link-badge{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.link-card-name{font-size:13px;font-weight:600;color:var(--dark)}
+.link-card-sub{font-size:11px;color:var(--muted)}
+.link-status{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:500;margin-bottom:8px}
+.link-status.on{background:rgba(26,122,60,.1);color:var(--green)}
+.link-status.off{background:var(--cream3);color:var(--muted)}
+.link-input{width:100%;padding:9px 10px;border:1px solid var(--cream3);border-radius:7px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--dark);transition:.2s;margin-bottom:6px}
+.link-input:focus{outline:none;border-color:var(--gold)}
+.link-test{font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;transition:.2s}
+.link-test:hover{text-decoration:underline}
+.soc-link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.soc-link-card{border:1px solid var(--cream3);border-radius:12px;padding:14px;background:var(--cream);display:flex;align-items:center;gap:10px;transition:.2s}
+.soc-link-card:hover{border-color:rgba(201,168,76,.3)}
+.soc-link-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.soc-link-right{flex:1;min-width:0}
+.soc-link-name{font-size:12px;font-weight:600;margin-bottom:5px}
+.soc-link-input{width:100%;padding:8px 10px;border:1px solid var(--cream3);border-radius:7px;font-size:12px;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--dark);transition:.2s}
+.soc-link-input:focus{outline:none;border-color:var(--gold)}
+.save-btn{width:100%;background:var(--dark);color:var(--gold);border:none;border-radius:12px;padding:18px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;letter-spacing:1px;transition:.25s;margin-top:8px;position:relative;overflow:hidden}
+.save-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.3s;z-index:0}
+.save-btn:hover::before{transform:scaleX(1)}
+.save-btn:hover{color:var(--dark)}
+.save-btn span{position:relative;z-index:1}
+.saved-msg{display:none;background:rgba(26,122,60,.08);color:var(--green);border:1px solid rgba(26,122,60,.2);padding:12px 16px;border-radius:8px;font-size:13px;text-align:center;margin-top:12px}
+.saved-msg.show{display:block;animation:fadeIn .3s ease}
+
+/* ── PROMO TICKER ── */
+.promo-ticker{background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark));color:var(--dark);padding:8px 0;overflow:hidden}
+.ticker-inner{display:flex;gap:60px;animation:ticker 22s linear infinite;width:max-content;white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:2px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── REVIEW STARS ── */
+.stars{color:#f5c518;font-size:13px;letter-spacing:1px}
+.review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:8px}
+.review-card{background:var(--white);border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(26,18,8,.06);transition:.3s;border:1px solid transparent}
+.review-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.2);box-shadow:0 12px 32px rgba(26,18,8,.1)}
+.review-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.review-name{font-size:13px;font-weight:500}
+.review-text{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ══════════════════════════════
+   INVOICE STYLES
+══════════════════════════════ */
+.invoice-overlay{position:fixed;inset:0;background:rgba(26,18,8,.8);z-index:400;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px);animation:fadeIn .3s ease}
+.invoice-modal{background:var(--white);border-radius:16px;width:100%;max-width:640px;max-height:92svh;overflow-y:auto;box-shadow:0 24px 64px rgba(26,18,8,.4);animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+.inv-sheet{padding:36px 40px;font-family:'DM Sans',sans-serif;color:var(--dark)}
+.inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid var(--dark)}
+.inv-brand{display:flex;flex-direction:column;gap:4px}
+.inv-brand-name{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--dark);font-weight:400;letter-spacing:3px}
+.inv-brand-sub{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.inv-meta{text-align:right}
+.inv-title{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);font-weight:300;letter-spacing:2px;text-transform:uppercase}
+.inv-num{font-size:12px;color:var(--muted);margin-top:4px}
+.inv-date{font-size:12px;color:var(--muted)}
+.inv-parties{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;background:var(--cream);border-radius:10px;padding:16px}
+.inv-party h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.inv-party p{font-size:13px;line-height:1.6;color:var(--dark)}
+.inv-party strong{font-size:14px;display:block;margin-bottom:4px}
+.inv-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+.inv-table th{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--dark);text-align:left;font-weight:500}
+.inv-table th:last-child{text-align:right}
+.inv-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--cream2)}
+.inv-table td:last-child{text-align:right;font-family:'Cormorant Garamond',serif;font-size:15px}
+.inv-table tbody tr:hover{background:var(--cream)}
+.inv-totals{margin-left:auto;width:240px}
+.inv-total-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid var(--cream2)}
+.inv-total-row.grand{padding-top:10px;border-top:2px solid var(--dark);border-bottom:none;font-weight:600;font-size:16px;font-family:'Cormorant Garamond',serif}
+.inv-total-row.grand .inv-val{color:var(--gold)}
+.inv-pay{margin-top:20px;padding:14px 16px;background:var(--cream);border-radius:8px;border-left:3px solid var(--gold)}
+.inv-pay h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.inv-pay p{font-size:13px;color:var(--dark)}
+.inv-footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--cream3);display:flex;justify-content:space-between;align-items:center}
+.inv-footer p{font-size:11px;color:var(--muted)}
+.inv-stamp{width:60px;height:60px;border-radius:50%;border:2.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px;text-align:center;line-height:1.3;transform:rotate(-15deg)}
+.inv-actions{padding:20px 40px;border-top:1px solid var(--cream2);display:flex;gap:12px;flex-wrap:wrap;background:var(--cream)}
+.inv-dl-btn{flex:1;min-width:140px;padding:14px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.25s}
+.inv-dl-btn.primary{background:var(--dark);color:var(--gold)}
+.inv-dl-btn.primary:hover{background:var(--gold);color:var(--dark)}
+.inv-dl-btn.secondary{background:transparent;border:1px solid var(--cream3);color:var(--dark)}
+.inv-dl-btn.secondary:hover{border-color:var(--gold);color:var(--gold)}
+.inv-dl-btn.wa{background:#25D366;color:#fff}
+.inv-dl-btn.wa:hover{background:#1da955}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:var(--gold);padding:12px 24px;border-radius:8px;font-size:13px;z-index:600;opacity:0;transition:.3s;pointer-events:none;border:1px solid rgba(201,168,76,.4);white-space:nowrap;max-width:90vw;text-align:center;box-shadow:0 8px 24px rgba(26,18,8,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .contact-wrap{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hamburger{display:block}
+  .bottom-nav{display:block}
+  .footer-grid{grid-template-columns:1fr}
+  body{padding-bottom:68px}
+  .section{padding:40px 16px}
+  .pay-grid{grid-template-columns:1fr}
+  .link-grid{grid-template-columns:1fr}
+  .soc-link-grid{grid-template-columns:1fr}
+  .map-embed-wrap iframe{height:280px}
+  .map-overlay-card{display:none}
+  .form-grid{grid-template-columns:1fr}
+  .inv-sheet{padding:24px 20px}
+  .inv-header{flex-direction:column;gap:12px}
+  .inv-meta{text-align:left}
+  .inv-parties{grid-template-columns:1fr}
+  .inv-totals{width:100%}
+  .inv-footer{flex-direction:column;gap:12px}
+  .inv-actions{padding:16px 20px}
+}
+@media(max-width:400px){
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  .pin-pad{max-width:200px}
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-particles" id="splashParticles"></div>
+  <svg class="splash-logo" viewBox="0 0 120 120" fill="none">
+    <circle cx="60" cy="60" r="58" fill="#2a1e0a" stroke="#C9A84C" stroke-width="1"/>
+    <ellipse cx="60" cy="72" rx="26" ry="22" fill="#F1EFE8"/>
+    <ellipse cx="60" cy="47" rx="10" ry="14" fill="#F1EFE8"/>
+    <circle cx="60" cy="36" r="14" fill="#F1EFE8"/>
+    <path d="M72 33 Q85 32 87 37 Q85 42 73 41 Z" fill="#C9A84C"/>
+    <circle cx="67" cy="31" r="3" fill="#2a1e0a"/>
+    <rect x="52" y="19" width="18" height="2" rx="1" fill="#C9A84C"/>
+    <rect x="55" y="11" width="12" height="9" rx="2" fill="#2a1e0a"/>
+    <rect x="55" y="18" width="12" height="2" fill="#C9A84C"/>
+  </svg>
+  <div class="splash-title">DODO BOUTIQUE</div>
+  <div class="splash-sub">Kariakoo · Dar es Salaam</div>
+  <div class="splash-bar"><div class="splash-fill"></div></div>
+</div>
+
+<!-- PROMO TICKER -->
+<div class="promo-ticker">
+  <div class="ticker-inner" id="tickerInner">
+    <span>✦ FREE DELIVERY IN KARIAKOO ON ORDERS ABOVE TZS 50,000</span>
+    <span>✦ NEW ANKARA COLLECTION NOW IN STORE</span>
+    <span>✦ OPEN MON–SAT 8AM–7PM | SUN 10AM–4PM</span>
+    <span>✦ QUALITY AFRICAN FASHION AT HONEST PRICES</span>
+    <span>✦ FREE DELIVERY IN KARIAKOO ON ORDERS ABOVE TZS 50,000</span>
+    <span>✦ NEW ANKARA COLLECTION NOW IN STORE</span>
+    <span>✦ OPEN MON–SAT 8AM–7PM | SUN 10AM–4PM</span>
+    <span>✦ QUALITY AFRICAN FASHION AT HONEST PRICES</span>
+  </div>
+</div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('home')">
+      <svg viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="19" rx="9" ry="7.5" fill="#F1EFE8"/><ellipse cx="16" cy="12" rx="4" ry="5" fill="#F1EFE8"/><circle cx="16" cy="8" r="5" fill="#F1EFE8"/><path d="M19.5 7Q24 6.5 24.5 8.5Q24 10.5 20 10Z" fill="#C9A84C"/><rect x="12" y="3" width="8" height="1.5" rx=".75" fill="#C9A84C"/><rect x="13" y="1" width="6" height="3" rx="1.2" fill="#1a1208"/><rect x="13" y="3" width="6" height="1.5" fill="#C9A84C"/></svg>
+      DODO
+    </div>
+    <ul class="nav-links">
+      <li><a id="nl-home" onclick="showPage('home')">Home</a></li>
+      <li><a id="nl-shop" onclick="showPage('shop')">Shop</a></li>
+      <li><a onclick="toggleWishlist()">♡ Saved</a></li>
+      <li><a id="nl-about" onclick="showPage('about')">About</a></li>
+      <li><a id="nl-contact" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="cart-btn" onclick="toggleCart()">🛍 <span>Cart</span> <span class="cart-count" id="cartCount">0</span></button>
+      <button class="icon-btn seller-only-btn" onclick="requirePin()" title="Seller Settings — PIN required">🔒</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');toggleMenu()"><span>🏠</span>Home</a>
+  <a onclick="showPage('shop');toggleMenu()"><span>👗</span>Shop</a>
+  <a onclick="toggleWishlist();toggleMenu()"><span>♡</span>Saved / Wishlist</a>
+  <a onclick="showPage('about');toggleMenu()"><span>ℹ️</span>About</a>
+  <a onclick="showPage('contact');toggleMenu()"><span>📞</span>Contact</a>
+  <a onclick="toggleCart();toggleMenu()"><span>🛍</span>Cart</a>
+  <a onclick="requirePin();toggleMenu()" style="opacity:.7;border-top:1px solid rgba(201,168,76,.2);margin-top:8px;padding-top:16px"><span>🔒</span>Seller Settings <small style="font-size:11px;color:rgba(201,168,76,.6);margin-left:auto">PIN required</small></a>
+</div>
+
+<!-- ══════ HOME ══════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div><div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-tag" id="heroTag">✦ New Collection 2025</div>
+        <h1 class="hero-title">Fashion That Tells<br><em>Your Story</em></h1>
+        <p class="hero-desc">Discover curated fashion, accessories, and lifestyle pieces from the heart of Kariakoo, Dar es Salaam. Style that celebrates who you are.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('shop')">Shop Now</button>
+          <button class="btn-outline" onclick="showPage('about')">Our Story</button>
+        </div>
+        <div class="hero-badges">
+          <div class="badge"><div class="badge-num">500+</div><div class="badge-txt">Products</div></div>
+          <div class="badge"><div class="badge-num">2K+</div><div class="badge-txt">Customers</div></div>
+          <div class="badge"><div class="badge-num">5★</div><div class="badge-txt">Rated</div></div>
+        </div>
+      </div>
+      <div class="hero-visual"><div class="hero-dodo-wrap">
+        <svg width="300" height="340" viewBox="0 0 300 340" fill="none">
+          <circle cx="150" cy="170" r="140" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.15)" stroke-width="1" stroke-dasharray="6 4"/>
+          <ellipse cx="150" cy="220" rx="70" ry="60" fill="#F1EFE8"/>
+          <ellipse cx="150" cy="145" rx="26" ry="38" fill="#F1EFE8"/>
+          <circle cx="150" cy="112" r="36" fill="#F1EFE8"/>
+          <path d="M172 105Q208 103 212 115Q208 128 174 126Z" fill="#C9A84C"/>
+          <path d="M205 113Q216 120 210 132Q202 134 200 124Q206 121 205 113Z" fill="#EF9F27"/>
+          <circle cx="168" cy="100" r="8" fill="#2a1e0a"/><circle cx="171" cy="97" r="3" fill="#F1EFE8"/>
+          <circle cx="168" cy="100" r="10" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
+          <rect x="120" y="57" width="60" height="7" rx="3.5" fill="#2a1e0a" stroke="#C9A84C" stroke-width="1"/>
+          <rect x="130" y="30" width="40" height="30" rx="4" fill="#2a1e0a"/>
+          <rect x="130" y="56" width="40" height="7" fill="#C9A84C"/>
+          <path d="M136 60Q128 52 132 60Q128 68 136 60Z" fill="#E24B4A"/>
+          <path d="M164 60Q172 52 168 60Q172 68 164 60Z" fill="#E24B4A"/>
+          <circle cx="150" cy="60" r="5" fill="#A32D2D"/>
+          <ellipse cx="92" cy="200" rx="18" ry="32" fill="#D3D1C7" transform="rotate(-15 92 200)"/>
+          <ellipse cx="208" cy="200" rx="18" ry="32" fill="#D3D1C7" transform="rotate(15 208 200)"/>
+          <rect x="133" y="278" width="12" height="36" rx="6" fill="#C9A84C"/>
+          <rect x="155" y="278" width="12" height="36" rx="6" fill="#C9A84C"/>
+        </svg>
+      </div></div>
+    </div>
+  </section>
+
+  <div class="section">
+    <div class="section-hd">
+      <div><div class="section-title">Featured <span>Collection</span></div><div class="section-sub">Handpicked styles for you</div></div>
+      <button class="see-all" onclick="showPage('shop')">View all →</button>
+    </div>
+    <div class="products-grid" id="featuredGrid"></div>
+  </div>
+
+  <div style="background:var(--dark);padding:60px 20px;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,168,76,.1),transparent 70%)"></div>
+    <div style="max-width:600px;margin:0 auto;position:relative">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,40px);color:var(--white);font-weight:300;margin-bottom:12px">Free Delivery in <em style="color:var(--gold);font-style:italic">Kariakoo</em></div>
+      <p style="color:rgba(240,232,208,.55);font-size:14px;margin-bottom:24px">Orders above TZS 50,000 get free delivery within Kariakoo and surrounding areas.</p>
+      <button class="btn-primary" onclick="showPage('shop')">Start Shopping</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-hd">
+      <div><div class="section-title">Customer <span>Reviews</span></div><div class="section-sub">What our customers say</div></div>
+    </div>
+    <div class="review-grid">
+      <div class="review-card"><div class="review-hd"><div class="review-avatar">👩🏾</div><div><div class="review-name">Amina Juma</div><div class="stars">★★★★★</div></div></div><div class="review-text">"The Ankara dress I ordered arrived perfectly. Quality is amazing and the colours are so vibrant. Will definitely order again!"</div></div>
+      <div class="review-card"><div class="review-hd"><div class="review-avatar">👨🏿</div><div><div class="review-name">Ibrahim Hassan</div><div class="stars">★★★★★</div></div></div><div class="review-text">"Great linen suit, fit perfectly. Fast delivery to Kinondoni. The staff are very helpful via WhatsApp."</div></div>
+      <div class="review-card"><div class="review-hd"><div class="review-avatar">👩🏿</div><div><div class="review-name">Fatuma Said</div><div class="stars">★★★★☆</div></div></div><div class="review-text">"Lovely accessories at fair prices. I love the woven handbag — so many compliments! Will visit the store next time."</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SHOP ══════ -->
+<div class="page" id="page-shop">
+  <div class="section">
+    <div class="section-hd"><div><div class="section-title">Our <span>Shop</span></div><div class="section-sub">Quality fashion from Kariakoo</div></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <input id="searchInput" class="s-input" style="width:200px;padding:8px 12px" placeholder="🔍 Search…" oninput="renderShop()"/>
+      </div>
+    </div>
+    <div class="cats" id="catPills"></div>
+    <div class="products-grid" id="shopGrid"></div>
+    <div id="noResults" style="display:none;text-align:center;padding:40px;color:var(--muted)">No products found.</div>
+  </div>
+</div>
+
+<!-- ══════ ABOUT ══════ -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <div style="max-width:700px;margin:0 auto;position:relative">
+      <div style="font-size:48px;margin-bottom:16px">🦤</div>
+      <h1>About <em>Dodo Boutique</em></h1>
+      <p>Born in the vibrant streets of Kariakoo, Dodo Boutique is more than a store — it's a celebration of African style, culture, and identity.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="about-grid">
+      <div class="about-card"><div class="about-icon">🎯</div><h3>Our Mission</h3><p>To make quality, stylish fashion accessible to every person in Dar es Salaam and beyond, at honest prices without compromising on excellence.</p></div>
+      <div class="about-card"><div class="about-icon">🌍</div><h3>African Pride</h3><p>We curate pieces that celebrate African heritage — bold prints, earthy tones, and designs that tell the story of our rich culture.</p></div>
+      <div class="about-card"><div class="about-icon">⭐</div><h3>Quality First</h3><p>Every item is hand-selected by our team. We only stock what we'd wear ourselves — durable, beautiful, and worth every shilling.</p></div>
+      <div class="about-card"><div class="about-icon">🤝</div><h3>Community</h3><p>We support local designers and artisans, helping grow Tanzania's creative economy while bringing you unique, locally made pieces.</p></div>
+    </div>
+    <div style="margin-top:40px">
+      <div class="section-title" style="font-size:26px;margin-bottom:6px">Follow <span>Us</span></div>
+      <div class="section-sub" style="margin-bottom:16px">Stay updated with our latest collections</div>
+      <div class="social-row" id="aboutSocials"></div>
+    </div>
+    <div style="margin-top:40px">
+      <div class="section-title" style="font-size:26px;margin-bottom:6px">Find <span>Us</span></div>
+      <div class="section-sub" style="margin-bottom:20px">Kariakoo Market, Dar es Salaam, Tanzania</div>
+      <div class="map-embed-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d5482.46560174402!2d39.27697747532367!3d-6.821373099925094!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stz!4v1780800047056!5m2!1sen!2stz" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-overlay-card"><h4>🦤 Dodo Boutique</h4><p>Kariakoo Market<br>Dar es Salaam, Tanzania</p><a class="map-dir-btn" href="https://maps.google.com/?q=Kariakoo+Market+Dar+es+Salaam" target="_blank">📍 Get Directions</a></div>
+      </div>
+      <div class="map-info-row">
+        <div class="map-info-item"><div class="map-info-icon">🕐</div><div><h4>Opening Hours</h4><p>Mon–Sat: 8:00 AM – 7:00 PM<br>Sunday: 10:00 AM – 4:00 PM</p></div></div>
+        <div class="map-info-item"><div class="map-info-icon">📞</div><div><h4>Call / WhatsApp</h4><p id="aboutPhone"><a href="#" style="color:var(--dark)">+255 712 345 678</a></p></div></div>
+        <div class="map-info-item"><div class="map-info-icon">🚖</div><div><h4>Getting Here</h4><p>Accessible by daladala, tuk-tuk, or boda boda from Posta/Mnazi Mmoja</p></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CONTACT ══════ -->
+<div class="page" id="page-contact">
+  <div class="section">
+    <div class="section-hd"><div><div class="section-title">Get in <span>Touch</span></div><div class="section-sub">We'd love to hear from you</div></div></div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h2>Visit or Message Us</h2>
+        <div class="contact-item"><div class="ci-icon">📍</div><div class="ci-txt"><h4>Address</h4><p id="ctAddress">Kariakoo Market, Dar es Salaam, Tanzania</p></div></div>
+        <div class="contact-item"><div class="ci-icon">📞</div><div class="ci-txt"><h4>Phone</h4><a id="ctPhone" href="tel:+255712345678">+255 712 345 678</a></div></div>
+        <div class="contact-item"><div class="ci-icon">💬</div><div class="ci-txt"><h4>WhatsApp</h4><a id="ctWA" href="#" target="_blank">+255 712 345 678</a></div></div>
+        <div class="contact-item"><div class="ci-icon">📧</div><div class="ci-txt"><h4>Email</h4><a id="ctEmail" href="mailto:hello@dodoboutique.co.tz">hello@dodoboutique.co.tz</a></div></div>
+        <div class="contact-item"><div class="ci-icon">🕐</div><div class="ci-txt"><h4>Hours</h4><p>Mon–Sat: 8am–7pm | Sun: 10am–4pm</p></div></div>
+        <div style="margin-top:20px"><div style="font-size:11px;letter-spacing:1.5px;color:var(--muted);margin-bottom:10px;text-transform:uppercase">Connect With Us</div><div class="social-row" id="contactSocials"></div></div>
+        <div style="margin-top:24px"><div style="font-size:11px;letter-spacing:1.5px;color:var(--muted);margin-bottom:10px;text-transform:uppercase">We Accept</div><div id="contactPayMethods" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
+      </div>
+      <div class="contact-form-box">
+        <h3>Send a Message</h3>
+        <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" id="cfName" type="text" placeholder="e.g. Amina Juma"/></div>
+        <div class="form-group"><label class="form-label">Phone / WhatsApp</label><input class="form-input" id="cfPhone" type="tel" placeholder="+255 7XX XXX XXX"/></div>
+        <div class="form-group"><label class="form-label">Subject</label>
+          <select class="form-select" id="cfSubject"><option value="">Select subject</option><option>Product inquiry</option><option>Order status</option><option>Custom order</option><option>Returns / Exchange</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" id="cfMsg" rows="4" placeholder="Hi, I'd like to ask about..."></textarea></div>
+        <button class="submit-btn" onclick="sendContact()"><span>Send via WhatsApp 💬</span></button>
+        <p style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">Opens WhatsApp with your message pre-filled</p>
+        <div style="margin-top:24px;border-radius:12px;overflow:hidden;border:2px solid var(--cream3)">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d5482.46560174402!2d39.27697747532367!3d-6.821373099925094!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stz!4v1780800047056!5m2!1sen!2stz" width="100%" height="220" style="border:0;display:block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SETTINGS ══════ -->
+<div class="page" id="page-settings">
+  <div class="settings-page">
+    <button class="s-back" onclick="showPage('home')">← Back to Store</button>
+    <div class="s-page-title">Seller <span>Settings</span></div>
+    <div class="s-subtitle">🔒 <strong>Seller access only.</strong> Customers shop freely without any PIN — this area is for store owners to configure settings, payments, and invoices.</div>
+
+    <!-- Store Info -->
+    <div class="s-section">
+      <div class="s-section-hd">🏪 Store Information</div>
+      <div class="s-row"><div class="s-ico">🏷️</div><div class="s-info"><div class="s-label">Store Name</div><div class="s-desc">Displayed in header and throughout the app</div><input class="s-input" id="s-storeName" type="text" placeholder="Dodo Boutique"/></div></div>
+      <div class="s-row"><div class="s-ico">📍</div><div class="s-info"><div class="s-label">Address / Location</div><div class="s-desc">Shown on contact and about pages</div><input class="s-input" id="s-address" type="text" placeholder="Kariakoo Market, Dar es Salaam"/></div></div>
+      <div class="s-row"><div class="s-ico">📞</div><div class="s-info"><div class="s-label">Phone / WhatsApp Number</div><div class="s-desc">With country code, e.g. 255712345678</div><input class="s-input" id="s-phone" type="tel" placeholder="255712345678"/></div></div>
+      <div class="s-row"><div class="s-ico">📧</div><div class="s-info"><div class="s-label">Email Address</div><div class="s-desc">Business email shown on contact page</div><input class="s-input" id="s-email" type="email" placeholder="hello@dodoboutique.co.tz"/></div></div>
+      <div class="s-row"><div class="s-ico">🎯</div><div class="s-info"><div class="s-label">Hero Promo Tag</div><div class="s-desc">Small badge text on the homepage hero</div><input class="s-input" id="s-heroTag" type="text" placeholder="✦ New Collection 2025"/></div></div>
+    </div>
+
+    <!-- Invoice Settings -->
+    <div class="s-section">
+      <div class="s-section-hd">🧾 Invoice Settings</div>
+      <div class="s-row"><div class="s-ico">📄</div><div class="s-info"><div class="s-label">Invoice Prefix</div><div class="s-desc">e.g. "DODO" → DODO-0001</div><input class="s-input" id="s-invPrefix" type="text" placeholder="DODO"/></div></div>
+      <div class="s-row"><div class="s-ico">🏦</div><div class="s-info"><div class="s-label">Business Registration / TIN (optional)</div><div class="s-desc">Shown on invoice for formal records</div><input class="s-input" id="s-invTIN" type="text" placeholder="e.g. TIN 123456789"/></div></div>
+      <div class="s-row"><div class="s-ico">📝</div><div class="s-info"><div class="s-label">Invoice Footer Note</div><div class="s-desc">Thank you message printed at bottom of invoice</div><input class="s-input" id="s-invNote" type="text" placeholder="Thank you for shopping at Dodo Boutique!"/></div></div>
+      <div class="s-row"><div class="s-ico">🧾</div><div class="s-info">
+        <div class="s-label">Auto-Generate Invoice on Order</div>
+        <div class="s-desc">Show invoice preview immediately after order is placed</div>
+        <div class="s-toggle"><label class="tog"><input type="checkbox" id="s-autoInvoice" checked/><span class="tog-slider"></span></label><span class="tog-lbl">Enabled</span></div>
+      </div></div>
+    </div>
+
+    <!-- PIN Security -->
+    <div class="s-section">
+      <div class="s-section-hd">🔐 Security & PIN</div>
+      <div class="s-row"><div class="s-ico">🔑</div><div class="s-info">
+        <div class="s-label">Change Settings PIN</div>
+        <div class="s-desc">Current PIN is required to access Seller Settings. Default: 1234</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+          <input class="s-input" id="s-pinCur" type="password" maxlength="4" placeholder="Current PIN" inputmode="numeric"/>
+          <input class="s-input" id="s-pinNew" type="password" maxlength="4" placeholder="New PIN (4 digits)" inputmode="numeric"/>
+        </div>
+        <button onclick="changePin()" style="margin-top:8px;background:var(--dark);color:var(--gold);border:none;border-radius:8px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:.2s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--dark)'" onmouseout="this.style.background='var(--dark)';this.style.color='var(--gold)'">Update PIN</button>
+        <div id="pinChangeMsg" style="margin-top:8px;font-size:12px;display:none"></div>
+      </div></div>
+    </div>
+
+    <!-- Delivery -->
+    <div class="s-section">
+      <div class="s-section-hd">🚚 Delivery Settings</div>
+      <div class="s-row"><div class="s-ico">💰</div><div class="s-info"><div class="s-label">Free Delivery Threshold (TZS)</div><div class="s-desc">Orders above this amount get free delivery</div><input class="s-input" id="s-freeDelivery" type="number" placeholder="50000"/></div></div>
+      <div class="s-row"><div class="s-ico">🛵</div><div class="s-info"><div class="s-label">Delivery Fee (TZS)</div><div class="s-desc">Charged when order is below threshold</div><input class="s-input" id="s-deliveryFee" type="number" placeholder="5000"/></div></div>
+      <div class="s-row"><div class="s-ico">💬</div><div class="s-info">
+        <div class="s-label">WhatsApp Order Confirmation</div>
+        <div class="s-desc">After placing order, open WhatsApp with order summary pre-filled</div>
+        <div class="s-toggle"><label class="tog"><input type="checkbox" id="s-waConfirm" checked/><span class="tog-slider"></span></label><span class="tog-lbl">Enabled</span></div>
+      </div></div>
+    </div>
+
+    <!-- Bank Links -->
+    <div class="s-section">
+      <div class="s-section-hd">🏦 Bank Payment Links</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Paste each bank's payment portal URL. At checkout, customers click and are taken directly to that bank's payment page.</p>
+      <div class="link-grid" id="bankLinksGrid"></div>
+    </div>
+
+    <!-- Mobile Money -->
+    <div class="s-section">
+      <div class="s-section-hd">📱 Mobile Money Payments</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Enter your <strong>Lipa Namba</strong> or phone number for each provider.</p>
+      <div class="link-grid" id="momoLinksGrid"></div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="s-section">
+      <div class="s-section-hd">📲 Social Media Links</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Paste your full profile URL. These become clickable buttons in Contact, About, and Footer.</p>
+      <div class="soc-link-grid" id="socialLinksGrid"></div>
+    </div>
+
+    <button class="save-btn" onclick="saveSettings()"><span>💾 Save & Apply All Settings</span></button>
+    <div class="saved-msg" id="savedMsg">✓ Settings saved and applied across your store!</div>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-hd"><h2>Your Cart 🛍</h2><button class="close-btn" onclick="toggleCart()">✕</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total"><span class="cart-total-lbl">Total</span><span class="cart-total-amt" id="cartTotal">TZS 0</span></div>
+    <button class="checkout-btn" onclick="openCheckout()"><span>Proceed to Order →</span></button>
+  </div>
+</div>
+
+<!-- WISHLIST -->
+<div class="cart-overlay" id="wishlistOverlay" onclick="toggleWishlist()"></div>
+<div class="wishlist-drawer" id="wishlistDrawer">
+  <div class="cart-hd"><h2>♡ Saved Items</h2><button class="close-btn" onclick="toggleWishlist()">✕</button></div>
+  <div class="cart-items" id="wishlistItems"></div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <div class="modal-hd"><h2>Complete Your Order</h2><button class="close-btn" onclick="closeCheckout()">✕</button></div>
+    <div class="modal-body" id="modalBody">
+      <div class="order-summary-box" id="orderSummary"></div>
+      <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" id="oName" type="text" placeholder="Your full name"/></div>
+      <div class="form-group"><label class="form-label">Phone / WhatsApp *</label><input class="form-input" id="oPhone" type="tel" placeholder="+255 7XX XXX XXX"/></div>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Delivery Area *</label>
+          <select class="form-select" id="oArea"><option value="">Select area</option><option>Kariakoo</option><option>Ilala</option><option>Kinondoni</option><option>Temeke</option><option>Ubungo</option><option>Kigamboni</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Street / Landmark</label><input class="form-input" id="oAddress2" type="text" placeholder="e.g. Mkunguni St"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Payment Method *</label><div id="paymentOptions"></div></div>
+      <div class="form-group"><label class="form-label">Notes (optional)</label><textarea class="form-input" id="oNotes" rows="2" placeholder="Size, colour preference, etc."></textarea></div>
+      <button class="submit-btn" onclick="submitOrder()"><span>Place Order & Get Invoice 🧾</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- PIN OVERLAY (rendered by JS) -->
+<div id="pinContainer"></div>
+
+<!-- INVOICE OVERLAY (rendered by JS) -->
+<div id="invoiceContainer"></div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="bnav-btn active" id="bnav-home" onclick="showPage('home')"><span class="bnav-icon">🏠</span>Home</button>
+    <button class="bnav-btn" id="bnav-shop" onclick="showPage('shop')"><span class="bnav-icon">👗</span>Shop</button>
+    <button class="bnav-btn" id="bnav-cart" onclick="toggleCart()"><span class="bnav-icon">🛍</span>Cart</button>
+    <button class="bnav-btn" id="bnav-about" onclick="showPage('about')"><span class="bnav-icon">ℹ️</span>About</button>
+    <button class="bnav-btn" id="bnav-settings" onclick="requirePin()" style="opacity:.65"><span class="bnav-icon">🔒</span>Seller</button>
+  </div>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2>🦤 DODO BOUTIQUE</h2>
+        <p>Your go-to fashion destination in Kariakoo, Dar es Salaam. Quality styles, honest prices, delivered with love.</p>
+        <div class="fsocials" id="footerSocials" style="margin-top:16px"></div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul>
+        <li><a onclick="showPage('shop');setCat('Women')">Women's Fashion</a></li>
+        <li><a onclick="showPage('shop');setCat('Men')">Men's Collection</a></li>
+        <li><a onclick="showPage('shop');setCat('Accessories')">Accessories</a></li>
+        <li><a onclick="showPage('shop');setCat('Footwear')">Footwear</a></li>
+        <li><a onclick="showPage('shop');setCat('Kids')">Kids</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Info</h4><ul>
+        <li><a onclick="showPage('about')">About Us</a></li>
+        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a onclick="requirePin()" style="opacity:.6">🔒 Seller Settings</a></li>
+        <li><a onclick="toggleWishlist()">♡ Wishlist</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Follow Us</h4><div id="footerFollowUs" style="display:flex;flex-direction:column;gap:8px;margin-top:2px"></div></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Dodo Boutique Kariakoo. All rights reserved.</p>
+      <p style="font-size:11px;color:rgba(240,232,208,.3)">📍 Kariakoo Market, Dar es Salaam, Tanzania</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════
+//  CONFIG
+// ════════════════════════════════════════════════
+const BANKS = [
+  {id:'nmb', name:'NMB Bank', sub:'National Microfinance Bank', icon:'🏦', color:'#1a5276', placeholder:'https://nmbpay.nm.co.tz/pay/your-account'},
+  {id:'crdb', name:'CRDB Bank', sub:'CRDB Bank Plc', icon:'🏛️', color:'#1e8449', placeholder:'https://crdbpay.co.tz/your-link'},
+  {id:'nbc', name:'NBC Bank', sub:'National Bank of Commerce', icon:'🏧', color:'#c0392b', placeholder:'https://nbcpay.co.tz/your-link'},
+];
+const MOMOS = [
+  {id:'mpesa', name:'M-Pesa', sub:'Vodacom', icon:'📲', color:'#e74c3c', ussd:(n,a)=>`*150*00*${n}*${a}#`},
+  {id:'airtel', name:'Airtel Money', sub:'Airtel Tanzania', icon:'💸', color:'#e67e22', ussd:(n,a)=>`*150*60*${n}*${a}#`},
+  {id:'yas', name:'Yas Money', sub:'Tigo / MIC', icon:'💵', color:'#2980b9', ussd:(n,a)=>`*150*01*${n}*${a}#`},
+  {id:'halotel', name:'Halotel Pesa', sub:'Halotel', icon:'💴', color:'#8e44ad', ussd:(n,a)=>`*149*1*${n}*${a}#`},
+];
+const SOCIALS = [
+  {id:'whatsapp',  name:'WhatsApp',   color:'#25D366', bg:'#d6f5e3', textColor:'#145c32',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.528 5.845L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 01-5.032-1.382l-.36-.214-3.762.894.952-3.671-.234-.376A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://wa.me/${v.replace(/[^0-9]/g,'')}`},
+  {id:'facebook',  name:'Facebook',   color:'#1877F2', bg:'#d8eafd', textColor:'#0a3d8f',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://facebook.com/${v}`},
+  {id:'instagram', name:'Instagram',  color:'#E1306C', bg:'#fce4ee', textColor:'#8b1040',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://instagram.com/${v}`},
+  {id:'tiktok',    name:'TikTok',     color:'#000000', bg:'#e8e8e8', textColor:'#111',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://tiktok.com/@${v}`},
+  {id:'x',         name:'X (Twitter)',color:'#000000', bg:'#e2e8f0', textColor:'#111',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.733-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://x.com/${v}`},
+  {id:'snapchat',  name:'Snapchat',   color:'#FFFC00', bg:'#fffde0', textColor:'#7a6a00',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.304 4.968l-.004.081c-.012.128-.017.285-.021.422.282.12.612.187.955.187.34 0 .71-.065 1.02-.199.115-.048.236-.077.36-.048.25.063.41.28.41.53 0 .303-.198.55-.473.63-.024.007-.047.014-.07.022-.135.044-.286.094-.459.126-.027.005-.05.014-.078.019-.048.01-.1.023-.153.039-.126.036-.261.076-.41.141-.022.01-.045.021-.068.03-.165.074-.344.205-.481.355-.218.237-.32.489-.292.706.017.14.076.255.17.346.164.158.405.242.712.242.09 0 .174-.01.259-.025.118-.02.23-.04.347-.04.19 0 .38.04.546.131.245.134.384.347.384.591 0 .24-.168.455-.443.596-.048.024-.1.047-.154.07-.317.13-.769.22-1.308.22-.062 0-.124-.003-.185-.006-.051 0-.1-.004-.149-.004-.09 0-.223.011-.37.038-.278.05-.533.148-.748.291-.388.254-.578.566-.578.925 0 .213.072.42.213.614.23.313.586.554.906.762.104.067.202.13.296.194.394.266.614.57.614.873 0 .405-.37.74-.94.74-.218 0-.449-.053-.673-.156-.176-.08-.347-.127-.5-.127-.157 0-.305.039-.45.116-.222.12-.462.179-.715.179-.453 0-.75-.193-.88-.382-.067-.098-.1-.188-.1-.267 0-.175.082-.343.195-.487.17-.212.252-.463.252-.756 0-.63-.45-1.198-1.303-1.598-.346-.162-.694-.247-1.026-.247-.342 0-.671.09-.97.265-.423.247-.68.618-.68 1.029 0 .32.098.577.28.777.165.18.253.373.253.547 0 .124-.04.248-.125.367-.196.282-.545.445-.932.445-.261 0-.514-.077-.757-.23a1.22 1.22 0 00-.644-.196c-.168 0-.32.04-.47.123-.23.127-.484.192-.755.192-.593 0-.951-.355-.951-.74 0-.31.223-.605.603-.858.106-.068.212-.134.32-.2.304-.19.657-.41.887-.716.151-.204.226-.426.226-.659 0-.345-.17-.659-.545-.925-.224-.16-.497-.265-.789-.316-.154-.027-.3-.038-.397-.038-.052 0-.102.004-.152.004-.063.004-.126.006-.188.006-.54 0-.991-.091-1.308-.22-.05-.02-.099-.043-.145-.066C3.267 13.45 3.1 13.235 3.1 12.995c0-.244.14-.457.383-.59.166-.09.357-.132.547-.132.118 0 .227.021.346.04.083.016.167.026.258.026.306 0 .548-.084.712-.242.093-.09.153-.206.17-.346.028-.217-.074-.47-.292-.706-.137-.15-.316-.281-.48-.355-.024-.01-.047-.021-.07-.03-.149-.065-.283-.105-.41-.141-.052-.016-.104-.029-.152-.039-.028-.005-.051-.014-.079-.019-.172-.032-.323-.082-.458-.126-.024-.007-.046-.015-.07-.022-.276-.08-.474-.327-.474-.63 0-.25.16-.467.41-.53.122-.032.245-.001.36.048.31.134.68.199 1.018.199.345 0 .675-.068.957-.188l-.021-.422c-.1-1.749-.226-3.775.304-4.968C7.863 1.069 11.218.793 12.206.793z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://snapchat.com/add/${v}`},
+  {id:'youtube',   name:'YouTube',    color:'#FF0000', bg:'#ffe8e8', textColor:'#8b0000',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://youtube.com/@${v}`},
+  {id:'telegram',  name:'Telegram',   color:'#26A5E4', bg:'#d8f0fb', textColor:'#0a4f72',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://t.me/${v}`},
+  {id:'linkedin',  name:'LinkedIn',   color:'#0A66C2', bg:'#d6e8f8', textColor:'#063d73',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://linkedin.com/in/${v}`},
+  {id:'pinterest', name:'Pinterest',  color:'#E60023', bg:'#fde0e3', textColor:'#7a000e',
+   svg:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>`,
+   build:(v)=>v.startsWith('http')?v:`https://pinterest.com/${v}`},
+];
+const PRODUCTS = [
+  {id:1,  name:'Ankara Wrap Dress',   cat:'Women',      price:75000,  emoji:'👗', badge:'New',  featured:true},
+  {id:2,  name:'Batik Print Blouse',  cat:'Women',      price:42000,  oldPrice:55000, emoji:'👘', badge:'Sale', featured:true},
+  {id:3,  name:'Linen Suit Set',      cat:'Men',        price:120000, emoji:'👔', badge:'',     featured:true},
+  {id:4,  name:'Kitenge Skirt',       cat:'Women',      price:38000,  emoji:'🟡', badge:'',     featured:false},
+  {id:5,  name:'Leather Sandals',     cat:'Footwear',   price:48000,  emoji:'👡', badge:'New',  featured:true},
+  {id:6,  name:'Gold Bangle Set',     cat:'Accessories',price:28000,  emoji:'💛', badge:'',     featured:false},
+  {id:7,  name:'Kids Ankara Set',     cat:'Kids',       price:35000,  emoji:'👚', badge:'New',  featured:true},
+  {id:8,  name:'Dashiki Shirt',       cat:'Men',        price:45000,  emoji:'🟠', badge:'',     featured:false},
+  {id:9,  name:'Woven Handbag',       cat:'Accessories',price:55000,  emoji:'👜', badge:'New',  featured:false},
+  {id:10, name:'Maxi Print Dress',    cat:'Women',      price:68000,  emoji:'👒', badge:'',     featured:false},
+  {id:11, name:'Casual Sneakers',     cat:'Footwear',   price:62000,  emoji:'👟', badge:'',     featured:false},
+  {id:12, name:'Silk Headwrap',       cat:'Accessories',price:18000,  emoji:'🧣', badge:'',     featured:false},
+  {id:13, name:'Kikoi Beach Wrap',    cat:'Women',      price:32000,  emoji:'🌊', badge:'',     featured:false},
+  {id:14, name:'Formal Trousers',     cat:'Men',        price:55000,  emoji:'👖', badge:'',     featured:false},
+  {id:15, name:'Kids Sneakers',       cat:'Kids',       price:28000,  emoji:'👟', badge:'Sale', featured:false},
+];
+const CATS = ['All','Women','Men','Accessories','Footwear','Kids'];
+
+// Default settings
+let S = {
+  storeName:'Dodo Boutique', address:'Kariakoo Market, Dar es Salaam, Tanzania',
+  phone:'255712345678', email:'hello@dodoboutique.co.tz',
+  heroTag:'✦ New Collection 2025', freeDelivery:50000, deliveryFee:5000, waConfirm:true,
+  pin:'1234', invPrefix:'DODO', invTIN:'', invNote:'Thank you for shopping at Dodo Boutique! We appreciate your business. 🦤',
+  autoInvoice:true, invoiceCounter:0,
+  banks:{nmb:'',crdb:'',nbc:''},
+  momos:{mpesa:'',airtel:'',yas:'',halotel:''},
+  socials:{whatsapp:'',facebook:'',instagram:'',tiktok:'',x:'',snapchat:'',youtube:'',telegram:'',linkedin:'',pinterest:''},
+};
+try{const sv=localStorage.getItem('dodoS3');if(sv)S={...S,...JSON.parse(sv)};}catch(e){}
+
+let activeCat='All', cart=[], wishlist=[], selectedPayment=null;
+let lastOrder=null; // store last order for invoice
+
+// ════════════════════════════════════════════════
+//  CURSOR EFFECT
+// ════════════════════════════════════════════════
+const dot=document.getElementById('cursorDot');
+const ring=document.getElementById('cursorRing');
+let rx=0,ry=0,mx=0,my=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+function animCursor(){
+  rx+=(mx-rx)*.15;ry+=(my-ry)*.15;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('button,a,.product-card,.pay-btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.style.transform='translate(-50%,-50%) scale(1.5)');
+  el.addEventListener('mouseleave',()=>ring.style.transform='translate(-50%,-50%) scale(1)');
+});
+
+// ════════════════════════════════════════════════
+//  SPLASH PARTICLES
+// ════════════════════════════════════════════════
+(function(){
+  const c=document.getElementById('splashParticles');
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');
+    p.className='s-particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.top=Math.random()*100+'%';
+    p.style.animationDelay=Math.random()*3+'s';
+    p.style.animationDuration=(2+Math.random()*2)+'s';
+    c.appendChild(p);
+  }
+})();
+
+// ════════════════════════════════════════════════
+//  UTILS
+// ════════════════════════════════════════════════
+const fmt = n => 'TZS '+Number(n).toLocaleString();
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const today = ()=>{const d=new Date();return d.toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});};
+const invNum = ()=>{S.invoiceCounter=(S.invoiceCounter||0)+1;return `${S.invPrefix||'DODO'}-${String(S.invoiceCounter).padStart(4,'0')}`;};
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ════════════════════════════════════════════════
+//  PIN LOCK
+// ════════════════════════════════════════════════
+let pinBuffer='';
+let pinCallback=null;
+
+function requirePin(){
+  pinBuffer='';
+  pinCallback=()=>showPage('settings');
+  renderPin();
+}
+
+function renderPin(){
+  const c=document.getElementById('pinContainer');
+  c.innerHTML=`
+  <div class="pin-overlay" id="pinOverlay">
+    <div class="pin-box">
+      <div class="pin-logo">🔒</div>
+      <div class="pin-title">Seller Access Only</div>
+      <div class="pin-sub">This area is for the <strong>store owner</strong> only.<br>Customers shop freely — no PIN needed.<br><br>Enter your 4-digit seller PIN to continue.</div>
+      <div class="pin-dots" id="pinDots">
+        <div class="pin-dot" id="pd0"></div>
+        <div class="pin-dot" id="pd1"></div>
+        <div class="pin-dot" id="pd2"></div>
+        <div class="pin-dot" id="pd3"></div>
+      </div>
+      <div class="pin-pad">
+        ${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k=>`
+          <button class="pin-key${k==='⌫'?' del':k===''?' del':''}" 
+            ${k===''?'style="visibility:hidden"':''}
+            onclick="pinKey('${k}')">${k}</button>`).join('')}
+      </div>
+      <div class="pin-err" id="pinErr">Incorrect PIN. Try again.</div>
+      <div class="pin-hint">Default PIN: 1234 · Customers do not need a PIN to shop</div>
+      <div class="change-pin-row">
+        <button class="change-pin-btn" onclick="closePinOverlay()">✕ Cancel</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function pinKey(k){
+  if(k==='⌫'){
+    pinBuffer=pinBuffer.slice(0,-1);
+  } else if(pinBuffer.length<4 && k!==''){
+    pinBuffer+=k;
+  }
+  updatePinDots();
+  if(pinBuffer.length===4) setTimeout(checkPin,200);
+}
+
+function updatePinDots(){
+  for(let i=0;i<4;i++){
+    const d=document.getElementById('pd'+i);
+    if(d) d.className='pin-dot'+(i<pinBuffer.length?' filled':'');
+  }
+}
+
+function checkPin(){
+  if(pinBuffer===(S.pin||'1234')){
+    closePinOverlay();
+    if(pinCallback) pinCallback();
+  } else {
+    const err=document.getElementById('pinErr');
+    if(err){err.classList.add('show');}
+    pinBuffer='';
+    updatePinDots();
+    setTimeout(()=>{if(err)err.classList.remove('show');},2000);
+  }
+}
+
+function closePinOverlay(){
+  const c=document.getElementById('pinContainer');
+  const o=document.getElementById('pinOverlay');
+  if(o){o.style.opacity='0';o.style.transform='scale(1.05)';o.style.transition='.3s';}
+  setTimeout(()=>{c.innerHTML='';},300);
+}
+
+function changePin(){
+  const cur=document.getElementById('s-pinCur').value.trim();
+  const nw=document.getElementById('s-pinNew').value.trim();
+  const msg=document.getElementById('pinChangeMsg');
+  if(cur!==(S.pin||'1234')){
+    msg.style.display='block';msg.style.color='var(--red)';msg.textContent='❌ Current PIN incorrect';return;
+  }
+  if(!/^\d{4}$/.test(nw)){
+    msg.style.display='block';msg.style.color='var(--red)';msg.textContent='❌ New PIN must be exactly 4 digits';return;
+  }
+  S.pin=nw;
+  msg.style.display='block';msg.style.color='var(--green)';msg.textContent='✓ PIN changed successfully';
+  document.getElementById('s-pinCur').value='';
+  document.getElementById('s-pinNew').value='';
+  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+}
+
+// ════════════════════════════════════════════════
+//  PRODUCTS
+// ════════════════════════════════════════════════
+function productCard(p,delay=0){
+  const loved=wishlist.includes(p.id);
+  return `<div class="product-card" style="animation-delay:${delay}ms" onclick="openProduct(${p.id})">
+    <div class="product-img">
+      <div class="product-img-inner">${p.emoji}</div>
+      ${p.badge?`<div class="product-badge${p.badge==='Sale'?' sale':''}">${esc(p.badge)}</div>`:''}
+      <button class="wish-btn${loved?' loved':''}" onclick="event.stopPropagation();toggleWish(${p.id})">${loved?'♥':'♡'}</button>
+    </div>
+    <div class="product-info">
+      <div class="product-name">${esc(p.name)}</div>
+      <div class="product-cat">${esc(p.cat)}</div>
+      <div class="product-foot">
+        <div class="product-price">${p.oldPrice?`<span class="old">${fmt(p.oldPrice)}</span>`:''} ${fmt(p.price)}</div>
+        <button class="add-btn" onclick="event.stopPropagation();addToCart(${p.id})"><span>+ Add</span></button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function openProduct(id){addToCart(id);}
+function renderFeatured(){document.getElementById('featuredGrid').innerHTML=PRODUCTS.filter(p=>p.featured).map((p,i)=>productCard(p,i*80)).join('');}
+function renderShop(){
+  const q=(document.getElementById('searchInput')||{}).value||'';
+  const list=PRODUCTS.filter(p=>{
+    const mc=activeCat==='All'||p.cat===activeCat;
+    const mq=!q||p.name.toLowerCase().includes(q.toLowerCase())||p.cat.toLowerCase().includes(q.toLowerCase());
+    return mc&&mq;
+  });
+  document.getElementById('shopGrid').innerHTML=list.map((p,i)=>productCard(p,i*55)).join('');
+  document.getElementById('noResults').style.display=list.length?'none':'block';
+}
+function renderCats(){document.getElementById('catPills').innerHTML=CATS.map(c=>`<button class="cat${c===activeCat?' active':''}" onclick="setCat('${c}')">${c}</button>`).join('');}
+function setCat(c){activeCat=c;renderCats();renderShop();if(!document.getElementById('page-shop').classList.contains('active'))showPage('shop');}
+
+// ════════════════════════════════════════════════
+//  WISHLIST
+// ════════════════════════════════════════════════
+function toggleWish(id){
+  const idx=wishlist.indexOf(id);
+  if(idx>=0){wishlist.splice(idx,1);showToast('Removed from saved');}
+  else{wishlist.push(id);showToast('♥ Saved to wishlist');}
+  renderFeatured();renderShop();renderWishlistDrawer();
+}
+function renderWishlistDrawer(){
+  const el=document.getElementById('wishlistItems');
+  const items=PRODUCTS.filter(p=>wishlist.includes(p.id));
+  el.innerHTML=!items.length
+    ?`<div class="cart-empty"><div class="cart-empty-icon">♡</div><div>No saved items yet</div></div>`
+    :items.map(i=>`<div class="cart-item"><div class="cart-item-img">${i.emoji}</div><div class="cart-item-info"><div class="cart-item-name">${esc(i.name)}</div><div class="cart-item-price">${fmt(i.price)}</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><button class="add-btn" onclick="addToCart(${i.id})" style="font-size:11px"><span>+ Cart</span></button><button class="cart-remove" onclick="toggleWish(${i.id})">✕</button></div></div>`).join('');
+}
+function toggleWishlist(){
+  document.getElementById('wishlistOverlay').classList.toggle('open');
+  document.getElementById('wishlistDrawer').classList.toggle('open');
+  renderWishlistDrawer();
+}
+
+// ════════════════════════════════════════════════
+//  CART
+// ════════════════════════════════════════════════
+function addToCart(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  const ex=cart.find(x=>x.id===id);
+  if(ex)ex.qty++;else cart.push({...p,qty:1});
+  updateCartUI();showToast('✓ '+p.name+' added');
+  const cc=document.getElementById('cartCount');
+  cc.classList.remove('bump');void cc.offsetWidth;cc.classList.add('bump');
+}
+function removeFromCart(id){cart=cart.filter(x=>x.id!==id);updateCartUI();}
+function changeQty(id,delta){
+  const item=cart.find(x=>x.id===id);if(!item)return;
+  item.qty+=delta;if(item.qty<=0)removeFromCart(id);else updateCartUI();
+}
+function updateCartUI(){
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartCount').textContent=count;
+  const el=document.getElementById('cartItems');
+  const foot=document.getElementById('cartFoot');
+  if(!cart.length){
+    el.innerHTML=`<div class="cart-empty"><div class="cart-empty-icon">🛍</div><div>Your cart is empty</div><div style="font-size:13px;color:var(--muted);margin-top:8px">Add items from the shop</div></div>`;
+    foot.style.display='none';
+  } else {
+    el.innerHTML=cart.map(i=>`<div class="cart-item"><div class="cart-item-img">${i.emoji}</div><div class="cart-item-info"><div class="cart-item-name">${esc(i.name)}</div><div class="cart-item-price">${fmt(i.price)}</div><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button><span class="qty-num">${i.qty}</span><button class="qty-btn" onclick="changeQty(${i.id},1)">+</button></div></div><button class="cart-remove" onclick="removeFromCart(${i.id})">✕</button></div>`).join('');
+    foot.style.display='block';
+    document.getElementById('cartTotal').textContent=fmt(total);
+  }
+}
+function toggleCart(){
+  document.getElementById('cartOverlay').classList.toggle('open');
+  document.getElementById('cartDrawer').classList.toggle('open');
+}
+
+// ════════════════════════════════════════════════
+//  PAYMENT OPTIONS
+// ════════════════════════════════════════════════
+function buildPayOpts(){
+  const opts=[];
+  BANKS.forEach(b=>{if(S.banks[b.id])opts.push({type:'bank',key:b.id,label:b.name,sub:'Bank Transfer',icon:b.icon,color:b.color,url:S.banks[b.id]});});
+  MOMOS.forEach(m=>{if(S.momos[m.id]){const num=S.momos[m.id].replace(/[^0-9]/g,'');opts.push({type:'momo',key:m.id,label:m.name,sub:m.sub,icon:m.icon,color:m.color,num,momoRef:m});}});
+  opts.push({type:'cash',key:'cash',label:'Cash on Delivery',sub:'Pay on arrival',icon:'💵',color:'#2c7a1a'});
+  return opts;
+}
+function renderPaymentOptions(){
+  const opts=buildPayOpts();selectedPayment=null;
+  const el=document.getElementById('paymentOptions');
+  if(!opts.length){el.innerHTML='<p style="color:var(--muted);font-size:13px">No payment methods configured.</p>';return;}
+  const banks=opts.filter(o=>o.type==='bank'),momos=opts.filter(o=>o.type==='momo'),cash=opts.filter(o=>o.type==='cash');
+  let html='';
+  if(banks.length)html+=`<div class="pay-section-label">🏦 Bank Transfer</div><div class="pay-grid">${banks.map(o=>payBtn(o)).join('')}</div>`;
+  if(momos.length)html+=`<div class="pay-section-label">📱 Mobile Money</div><div class="pay-grid">${momos.map(o=>payBtn(o)).join('')}</div>`;
+  html+=`<div class="pay-section-label">💵 Other</div><div class="pay-grid">${cash.map(o=>payBtn(o)).join('')}</div>`;
+  el.innerHTML=html;
+}
+function payBtn(o){
+  return `<button class="pay-btn" id="pay-${o.key}" onclick="selectPayment('${o.key}')"><div class="pay-icon" style="background:${o.color}20">${o.icon}</div><div><div class="pay-name">${esc(o.label)}</div><div class="pay-sub">${esc(o.sub)}</div></div></button>`;
+}
+function selectPayment(key){
+  document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('selected'));
+  const btn=document.getElementById('pay-'+key);if(btn)btn.classList.add('selected');
+  selectedPayment=key;
+}
+
+// ════════════════════════════════════════════════
+//  CHECKOUT
+// ════════════════════════════════════════════════
+function openCheckout(){
+  toggleCart();
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const threshold=S.freeDelivery||50000,fee=S.deliveryFee||5000;
+  const delivery=total>=threshold?0:fee;
+  document.getElementById('orderSummary').innerHTML=`
+    <div class="order-summary-title">Order Summary</div>
+    ${cart.map(i=>`<div class="order-line"><span>${esc(i.name)} ×${i.qty}</span><span>${fmt(i.price*i.qty)}</span></div>`).join('')}
+    <div class="order-line"><span>Delivery</span><span>${delivery===0?'Free ✓':fmt(delivery)}</span></div>
+    <div class="order-line"><span>Total</span><span style="color:var(--gold)">${fmt(total+delivery)}</span></div>`;
+  renderPaymentOptions();
+  document.getElementById('orderModal').classList.add('open');
+}
+function closeCheckout(){document.getElementById('orderModal').classList.remove('open');}
+
+function submitOrder(){
+  const name=document.getElementById('oName').value.trim();
+  const phone=document.getElementById('oPhone').value.trim();
+  const area=document.getElementById('oArea').value;
+  const addr=document.getElementById('oAddress2').value.trim();
+  const notes=document.getElementById('oNotes').value.trim();
+  if(!name||!phone||!area){showToast('⚠ Please fill name, phone and area');return;}
+  if(!selectedPayment){showToast('⚠ Please choose a payment method');return;}
+
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const threshold=S.freeDelivery||50000,fee=S.deliveryFee||5000;
+  const delivery=total>=threshold?0:fee;
+  const grand=total+delivery;
+  const opts=buildPayOpts();
+  const chosen=opts.find(o=>o.key===selectedPayment);
+
+  let payUrl='',payBtnStyle='',payBtnText='';
+  if(chosen){
+    if(chosen.type==='bank'){payUrl=chosen.url;payBtnStyle=`background:${chosen.color};color:#fff`;payBtnText=`${chosen.icon} Pay via ${chosen.label}`;}
+    else if(chosen.type==='momo'){const m=MOMOS.find(x=>x.id===chosen.key);const ussd=m?m.ussd(chosen.num,grand):'';payUrl=`tel:${encodeURIComponent(ussd)}`;payBtnStyle=`background:${chosen.color};color:#fff`;payBtnText=`${chosen.icon} Dial ${chosen.label} USSD`;}
+  }
+
+  // Store last order for invoice
+  lastOrder={
+    num:invNum(),
+    date:today(),
+    name,phone,area,addr,notes,
+    items:[...cart],
+    subtotal:total,delivery,grand,
+    payMethod:chosen?chosen.label:'Cash on Delivery',
+    payUrl,payBtnStyle,payBtnText,
+  };
+
+  // WhatsApp message
+  const orderItems=cart.map(i=>`  • ${i.name} ×${i.qty} = ${fmt(i.price*i.qty)}`).join('\n');
+  const waMsg=encodeURIComponent(`🛍 *New Order – ${S.storeName||'Dodo Boutique'}*\n\n*Invoice:* ${lastOrder.num}\n*Customer:* ${name}\n*Phone:* ${phone}\n*Area:* ${area}${addr?', '+addr:''}\n*Payment:* ${lastOrder.payMethod}\n\n*Items:*\n${orderItems}\n*Delivery:* ${delivery===0?'Free':fmt(delivery)}\n*TOTAL:* ${fmt(grand)}`+(notes?`\n\n*Notes:* ${notes}`:''));
+  const waUrl=`https://wa.me/${S.phone.replace(/[^0-9]/g,'')}?text=${waMsg}`;
+
+  // Save updated invoice counter
+  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+
+  // Show success screen
+  document.getElementById('modalBody').innerHTML=`
+    <div class="success-msg">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">Order Placed!</div>
+      <div class="success-sub">Thank you, <strong>${esc(name)}</strong>!<br>
+        Payment: <strong>${esc(lastOrder.payMethod)}</strong><br>
+        Delivery to: <strong>${esc(area)}</strong><br>
+        Total: <strong style="color:var(--gold)">${fmt(grand)}</strong>
+      </div>
+      <div class="action-row">
+        ${payUrl?`<a class="pay-now-btn" href="${esc(payUrl)}" target="_blank" style="${payBtnStyle}">${payBtnText}</a>`:''}
+        ${S.waConfirm!==false?`<a class="pay-now-btn" href="${waUrl}" target="_blank" style="background:#25D366;color:#fff">💬 Confirm via WhatsApp</a>`:''}
+        <button class="pay-now-btn" onclick="showInvoice()" style="background:var(--dark);color:var(--gold)">🧾 View & Download Invoice</button>
+        <button class="btn-outline" style="width:100%;border-radius:10px;padding:14px;border:1px solid var(--cream3)" onclick="closeCheckout();resetAfterOrder()">Continue Shopping</button>
+      </div>
+    </div>`;
+
+  // Auto-show invoice if enabled
+  if(S.autoInvoice!==false) setTimeout(()=>showInvoice(),500);
+}
+
+function resetAfterOrder(){cart=[];updateCartUI();}
+
+// ════════════════════════════════════════════════
+//  INVOICE
+// ════════════════════════════════════════════════
+function showInvoice(){
+  if(!lastOrder){showToast('No order to display');return;}
+  const o=lastOrder;
+  const c=document.getElementById('invoiceContainer');
+  c.innerHTML=`
+  <div class="invoice-overlay" onclick="if(event.target===this)closeInvoice()">
+    <div class="invoice-modal">
+      <div class="inv-sheet" id="invSheet">
+        <div class="inv-header">
+          <div class="inv-brand">
+            <div class="inv-brand-name">🦤 ${esc(S.storeName||'DODO BOUTIQUE')}</div>
+            <div class="inv-brand-sub">Kariakoo Market · Dar es Salaam, Tanzania</div>
+            ${S.email?`<div style="font-size:12px;color:var(--muted);margin-top:2px">${esc(S.email)}</div>`:''}
+            ${S.invTIN?`<div style="font-size:11px;color:var(--muted)">${esc(S.invTIN)}</div>`:''}
+          </div>
+          <div class="inv-meta">
+            <div class="inv-title">Invoice</div>
+            <div class="inv-num"># ${esc(o.num)}</div>
+            <div class="inv-date">Date: ${esc(o.date)}</div>
+          </div>
+        </div>
+
+        <div class="inv-parties">
+          <div class="inv-party">
+            <h4>From</h4>
+            <strong>${esc(S.storeName||'Dodo Boutique')}</strong>
+            <p>${esc(S.address||'Kariakoo Market, Dar es Salaam')}<br>
+            📞 ${esc(S.phone||'+255 712 345 678')}<br>
+            ${S.email?`✉️ ${esc(S.email)}`:''}
+            </p>
+          </div>
+          <div class="inv-party">
+            <h4>Bill To</h4>
+            <strong>${esc(o.name)}</strong>
+            <p>📞 ${esc(o.phone)}<br>
+            📍 ${esc(o.area)}${o.addr?', '+esc(o.addr):''}<br>
+            ${o.notes?`📝 ${esc(o.notes)}`:''}
+            </p>
+          </div>
+        </div>
+
+        <table class="inv-table">
+          <thead><tr><th>#</th><th>Item</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr></thead>
+          <tbody>
+            ${o.items.map((item,i)=>`
+            <tr>
+              <td style="color:var(--muted)">${i+1}</td>
+              <td>${item.emoji} ${esc(item.name)}<br><small style="color:var(--muted)">${esc(item.cat)}</small></td>
+              <td style="text-align:center">${item.qty}</td>
+              <td>${fmt(item.price)}</td>
+              <td>${fmt(item.price*item.qty)}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+
+        <div class="inv-totals">
+          <div class="inv-total-row"><span>Subtotal</span><span class="inv-val">${fmt(o.subtotal)}</span></div>
+          <div class="inv-total-row"><span>Delivery</span><span class="inv-val">${o.delivery===0?'Free ✓':fmt(o.delivery)}</span></div>
+          <div class="inv-total-row grand"><span>Grand Total</span><span class="inv-val">${fmt(o.grand)}</span></div>
+        </div>
+
+        <div class="inv-pay">
+          <h4>Payment Method</h4>
+          <p>${esc(o.payMethod)}</p>
+        </div>
+
+        <div class="inv-footer">
+          <div>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--dark);margin-bottom:4px">${esc(S.invNote||'Thank you for shopping at Dodo Boutique!')}</p>
+            <p>This invoice was generated on ${esc(o.date)}.</p>
+            ${S.invTIN?`<p>${esc(S.invTIN)}</p>`:''}
+          </div>
+          <div class="inv-stamp">PAID ✓</div>
+        </div>
+      </div>
+
+      <div class="inv-actions">
+        <button class="inv-dl-btn primary" onclick="downloadInvoicePDF()">⬇ Download PDF</button>
+        <button class="inv-dl-btn secondary" onclick="printInvoice()">🖨 Print</button>
+        <button class="inv-dl-btn wa" onclick="shareInvoiceWA()">💬 WhatsApp</button>
+        <button class="inv-dl-btn secondary" onclick="closeInvoice()">✕ Close</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function closeInvoice(){
+  const c=document.getElementById('invoiceContainer');
+  const o=c.querySelector('.invoice-overlay');
+  if(o){o.style.opacity='0';o.style.transition='.3s';}
+  setTimeout(()=>{c.innerHTML='';},300);
+}
+
+function printInvoice(){
+  const sheet=document.getElementById('invSheet');
+  if(!sheet)return;
+  const w=window.open('','_blank','width=700,height=900');
+  w.document.write(`<!DOCTYPE html><html><head><title>Invoice ${lastOrder.num}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;color:#1a1208;background:#fff;padding:0}
+    :root{--gold:#C9A84C;--dark:#1a1208;--cream:#FAF5E9;--cream2:#F0E8D0;--cream3:#E5D8B8;--muted:#7a6840;--green:#1a7a3c}
+    .inv-sheet{padding:36px 40px}
+    .inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid #1a1208}
+    .inv-brand-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;letter-spacing:3px}
+    .inv-brand-sub{font-size:11px;color:#7a6840;letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+    .inv-title{font-family:'Cormorant Garamond',serif;font-size:32px;color:#C9A84C;font-weight:300;letter-spacing:2px;text-transform:uppercase}
+    .inv-num,.inv-date{font-size:12px;color:#7a6840;margin-top:4px}
+    .inv-meta{text-align:right}
+    .inv-parties{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;background:#FAF5E9;border-radius:10px;padding:16px}
+    .inv-party h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#7a6840;margin-bottom:8px}
+    .inv-party strong{font-size:14px;display:block;margin-bottom:4px}
+    .inv-party p{font-size:13px;line-height:1.6}
+    .inv-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+    .inv-table th{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#7a6840;padding:8px 12px;border-bottom:1px solid #1a1208;text-align:left;font-weight:500}
+    .inv-table th:last-child{text-align:right}
+    .inv-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #E5D8B8}
+    .inv-table td:last-child{text-align:right;font-family:'Cormorant Garamond',serif;font-size:15px}
+    .inv-totals{margin-left:auto;width:240px}
+    .inv-total-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #E5D8B8}
+    .inv-total-row.grand{padding-top:10px;border-top:2px solid #1a1208;border-bottom:none;font-weight:600;font-size:16px;font-family:'Cormorant Garamond',serif}
+    .inv-total-row.grand .inv-val{color:#C9A84C}
+    .inv-pay{margin-top:20px;padding:14px 16px;background:#FAF5E9;border-radius:8px;border-left:3px solid #C9A84C}
+    .inv-pay h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#7a6840;margin-bottom:6px}
+    .inv-pay p{font-size:13px}
+    .inv-footer{margin-top:28px;padding-top:16px;border-top:1px solid #E5D8B8;display:flex;justify-content:space-between;align-items:center}
+    .inv-footer p{font-size:11px;color:#7a6840}
+    .inv-stamp{width:60px;height:60px;border-radius:50%;border:2.5px solid #1a7a3c;display:flex;align-items:center;justify-content:center;font-size:10px;color:#1a7a3c;font-weight:700;letter-spacing:1px;text-align:center;line-height:1.3;transform:rotate(-15deg)}
+    small{font-size:11px;color:#7a6840}
+    @media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  </style></head><body>${sheet.outerHTML}<script>window.onload=()=>window.print()<\/script></body></html>`);
+  w.document.close();
+}
+
+function downloadInvoicePDF(){
+  // Use print dialog with PDF save as the fallback (widely supported)
+  printInvoice();
+  showToast('📄 Use "Save as PDF" in the print dialog');
+}
+
+function shareInvoiceWA(){
+  if(!lastOrder)return;
+  const o=lastOrder;
+  const lines=o.items.map(i=>`• ${i.name} ×${i.qty} = ${fmt(i.price*i.qty)}`).join('\n');
+  const txt=encodeURIComponent(
+    `🧾 *Invoice ${o.num}* — ${S.storeName||'Dodo Boutique'}\n`+
+    `Date: ${o.date}\n\n`+
+    `*Customer:* ${o.name}\n*Phone:* ${o.phone}\n*Area:* ${o.area}${o.addr?', '+o.addr:''}\n\n`+
+    `*Items:*\n${lines}\n\n`+
+    `*Subtotal:* ${fmt(o.subtotal)}\n*Delivery:* ${o.delivery===0?'Free':fmt(o.delivery)}\n*TOTAL:* ${fmt(o.grand)}\n\n`+
+    `*Payment:* ${o.payMethod}\n\n${S.invNote||'Thank you for shopping with us!'}`
+  );
+  window.open(`https://wa.me/${o.phone.replace(/[^0-9]/g,'')}?text=${txt}`,'_blank');
+}
+
+// ════════════════════════════════════════════════
+//  SOCIALS
+// ════════════════════════════════════════════════
+function socialURL(s){const val=S.socials[s.id];if(!val)return '';return s.build(val);}
+
+function socialIconHTML(s, size=18){
+  return `<span style="width:${size}px;height:${size}px;color:${s.color};display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${s.svg}</span>`;
+}
+
+function renderSocials(){
+  const active=SOCIALS.filter(s=>S.socials[s.id]);
+
+  // About & Contact pages — pill buttons
+  const makePills=el=>{
+    if(!el)return;
+    el.innerHTML=active.length
+      ?active.map(s=>`<a class="soc-btn" href="${esc(socialURL(s))}" target="_blank">
+          <div class="soc-icon" style="background:${s.bg};width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0">${socialIconHTML(s,15)}</div>
+          ${s.name}</a>`).join('')
+      :'<p style="font-size:12px;color:var(--muted)">No social links set yet — add them in Seller Settings ⚙️</p>';
+  };
+  makePills(document.getElementById('aboutSocials'));
+  makePills(document.getElementById('contactSocials'));
+
+  // Footer icon row (small icon bubbles)
+  const fEl=document.getElementById('footerSocials');
+  if(fEl) fEl.innerHTML=active.map(s=>`
+    <a class="fsoc" href="${esc(socialURL(s))}" target="_blank" title="${s.name}"
+       style="width:36px;height:36px;border-radius:8px;border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:.25s;cursor:pointer;background:rgba(255,255,255,.04)"
+       onmouseover="this.style.background='${s.bg}';this.style.borderColor='${s.color}';this.style.transform='translateY(-3px) scale(1.1)'"
+       onmouseout="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(201,168,76,.2)';this.style.transform=''">
+      <span style="width:18px;height:18px;color:${s.color};display:flex;align-items:center;justify-content:center">${s.svg}</span>
+    </a>`).join('');
+
+  // Footer Follow Us column — text links with icon
+  const fuEl=document.getElementById('footerFollowUs');
+  if(fuEl){
+    if(active.length){
+      fuEl.innerHTML=active.map(s=>`
+        <a href="${esc(socialURL(s))}" target="_blank"
+           style="display:flex;align-items:center;gap:9px;color:rgba(240,232,208,.5);text-decoration:none;font-size:13px;transition:.25s;padding:3px 0;border-radius:6px"
+           onmouseover="this.style.color='var(--gold)';this.style.paddingLeft='6px'"
+           onmouseout="this.style.color='rgba(240,232,208,.5)';this.style.paddingLeft='0'">
+          <span style="width:24px;height:24px;border-radius:6px;background:${s.bg};display:flex;align-items:center;justify-content:center;flex-shrink:0">${socialIconHTML(s,13)}</span>
+          ${s.name}
+        </a>`).join('');
+    } else {
+      fuEl.innerHTML=`<p style="font-size:12px;color:rgba(240,232,208,.3);line-height:1.8">Add your social links<br>in Seller Settings 🔒</p>`;
+    }
+  }
+
+  // Contact page payment methods
+  const pmEl=document.getElementById('contactPayMethods');
+  if(pmEl){const opts=buildPayOpts();pmEl.innerHTML=opts.map(o=>`<div style="display:flex;align-items:center;gap:5px;background:var(--white);border:1px solid var(--cream3);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:500">${o.icon} ${o.label}</div>`).join('');}
+}
+
+// ════════════════════════════════════════════════
+//  APPLY SETTINGS
+// ════════════════════════════════════════════════
+function applySettings(){
+  const ph=S.phone.replace(/[^0-9]/g,'');
+  const phoneDisplay=S.phone.startsWith('+')?S.phone:('+'+S.phone);
+  const ctAddress=document.getElementById('ctAddress');if(ctAddress)ctAddress.textContent=S.address||'Kariakoo Market, Dar es Salaam';
+  const ctPhone=document.getElementById('ctPhone');if(ctPhone){ctPhone.textContent=phoneDisplay;ctPhone.href='tel:+'+ph;}
+  const ctWA=document.getElementById('ctWA');if(ctWA){ctWA.textContent=phoneDisplay;ctWA.href=`https://wa.me/${ph}`;}
+  const ctEmail=document.getElementById('ctEmail');if(ctEmail){ctEmail.textContent=S.email;ctEmail.href='mailto:'+S.email;}
+  const aPhone=document.getElementById('aboutPhone');if(aPhone)aPhone.innerHTML=`<a href="tel:+${ph}" style="color:var(--dark)">${phoneDisplay}</a>`;
+  const heroTag=document.getElementById('heroTag');if(heroTag)heroTag.textContent=S.heroTag||'✦ New Collection 2025';
+  renderSocials();
+}
+
+// ════════════════════════════════════════════════
+//  SETTINGS UI
+// ════════════════════════════════════════════════
+function renderSettingsInputs(){
+  document.getElementById('s-storeName').value=S.storeName||'';
+  document.getElementById('s-address').value=S.address||'';
+  document.getElementById('s-phone').value=S.phone||'';
+  document.getElementById('s-email').value=S.email||'';
+  document.getElementById('s-heroTag').value=S.heroTag||'';
+  document.getElementById('s-freeDelivery').value=S.freeDelivery||50000;
+  document.getElementById('s-deliveryFee').value=S.deliveryFee||5000;
+  document.getElementById('s-waConfirm').checked=S.waConfirm!==false;
+  document.getElementById('s-autoInvoice').checked=S.autoInvoice!==false;
+  document.getElementById('s-invPrefix').value=S.invPrefix||'DODO';
+  document.getElementById('s-invTIN').value=S.invTIN||'';
+  document.getElementById('s-invNote').value=S.invNote||'';
+
+  document.getElementById('bankLinksGrid').innerHTML=BANKS.map(b=>{
+    const v=S.banks[b.id]||'';
+    return `<div class="link-card"><div class="link-card-hd"><div class="link-badge" style="background:${b.color}22">${b.icon}</div><div><div class="link-card-name">${b.name}</div><div class="link-card-sub">${b.sub}</div></div></div>
+    <div class="link-status ${v?'on':'off'}" id="bstat-${b.id}">${v?'✓ Active':'Not set'}</div>
+    <input class="link-input" type="url" id="bank-${b.id}" value="${esc(v)}" placeholder="${b.placeholder}" oninput="updateStat('bstat-${b.id}',this.value)"/>
+    <button class="link-test" onclick="window.open(document.getElementById('bank-${b.id}').value||'${b.placeholder}','_blank')">Open portal →</button></div>`;
+  }).join('');
+
+  document.getElementById('momoLinksGrid').innerHTML=MOMOS.map(m=>{
+    const v=S.momos[m.id]||'';
+    return `<div class="link-card"><div class="link-card-hd"><div class="link-badge" style="background:${m.color}22">${m.icon}</div><div><div class="link-card-name">${m.name}</div><div class="link-card-sub">${m.sub}</div></div></div>
+    <div class="link-status ${v?'on':'off'}" id="mstat-${m.id}">${v?'✓ Active':'Not set'}</div>
+    <input class="link-input" type="tel" id="momo-${m.id}" value="${esc(v)}" placeholder="e.g. 255712345678" oninput="updateStat('mstat-${m.id}',this.value)"/>
+    <button class="link-test" onclick="testMomo('${m.id}')">Test USSD dial →</button></div>`;
+  }).join('');
+
+  document.getElementById('socialLinksGrid').innerHTML=SOCIALS.map(s=>{
+    const v=S.socials[s.id]||'';
+    const placeholders={
+      whatsapp:'255712345678 or https://wa.me/255...',
+      facebook:'https://facebook.com/yourpage',
+      instagram:'https://instagram.com/yourhandle',
+      tiktok:'https://tiktok.com/@yourhandle',
+      x:'https://x.com/yourhandle',
+      snapchat:'yourusername or https://snapchat.com/add/...',
+      youtube:'https://youtube.com/@yourchannel',
+      telegram:'yourusername or https://t.me/...',
+      linkedin:'https://linkedin.com/in/yourprofile',
+      pinterest:'https://pinterest.com/yourprofile',
+    };
+    return `<div class="soc-link-card">
+      <div class="soc-link-icon" style="background:${s.bg};width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span style="width:20px;height:20px;color:${s.color};display:flex;align-items:center;justify-content:center">${s.svg}</span>
+      </div>
+      <div class="soc-link-right">
+        <div class="soc-link-name" style="color:${s.color}">${s.name}</div>
+        <input class="soc-link-input" type="text" id="soc-${s.id}" value="${esc(v)}" placeholder="${placeholders[s.id]||'Paste your URL or handle'}"/>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateStat(statId,val){
+  const el=document.getElementById(statId);if(!el)return;
+  el.className='link-status '+(val.trim()?'on':'off');
+  el.textContent=val.trim()?'✓ Active':'Not set';
+}
+
+function testMomo(id){
+  const v=(document.getElementById('momo-'+id)||{}).value||'';
+  if(!v){showToast('⚠ No number entered yet');return;}
+  const m=MOMOS.find(x=>x.id===id);
+  const num=v.replace(/[^0-9]/g,'');
+  const ussd=m?m.ussd(num,1000):'';
+  if(ussd)window.open('tel:'+encodeURIComponent(ussd),'_self');
+}
+
+function saveSettings(){
+  S.storeName=document.getElementById('s-storeName').value.trim()||S.storeName;
+  S.address=document.getElementById('s-address').value.trim()||S.address;
+  S.phone=document.getElementById('s-phone').value.trim()||S.phone;
+  S.email=document.getElementById('s-email').value.trim()||S.email;
+  S.heroTag=document.getElementById('s-heroTag').value.trim()||S.heroTag;
+  S.freeDelivery=parseInt(document.getElementById('s-freeDelivery').value)||50000;
+  S.deliveryFee=parseInt(document.getElementById('s-deliveryFee').value)||5000;
+  S.waConfirm=document.getElementById('s-waConfirm').checked;
+  S.autoInvoice=document.getElementById('s-autoInvoice').checked;
+  S.invPrefix=document.getElementById('s-invPrefix').value.trim()||'DODO';
+  S.invTIN=document.getElementById('s-invTIN').value.trim();
+  S.invNote=document.getElementById('s-invNote').value.trim();
+  BANKS.forEach(b=>{S.banks[b.id]=(document.getElementById('bank-'+b.id)||{}).value||'';});
+  MOMOS.forEach(m=>{S.momos[m.id]=(document.getElementById('momo-'+m.id)||{}).value||'';});
+  SOCIALS.forEach(s=>{S.socials[s.id]=(document.getElementById('soc-'+s.id)||{}).value||'';});
+  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+  applySettings();
+  const msg=document.getElementById('savedMsg');msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),3500);
+  showToast('✓ Settings saved!');
+}
+
+// ════════════════════════════════════════════════
+//  NAVIGATION
+// ════════════════════════════════════════════════
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const bn=document.getElementById('bnav-'+name);if(bn)bn.classList.add('active');
+  const nl=document.getElementById('nl-'+name);if(nl)nl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='shop'){renderShop();renderCats();}
+  if(name==='settings'){renderSettingsInputs();}
+  if(name==='about'||name==='contact'){renderSocials();}
+}
+
+function toggleMenu(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ════════════════════════════════════════════════
+//  CONTACT FORM
+// ════════════════════════════════════════════════
+function sendContact(){
+  const name=(document.getElementById('cfName')||{}).value||'';
+  const phone=(document.getElementById('cfPhone')||{}).value||'';
+  const subj=(document.getElementById('cfSubject')||{}).value||'General inquiry';
+  const msg=(document.getElementById('cfMsg')||{}).value||'';
+  if(!name||!msg){showToast('⚠ Please enter your name and message');return;}
+  const ph=S.phone.replace(/[^0-9]/g,'');
+  const text=encodeURIComponent(`*Message from ${name}*\n*Phone:* ${phone||'Not given'}\n*Subject:* ${subj}\n\n${msg}`);
+  window.open(`https://wa.me/${ph}?text=${text}`,'_blank');
+}
+
+// ════════════════════════════════════════════════
+//  SCROLL REVEAL ANIMATIONS
+// ════════════════════════════════════════════════
+function observeReveal(){
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
+  },{threshold:.1});
+  document.querySelectorAll('.about-card,.review-card,.map-info-item,.badge').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease, transform .5s ease';
+    io.observe(el);
+  });
+}
+
+// ════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════
+window.addEventListener('load',()=>{
+  renderFeatured();
+  updateCartUI();
+  applySettings();
+  renderSocials();
+  observeReveal();
+  setTimeout(()=>{
+    document.getElementById('splash').classList.add('hide');
+  },2200);
+});
+</script>
+</body>
+</html>
