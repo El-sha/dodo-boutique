@@ -387,6 +387,57 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
 .saved-msg{display:none;background:rgba(26,122,60,.08);color:var(--green);border:1px solid rgba(26,122,60,.2);padding:12px 16px;border-radius:8px;font-size:13px;text-align:center;margin-top:12px}
 .saved-msg.show{display:block;animation:fadeIn .3s ease}
 
+/* ── DASHBOARD TABS ── */
+.dash-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;background:var(--white);border-radius:14px;padding:8px;box-shadow:0 2px 12px rgba(26,18,8,.07)}
+.dash-tab{flex:1;min-width:80px;padding:10px 12px;border:none;border-radius:10px;background:transparent;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;color:var(--muted);transition:.2s;white-space:nowrap;text-align:center}
+.dash-tab:hover{background:var(--cream);color:var(--dark)}
+.dash-tab.active{background:var(--dark);color:var(--gold)}
+.dash-panel{display:none;animation:fadeUp .35s ease both}
+.dash-panel.active{display:block}
+
+/* ── UPLOAD ZONES ── */
+.upload-zone{border:2px dashed var(--cream3);border-radius:12px;background:var(--cream);cursor:pointer;transition:.25s;overflow:hidden;margin-top:8px}
+.upload-zone:hover{border-color:var(--gold);background:rgba(201,168,76,.04)}
+.upload-zone.wide{width:100%;min-height:100px}
+.upload-placeholder{padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);text-align:center}
+.upload-text{font-size:13px;font-weight:500;color:var(--dark)}
+.upload-hint{font-size:11px;color:var(--muted)}
+.upload-preview img{width:100%;max-height:160px;object-fit:contain;display:block;border-radius:10px}
+.upload-preview.icon-preview img{width:100px;height:100px;object-fit:cover;border-radius:12px;margin:16px auto;display:block}
+.up-action-btn{padding:8px 14px;border-radius:8px;border:1px solid var(--cream3);background:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;transition:.2s;color:var(--dark)}
+.up-action-btn:hover{border-color:var(--gold);color:var(--gold)}
+.up-action-btn.danger{color:var(--red)}
+.up-action-btn.danger:hover{border-color:var(--red);background:rgba(192,57,43,.04)}
+
+/* ── COLOR SWATCHES ── */
+.color-swatches{display:flex;gap:8px;flex-wrap:wrap}
+.swatch{width:32px;height:32px;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:.2s;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.swatch:hover{transform:scale(1.2);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.swatch.active{border-color:var(--dark);transform:scale(1.15)}
+
+/* ── PRODUCT MANAGER ── */
+.add-product-btn{background:var(--gold);color:var(--dark);border:none;border-radius:10px;padding:12px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:.25s}
+.add-product-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.pm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.pm-card{background:var(--cream);border:1px solid var(--cream3);border-radius:12px;overflow:hidden;transition:.25s;animation:fadeUp .3s ease both}
+.pm-card:hover{border-color:rgba(201,168,76,.4);box-shadow:0 6px 20px rgba(26,18,8,.1)}
+.pm-card-img{width:100%;height:100px;background:var(--cream2);display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;overflow:hidden}
+.pm-card-img img{width:100%;height:100%;object-fit:cover}
+.pm-card-body{padding:10px 12px}
+.pm-card-name{font-size:13px;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-card-cat{font-size:10px;color:var(--muted);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase}
+.pm-card-price{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;margin-bottom:8px}
+.pm-card-actions{display:flex;gap:6px}
+.pm-act-btn{flex:1;padding:6px 8px;border-radius:7px;border:1px solid var(--cream3);background:var(--white);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;text-align:center}
+.pm-act-btn:hover{border-color:var(--gold);color:var(--gold)}
+.pm-act-btn.del:hover{border-color:var(--red);color:var(--red)}
+.pm-featured-badge{position:absolute;top:6px;left:6px;background:var(--gold);color:var(--dark);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:1px}
+.pm-empty{text-align:center;padding:40px 20px;color:var(--muted);background:var(--cream);border-radius:12px;border:2px dashed var(--cream3)}
+
+/* ── PRODUCT IMAGE UPLOAD ── */
+.prod-img-upload{border:2px dashed var(--cream3);border-radius:10px;background:var(--cream);cursor:pointer;transition:.25s;overflow:hidden;min-height:140px;display:flex;align-items:center;justify-content:center}
+.prod-img-upload:hover{border-color:var(--gold)}
+
 /* ── PROMO TICKER ── */
 .promo-ticker{background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark));color:var(--dark);padding:8px 0;overflow:hidden}
 .ticker-inner{display:flex;gap:60px;animation:ticker 22s linear infinite;width:max-content;white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:2px}
@@ -717,82 +768,290 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
 <div class="page" id="page-settings">
   <div class="settings-page">
     <button class="s-back" onclick="showPage('home')">← Back to Store</button>
-    <div class="s-page-title">Seller <span>Settings</span></div>
-    <div class="s-subtitle">🔒 <strong>Seller access only.</strong> Customers shop freely without any PIN — this area is for store owners to configure settings, payments, and invoices.</div>
+    <div class="s-page-title">Seller <span>Dashboard</span></div>
+    <div class="s-subtitle">🔒 <strong>Seller access only.</strong> Fully customize your store — branding, products, payments, social links, and more. Customers shop freely with no PIN.</div>
 
-    <!-- Store Info -->
-    <div class="s-section">
-      <div class="s-section-hd">🏪 Store Information</div>
-      <div class="s-row"><div class="s-ico">🏷️</div><div class="s-info"><div class="s-label">Store Name</div><div class="s-desc">Displayed in header and throughout the app</div><input class="s-input" id="s-storeName" type="text" placeholder="Dodo Boutique"/></div></div>
-      <div class="s-row"><div class="s-ico">📍</div><div class="s-info"><div class="s-label">Address / Location</div><div class="s-desc">Shown on contact and about pages</div><input class="s-input" id="s-address" type="text" placeholder="Kariakoo Market, Dar es Salaam"/></div></div>
-      <div class="s-row"><div class="s-ico">📞</div><div class="s-info"><div class="s-label">Phone / WhatsApp Number</div><div class="s-desc">With country code, e.g. 255712345678</div><input class="s-input" id="s-phone" type="tel" placeholder="255712345678"/></div></div>
-      <div class="s-row"><div class="s-ico">📧</div><div class="s-info"><div class="s-label">Email Address</div><div class="s-desc">Business email shown on contact page</div><input class="s-input" id="s-email" type="email" placeholder="hello@dodoboutique.co.tz"/></div></div>
-      <div class="s-row"><div class="s-ico">🎯</div><div class="s-info"><div class="s-label">Hero Promo Tag</div><div class="s-desc">Small badge text on the homepage hero</div><input class="s-input" id="s-heroTag" type="text" placeholder="✦ New Collection 2025"/></div></div>
+    <!-- DASHBOARD TABS -->
+    <div class="dash-tabs" id="dashTabs">
+      <button class="dash-tab active" onclick="switchTab('branding')">🎨 Branding</button>
+      <button class="dash-tab" onclick="switchTab('products')">📦 Products</button>
+      <button class="dash-tab" onclick="switchTab('store')">🏪 Store Info</button>
+      <button class="dash-tab" onclick="switchTab('payments')">💳 Payments</button>
+      <button class="dash-tab" onclick="switchTab('socials')">📲 Socials</button>
+      <button class="dash-tab" onclick="switchTab('invoice')">🧾 Invoice</button>
+      <button class="dash-tab" onclick="switchTab('security')">🔐 Security</button>
     </div>
 
-    <!-- Invoice Settings -->
-    <div class="s-section">
-      <div class="s-section-hd">🧾 Invoice Settings</div>
-      <div class="s-row"><div class="s-ico">📄</div><div class="s-info"><div class="s-label">Invoice Prefix</div><div class="s-desc">e.g. "DODO" → DODO-0001</div><input class="s-input" id="s-invPrefix" type="text" placeholder="DODO"/></div></div>
-      <div class="s-row"><div class="s-ico">🏦</div><div class="s-info"><div class="s-label">Business Registration / TIN (optional)</div><div class="s-desc">Shown on invoice for formal records</div><input class="s-input" id="s-invTIN" type="text" placeholder="e.g. TIN 123456789"/></div></div>
-      <div class="s-row"><div class="s-ico">📝</div><div class="s-info"><div class="s-label">Invoice Footer Note</div><div class="s-desc">Thank you message printed at bottom of invoice</div><input class="s-input" id="s-invNote" type="text" placeholder="Thank you for shopping at Dodo Boutique!"/></div></div>
-      <div class="s-row"><div class="s-ico">🧾</div><div class="s-info">
-        <div class="s-label">Auto-Generate Invoice on Order</div>
-        <div class="s-desc">Show invoice preview immediately after order is placed</div>
-        <div class="s-toggle"><label class="tog"><input type="checkbox" id="s-autoInvoice" checked/><span class="tog-slider"></span></label><span class="tog-lbl">Enabled</span></div>
-      </div></div>
-    </div>
+    <!-- ── TAB: BRANDING ── -->
+    <div class="dash-panel active" id="tab-branding">
 
-    <!-- PIN Security -->
-    <div class="s-section">
-      <div class="s-section-hd">🔐 Security & PIN</div>
-      <div class="s-row"><div class="s-ico">🔑</div><div class="s-info">
-        <div class="s-label">Change Settings PIN</div>
-        <div class="s-desc">Current PIN is required to access Seller Settings. Default: 1234</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
-          <input class="s-input" id="s-pinCur" type="password" maxlength="4" placeholder="Current PIN" inputmode="numeric"/>
-          <input class="s-input" id="s-pinNew" type="password" maxlength="4" placeholder="New PIN (4 digits)" inputmode="numeric"/>
+      <!-- App Icon Upload -->
+      <div class="s-section">
+        <div class="s-section-hd">🖼️ App Icon & Logo</div>
+        <div class="s-row">
+          <div class="s-ico">🏷️</div>
+          <div class="s-info">
+            <div class="s-label">Store / App Icon</div>
+            <div class="s-desc">Upload your logo or icon — shown in splash screen, nav, and browser tab. Supports PNG, JPG, SVG (max 2MB)</div>
+            <div class="upload-zone" id="iconUploadZone" onclick="document.getElementById('iconFileInput').click()">
+              <div class="upload-preview" id="iconPreview">
+                <div class="upload-placeholder">
+                  <div style="font-size:36px">🖼️</div>
+                  <div class="upload-text">Click or drag to upload icon</div>
+                  <div class="upload-hint">PNG · JPG · SVG · max 2MB</div>
+                </div>
+              </div>
+            </div>
+            <input type="file" id="iconFileInput" accept="image/*" style="display:none" onchange="handleIconUpload(this)"/>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+              <button class="up-action-btn" onclick="document.getElementById('iconFileInput').click()">📁 Upload from device</button>
+              <button class="up-action-btn danger" onclick="clearIcon()">🗑 Remove icon</button>
+            </div>
+          </div>
         </div>
-        <button onclick="changePin()" style="margin-top:8px;background:var(--dark);color:var(--gold);border:none;border-radius:8px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:.2s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--dark)'" onmouseout="this.style.background='var(--dark)';this.style.color='var(--gold)'">Update PIN</button>
-        <div id="pinChangeMsg" style="margin-top:8px;font-size:12px;display:none"></div>
-      </div></div>
+
+        <!-- Hero Banner Image -->
+        <div class="s-row">
+          <div class="s-ico">🖼️</div>
+          <div class="s-info">
+            <div class="s-label">Hero Banner Image</div>
+            <div class="s-desc">Background image for the homepage hero section. Replaces the animated gradient. Recommended: 1400×800px</div>
+            <div class="upload-zone wide" id="bannerUploadZone" onclick="document.getElementById('bannerFileInput').click()">
+              <div class="upload-preview" id="bannerPreview">
+                <div class="upload-placeholder">
+                  <div style="font-size:32px">🌄</div>
+                  <div class="upload-text">Click to upload hero banner</div>
+                  <div class="upload-hint">PNG · JPG · max 5MB · 1400×800px recommended</div>
+                </div>
+              </div>
+            </div>
+            <input type="file" id="bannerFileInput" accept="image/*" style="display:none" onchange="handleBannerUpload(this)"/>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+              <button class="up-action-btn" onclick="document.getElementById('bannerFileInput').click()">📁 Upload from device</button>
+              <button class="up-action-btn danger" onclick="clearBanner()">🗑 Remove banner</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Name & Colors -->
+      <div class="s-section">
+        <div class="s-section-hd">🎨 App Name & Theme Colors</div>
+        <div class="s-row"><div class="s-ico">🏷️</div><div class="s-info"><div class="s-label">Store Name</div><div class="s-desc">Shown in header, splash, footer, and browser tab</div><input class="s-input" id="s-storeName" type="text" placeholder="Dodo Boutique" oninput="livePreview()"/></div></div>
+        <div class="s-row"><div class="s-ico">✏️</div><div class="s-info"><div class="s-label">Hero Title Line 1</div><div class="s-desc">Big headline on homepage (first line)</div><input class="s-input" id="s-heroLine1" type="text" placeholder="Fashion That Tells"/></div></div>
+        <div class="s-row"><div class="s-ico">✏️</div><div class="s-info"><div class="s-label">Hero Title Line 2 (italic gold)</div><div class="s-desc">Second line shown in italic gold</div><input class="s-input" id="s-heroLine2" type="text" placeholder="Your Story"/></div></div>
+        <div class="s-row"><div class="s-ico">📝</div><div class="s-info"><div class="s-label">Hero Description</div><div class="s-desc">Subtitle paragraph below the headline</div><textarea class="s-input" id="s-heroDesc" rows="2" placeholder="Discover curated fashion from Kariakoo..."></textarea></div></div>
+        <div class="s-row"><div class="s-ico">🎯</div><div class="s-info"><div class="s-label">Hero Promo Tag</div><div class="s-desc">Small badge above the headline</div><input class="s-input" id="s-heroTag" type="text" placeholder="✦ New Collection 2025"/></div></div>
+        <div class="s-row"><div class="s-ico">🎨</div><div class="s-info">
+          <div class="s-label">Theme Accent Color</div>
+          <div class="s-desc">Primary brand color used throughout the app (buttons, highlights, gold accents)</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:4px;flex-wrap:wrap">
+            <input type="color" id="s-accentColor" value="#C9A84C" style="width:48px;height:40px;border:none;border-radius:8px;cursor:pointer;background:none"/>
+            <span style="font-size:13px;color:var(--muted)">Current: </span>
+            <div class="color-swatches" id="colorSwatches">
+              <div class="swatch" style="background:#C9A84C" onclick="setAccent('#C9A84C')" title="Gold (default)"></div>
+              <div class="swatch" style="background:#E74C3C" onclick="setAccent('#E74C3C')" title="Red"></div>
+              <div class="swatch" style="background:#8E44AD" onclick="setAccent('#8E44AD')" title="Purple"></div>
+              <div class="swatch" style="background:#2980B9" onclick="setAccent('#2980B9')" title="Blue"></div>
+              <div class="swatch" style="background:#27AE60" onclick="setAccent('#27AE60')" title="Green"></div>
+              <div class="swatch" style="background:#E67E22" onclick="setAccent('#E67E22')" title="Orange"></div>
+              <div class="swatch" style="background:#1ABC9C" onclick="setAccent('#1ABC9C')" title="Teal"></div>
+              <div class="swatch" style="background:#E91E63" onclick="setAccent('#E91E63')" title="Pink"></div>
+            </div>
+          </div>
+        </div></div>
+        <div class="s-row"><div class="s-ico">🌓</div><div class="s-info">
+          <div class="s-label">Dark Background Color</div>
+          <div class="s-desc">Hero, nav, footer background color</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:4px">
+            <input type="color" id="s-darkColor" value="#1a1208" style="width:48px;height:40px;border:none;border-radius:8px;cursor:pointer;background:none"/>
+            <div class="color-swatches">
+              <div class="swatch" style="background:#1a1208" onclick="setDark('#1a1208')" title="Brown-Black (default)"></div>
+              <div class="swatch" style="background:#0a0a0a" onclick="setDark('#0a0a0a')" title="Pure Black"></div>
+              <div class="swatch" style="background:#0d1b2a" onclick="setDark('#0d1b2a')" title="Navy"></div>
+              <div class="swatch" style="background:#1a0a2e" onclick="setDark('#1a0a2e')" title="Deep Purple"></div>
+              <div class="swatch" style="background:#0a1a0a" onclick="setDark('#0a1a0a')" title="Forest Green"></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- About Page Content -->
+      <div class="s-section">
+        <div class="s-section-hd">📖 About Page Content</div>
+        <div class="s-row"><div class="s-ico">📝</div><div class="s-info"><div class="s-label">About Page Tagline</div><div class="s-desc">Subtitle shown below the About headline</div><input class="s-input" id="s-aboutTagline" type="text" placeholder="Born in the vibrant streets of Kariakoo..."/></div></div>
+        <div class="s-row"><div class="s-ico">📋</div><div class="s-info"><div class="s-label">Footer Tagline</div><div class="s-desc">Short description shown in website footer</div><textarea class="s-input" id="s-footerTagline" rows="2" placeholder="Your go-to fashion destination in Kariakoo..."></textarea></div></div>
+        <div class="s-row"><div class="s-ico">©️</div><div class="s-info"><div class="s-label">Copyright Text</div><div class="s-desc">Shown at the very bottom of the page</div><input class="s-input" id="s-copyright" type="text" placeholder="© 2025 Dodo Boutique Kariakoo"/></div></div>
+      </div>
+
     </div>
 
-    <!-- Delivery -->
-    <div class="s-section">
-      <div class="s-section-hd">🚚 Delivery Settings</div>
-      <div class="s-row"><div class="s-ico">💰</div><div class="s-info"><div class="s-label">Free Delivery Threshold (TZS)</div><div class="s-desc">Orders above this amount get free delivery</div><input class="s-input" id="s-freeDelivery" type="number" placeholder="50000"/></div></div>
-      <div class="s-row"><div class="s-ico">🛵</div><div class="s-info"><div class="s-label">Delivery Fee (TZS)</div><div class="s-desc">Charged when order is below threshold</div><input class="s-input" id="s-deliveryFee" type="number" placeholder="5000"/></div></div>
-      <div class="s-row"><div class="s-ico">💬</div><div class="s-info">
-        <div class="s-label">WhatsApp Order Confirmation</div>
-        <div class="s-desc">After placing order, open WhatsApp with order summary pre-filled</div>
-        <div class="s-toggle"><label class="tog"><input type="checkbox" id="s-waConfirm" checked/><span class="tog-slider"></span></label><span class="tog-lbl">Enabled</span></div>
-      </div></div>
+    <!-- ── TAB: PRODUCTS ── -->
+    <div class="dash-panel" id="tab-products">
+      <div class="s-section">
+        <div class="s-section-hd">📦 Product Manager</div>
+        <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
+          <button class="add-product-btn" onclick="openAddProduct()">＋ Add New Product</button>
+          <span style="font-size:12px;color:var(--muted)" id="productCount"></span>
+        </div>
+        <div id="productManagerGrid"></div>
+      </div>
     </div>
 
-    <!-- Bank Links -->
-    <div class="s-section">
-      <div class="s-section-hd">🏦 Bank Payment Links</div>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Paste each bank's payment portal URL. At checkout, customers click and are taken directly to that bank's payment page.</p>
-      <div class="link-grid" id="bankLinksGrid"></div>
+    <!-- ── TAB: STORE INFO ── -->
+    <div class="dash-panel" id="tab-store">
+      <div class="s-section">
+        <div class="s-section-hd">🏪 Store Information</div>
+        <div class="s-row"><div class="s-ico">📍</div><div class="s-info"><div class="s-label">Address / Location</div><div class="s-desc">Shown on contact and about pages</div><input class="s-input" id="s-address" type="text" placeholder="Kariakoo Market, Dar es Salaam"/></div></div>
+        <div class="s-row"><div class="s-ico">📞</div><div class="s-info"><div class="s-label">Phone / WhatsApp Number</div><div class="s-desc">With country code, e.g. 255712345678</div><input class="s-input" id="s-phone" type="tel" placeholder="255712345678"/></div></div>
+        <div class="s-row"><div class="s-ico">📧</div><div class="s-info"><div class="s-label">Email Address</div><div class="s-desc">Business email shown on contact page</div><input class="s-input" id="s-email" type="email" placeholder="hello@dodoboutique.co.tz"/></div></div>
+        <div class="s-row"><div class="s-ico">🕐</div><div class="s-info"><div class="s-label">Opening Hours</div><div class="s-desc">Displayed on About and Contact pages</div><input class="s-input" id="s-hours" type="text" placeholder="Mon–Sat 8am–7pm | Sun 10am–4pm"/></div></div>
+      </div>
+      <div class="s-section">
+        <div class="s-section-hd">🚚 Delivery Settings</div>
+        <div class="s-row"><div class="s-ico">💰</div><div class="s-info"><div class="s-label">Free Delivery Threshold (TZS)</div><div class="s-desc">Orders above this amount get free delivery</div><input class="s-input" id="s-freeDelivery" type="number" placeholder="50000"/></div></div>
+        <div class="s-row"><div class="s-ico">🛵</div><div class="s-info"><div class="s-label">Delivery Fee (TZS)</div><div class="s-desc">Charged when order is below threshold</div><input class="s-input" id="s-deliveryFee" type="number" placeholder="5000"/></div></div>
+        <div class="s-row"><div class="s-ico">💬</div><div class="s-info">
+          <div class="s-label">WhatsApp Order Confirmation</div>
+          <div class="s-desc">After placing order, open WhatsApp with order summary pre-filled</div>
+          <div class="s-toggle"><label class="tog"><input type="checkbox" id="s-waConfirm" checked/><span class="tog-slider"></span></label><span class="tog-lbl">Enabled</span></div>
+        </div></div>
+      </div>
     </div>
 
-    <!-- Mobile Money -->
-    <div class="s-section">
-      <div class="s-section-hd">📱 Mobile Money Payments</div>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Enter your <strong>Lipa Namba</strong> or phone number for each provider.</p>
-      <div class="link-grid" id="momoLinksGrid"></div>
+    <!-- ── TAB: PAYMENTS ── -->
+    <div class="dash-panel" id="tab-payments">
+      <div class="s-section">
+        <div class="s-section-hd">🏦 Bank Payment Links</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Paste each bank's payment portal URL. At checkout, customers are taken directly to that bank's payment page.</p>
+        <div class="link-grid" id="bankLinksGrid"></div>
+      </div>
+      <div class="s-section">
+        <div class="s-section-hd">📱 Mobile Money Payments</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Enter your <strong>Lipa Namba</strong> or phone number for each provider.</p>
+        <div class="link-grid" id="momoLinksGrid"></div>
+      </div>
     </div>
 
-    <!-- Social Links -->
-    <div class="s-section">
-      <div class="s-section-hd">📲 Social Media Links</div>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Paste your full profile URL. These become clickable buttons in Contact, About, and Footer.</p>
-      <div class="soc-link-grid" id="socialLinksGrid"></div>
+    <!-- ── TAB: SOCIALS ── -->
+    <div class="dash-panel" id="tab-socials">
+      <div class="s-section">
+        <div class="s-section-hd">📲 Social Media Links</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Paste your full profile URL or handle. These appear in Contact, About, Footer, and the Follow Us section.</p>
+        <div class="soc-link-grid" id="socialLinksGrid"></div>
+      </div>
     </div>
 
+    <!-- ── TAB: INVOICE ── -->
+    <div class="dash-panel" id="tab-invoice">
+      <div class="s-section">
+        <div class="s-section-hd">🧾 Invoice Settings</div>
+        <div class="s-row"><div class="s-ico">📄</div><div class="s-info"><div class="s-label">Invoice Prefix</div><div class="s-desc">e.g. "DODO" → DODO-0001</div><input class="s-input" id="s-invPrefix" type="text" placeholder="DODO"/></div></div>
+        <div class="s-row"><div class="s-ico">🏦</div><div class="s-info"><div class="s-label">Business Registration / TIN (optional)</div><div class="s-desc">Shown on invoice for formal records</div><input class="s-input" id="s-invTIN" type="text" placeholder="e.g. TIN 123456789"/></div></div>
+        <div class="s-row"><div class="s-ico">📝</div><div class="s-info"><div class="s-label">Invoice Footer Note</div><div class="s-desc">Thank you message printed at bottom of invoice</div><input class="s-input" id="s-invNote" type="text" placeholder="Thank you for shopping at Dodo Boutique!"/></div></div>
+        <div class="s-row"><div class="s-ico">🧾</div><div class="s-info">
+          <div class="s-label">Auto-Generate Invoice on Order</div>
+          <div class="s-desc">Show invoice preview immediately after order is placed</div>
+          <div class="s-toggle"><label class="tog"><input type="checkbox" id="s-autoInvoice" checked/><span class="tog-slider"></span></label><span class="tog-lbl">Enabled</span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ── TAB: SECURITY ── -->
+    <div class="dash-panel" id="tab-security">
+      <div class="s-section">
+        <div class="s-section-hd">🔐 Security & PIN</div>
+        <div class="s-row"><div class="s-ico">🔑</div><div class="s-info">
+          <div class="s-label">Change Settings PIN</div>
+          <div class="s-desc">Current PIN is required to access Seller Dashboard. Default: 1234</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+            <input class="s-input" id="s-pinCur" type="password" maxlength="4" placeholder="Current PIN" inputmode="numeric"/>
+            <input class="s-input" id="s-pinNew" type="password" maxlength="4" placeholder="New PIN (4 digits)" inputmode="numeric"/>
+          </div>
+          <button onclick="changePin()" style="margin-top:8px;background:var(--dark);color:var(--gold);border:none;border-radius:8px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:.2s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--dark)'" onmouseout="this.style.background='var(--dark)';this.style.color='var(--gold)'">Update PIN</button>
+          <div id="pinChangeMsg" style="margin-top:8px;font-size:12px;display:none"></div>
+        </div></div>
+      </div>
+      <div class="s-section">
+        <div class="s-section-hd">🗑 Data Management</div>
+        <div class="s-row"><div class="s-ico">⚠️</div><div class="s-info">
+          <div class="s-label">Reset All Settings</div>
+          <div class="s-desc">Clears all customizations, products, and settings. This cannot be undone.</div>
+          <button onclick="resetAllSettings()" style="margin-top:8px;background:#C0392B;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer">⚠️ Reset Everything</button>
+        </div></div>
+      </div>
+    </div>
+
+    <div style="height:20px"></div>
     <button class="save-btn" onclick="saveSettings()"><span>💾 Save & Apply All Settings</span></button>
     <div class="saved-msg" id="savedMsg">✓ Settings saved and applied across your store!</div>
+  </div>
+</div>
+
+<!-- ADD/EDIT PRODUCT MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-hd"><h2 id="productModalTitle">Add Product</h2><button class="close-btn" onclick="closeProductModal()">✕</button></div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Product Image</label>
+        <div class="prod-img-upload" id="prodImgZone" onclick="document.getElementById('prodImgInput').click()">
+          <div id="prodImgPreview" style="width:100%;height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--muted);font-size:13px;cursor:pointer">
+            <div style="font-size:36px">📷</div>
+            <div>Click to upload product image</div>
+            <div style="font-size:11px;color:var(--muted)">PNG · JPG · max 3MB</div>
+          </div>
+        </div>
+        <input type="file" id="prodImgInput" accept="image/*" style="display:none" onchange="handleProdImg(this)"/>
+        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="up-action-btn" onclick="document.getElementById('prodImgInput').click()">📁 Upload from device</button>
+          <button class="up-action-btn" onclick="clearProdImg()">🗑 Remove</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Product Name *</label>
+        <input class="form-input" id="pm-name" type="text" placeholder="e.g. Ankara Wrap Dress"/>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Category *</label>
+          <select class="form-select" id="pm-cat">
+            <option value="">Select category</option>
+            <option>Women</option><option>Men</option><option>Accessories</option>
+            <option>Footwear</option><option>Kids</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Badge</label>
+          <select class="form-select" id="pm-badge">
+            <option value="">None</option>
+            <option>New</option><option>Sale</option><option>Hot</option><option>Limited</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Price (TZS) *</label>
+          <input class="form-input" id="pm-price" type="number" placeholder="50000"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Old Price (TZS, optional)</label>
+          <input class="form-input" id="pm-oldPrice" type="number" placeholder="For sale items"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description (optional)</label>
+        <textarea class="form-input" id="pm-desc" rows="2" placeholder="Short product description..."></textarea>
+      </div>
+      <div class="form-group" style="display:flex;align-items:center;gap:12px">
+        <label class="form-label" style="margin-bottom:0">Featured on Homepage</label>
+        <label class="tog"><input type="checkbox" id="pm-featured"/><span class="tog-slider"></span></label>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button class="submit-btn" onclick="saveProduct()" style="flex:1"><span id="saveProductBtnTxt">Add Product</span></button>
+        <button onclick="closeProductModal()" style="flex:0 0 auto;padding:16px 20px;border-radius:10px;border:1px solid var(--cream3);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px">Cancel</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -955,12 +1214,22 @@ const CATS = ['All','Women','Men','Accessories','Footwear','Kids'];
 let S = {
   storeName:'Dodo Boutique', address:'Kariakoo Market, Dar es Salaam, Tanzania',
   phone:'255712345678', email:'hello@dodoboutique.co.tz',
-  heroTag:'✦ New Collection 2025', freeDelivery:50000, deliveryFee:5000, waConfirm:true,
+  heroTag:'✦ New Collection 2025',
+  heroLine1:'Fashion That Tells', heroLine2:'Your Story',
+  heroDesc:'Discover curated fashion, accessories, and lifestyle pieces from the heart of Kariakoo, Dar es Salaam. Style that celebrates who you are.',
+  aboutTagline:'Born in the vibrant streets of Kariakoo, Dodo Boutique is more than a store — it\'s a celebration of African style, culture, and identity.',
+  footerTagline:'Your go-to fashion destination in Kariakoo, Dar es Salaam. Quality styles, honest prices, delivered with love.',
+  copyright:'© 2025 Dodo Boutique Kariakoo. All rights reserved.',
+  hours:'Mon–Sat 8am–7pm | Sun 10am–4pm',
+  accentColor:'#C9A84C', darkColor:'#1a1208',
+  appIcon:'', heroBanner:'',
+  freeDelivery:50000, deliveryFee:5000, waConfirm:true,
   pin:'1234', invPrefix:'DODO', invTIN:'', invNote:'Thank you for shopping at Dodo Boutique! We appreciate your business. 🦤',
   autoInvoice:true, invoiceCounter:0,
   banks:{nmb:'',crdb:'',nbc:''},
   momos:{mpesa:'',airtel:'',yas:'',halotel:''},
   socials:{whatsapp:'',facebook:'',instagram:'',tiktok:'',x:'',snapchat:'',youtube:'',telegram:'',linkedin:'',pinterest:''},
+  customProducts:[], productEdits:{}, deletedProducts:[],
 };
 try{const sv=localStorage.getItem('dodoS3');if(sv)S={...S,...JSON.parse(sv)};}catch(e){}
 
@@ -1118,9 +1387,12 @@ function changePin(){
 // ════════════════════════════════════════════════
 function productCard(p,delay=0){
   const loved=wishlist.includes(p.id);
+  const imgContent=p.img
+    ?`<img src="${p.img}" alt="${esc(p.name)}" style="width:100%;height:100%;object-fit:cover;display:block"/>`
+    :`<div class="product-img-inner">${p.emoji||'📦'}</div>`;
   return `<div class="product-card" style="animation-delay:${delay}ms" onclick="openProduct(${p.id})">
     <div class="product-img">
-      <div class="product-img-inner">${p.emoji}</div>
+      ${imgContent}
       ${p.badge?`<div class="product-badge${p.badge==='Sale'?' sale':''}">${esc(p.badge)}</div>`:''}
       <button class="wish-btn${loved?' loved':''}" onclick="event.stopPropagation();toggleWish(${p.id})">${loved?'♥':'♡'}</button>
     </div>
@@ -1136,10 +1408,10 @@ function productCard(p,delay=0){
 }
 
 function openProduct(id){addToCart(id);}
-function renderFeatured(){document.getElementById('featuredGrid').innerHTML=PRODUCTS.filter(p=>p.featured).map((p,i)=>productCard(p,i*80)).join('');}
+function renderFeatured(){document.getElementById('featuredGrid').innerHTML=getProducts().filter(p=>p.featured).map((p,i)=>productCard(p,i*80)).join('');}
 function renderShop(){
   const q=(document.getElementById('searchInput')||{}).value||'';
-  const list=PRODUCTS.filter(p=>{
+  const list=getProducts().filter(p=>{
     const mc=activeCat==='All'||p.cat===activeCat;
     const mq=!q||p.name.toLowerCase().includes(q.toLowerCase())||p.cat.toLowerCase().includes(q.toLowerCase());
     return mc&&mq;
@@ -1552,52 +1824,378 @@ function applySettings(){
 }
 
 // ════════════════════════════════════════════════
+//  SELLER DASHBOARD — TABS
+// ════════════════════════════════════════════════
+function switchTab(name){
+  document.querySelectorAll('.dash-tab').forEach((t,i)=>{
+    const tabs=['branding','products','store','payments','socials','invoice','security'];
+    t.classList.toggle('active',tabs[i]===name);
+  });
+  document.querySelectorAll('.dash-panel').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('tab-'+name);
+  if(panel)panel.classList.add('active');
+  if(name==='products')renderProductManager();
+}
+
+// ════════════════════════════════════════════════
+//  BRANDING — UPLOAD HANDLERS
+// ════════════════════════════════════════════════
+function handleIconUpload(input){
+  const file=input.files[0];if(!file)return;
+  if(file.size>2*1024*1024){showToast('⚠ Icon must be under 2MB');return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    S.appIcon=e.target.result;
+    renderIconPreview();
+    applyBranding();
+    showToast('✓ Icon uploaded');
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderIconPreview(){
+  const el=document.getElementById('iconPreview');if(!el)return;
+  if(S.appIcon){
+    el.innerHTML=`<div class="icon-preview"><img src="${S.appIcon}" alt="App Icon" style="width:80px;height:80px;object-fit:cover;border-radius:16px;margin:20px auto;display:block;box-shadow:0 4px 16px rgba(0,0,0,.15)"/></div>`;
+  } else {
+    el.innerHTML=`<div class="upload-placeholder"><div style="font-size:36px">🖼️</div><div class="upload-text">Click or drag to upload icon</div><div class="upload-hint">PNG · JPG · SVG · max 2MB</div></div>`;
+  }
+}
+
+function clearIcon(){S.appIcon='';renderIconPreview();applyBranding();showToast('Icon removed');}
+
+function handleBannerUpload(input){
+  const file=input.files[0];if(!file)return;
+  if(file.size>5*1024*1024){showToast('⚠ Banner must be under 5MB');return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    S.heroBanner=e.target.result;
+    renderBannerPreview();
+    applyBranding();
+    showToast('✓ Hero banner uploaded');
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderBannerPreview(){
+  const el=document.getElementById('bannerPreview');if(!el)return;
+  if(S.heroBanner){
+    el.innerHTML=`<img src="${S.heroBanner}" alt="Banner" style="width:100%;height:120px;object-fit:cover;display:block"/>`;
+  } else {
+    el.innerHTML=`<div class="upload-placeholder"><div style="font-size:32px">🌄</div><div class="upload-text">Click to upload hero banner</div><div class="upload-hint">PNG · JPG · max 5MB</div></div>`;
+  }
+}
+
+function clearBanner(){S.heroBanner='';renderBannerPreview();applyBranding();showToast('Banner removed');}
+
+// Product image upload (for product modal)
+let prodImgData='';
+function handleProdImg(input){
+  const file=input.files[0];if(!file)return;
+  if(file.size>3*1024*1024){showToast('⚠ Image must be under 3MB');return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    prodImgData=e.target.result;
+    const el=document.getElementById('prodImgPreview');
+    if(el) el.innerHTML=`<img src="${prodImgData}" style="width:100%;height:140px;object-fit:cover;border-radius:8px;display:block"/>`;
+  };
+  reader.readAsDataURL(file);
+}
+function clearProdImg(){
+  prodImgData='';
+  const el=document.getElementById('prodImgPreview');
+  if(el) el.innerHTML=`<div style="width:100%;height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--muted);font-size:13px;cursor:pointer"><div style="font-size:36px">📷</div><div>Click to upload product image</div></div>`;
+}
+
+// ════════════════════════════════════════════════
+//  COLOR THEME
+// ════════════════════════════════════════════════
+function setAccent(hex){
+  document.getElementById('s-accentColor').value=hex;
+  S.accentColor=hex;applyBranding();
+}
+function setDark(hex){
+  document.getElementById('s-darkColor').value=hex;
+  S.darkColor=hex;applyBranding();
+}
+function applyBranding(){
+  const accent=S.accentColor||'#C9A84C';
+  const dark=S.darkColor||'#1a1208';
+  document.documentElement.style.setProperty('--gold',accent);
+  document.documentElement.style.setProperty('--dark',dark);
+  // Apply hero banner
+  const heroBg=document.querySelector('.hero-bg');
+  if(heroBg&&S.heroBanner){
+    document.querySelector('.hero').style.backgroundImage=`url(${S.heroBanner})`;
+    document.querySelector('.hero').style.backgroundSize='cover';
+    document.querySelector('.hero').style.backgroundPosition='center';
+  } else if(heroBg){
+    const hero=document.querySelector('.hero');
+    if(hero){hero.style.backgroundImage='';hero.style.background='';}
+  }
+  // Apply app icon to nav brand
+  const navBrand=document.querySelector('.nav-brand');
+  if(navBrand&&S.appIcon){
+    const existing=navBrand.querySelector('img.custom-icon');
+    if(existing)existing.remove();
+    const img=document.createElement('img');
+    img.src=S.appIcon;img.className='custom-icon';
+    img.style.cssText='width:32px;height:32px;border-radius:8px;object-fit:cover';
+    navBrand.insertBefore(img,navBrand.firstChild);
+    const oldSvg=navBrand.querySelector('svg');if(oldSvg)oldSvg.style.display='none';
+  }
+  // Splash icon
+  const splashLogo=document.querySelector('.splash-logo');
+  if(splashLogo&&S.appIcon){
+    splashLogo.outerHTML=`<img src="${S.appIcon}" class="splash-logo" style="width:120px;height:120px;border-radius:20px;object-fit:cover;margin-bottom:24px"/>`;
+  }
+  // Apply hero text
+  const ht=document.querySelector('.hero-title');
+  if(ht&&(S.heroLine1||S.heroLine2)){
+    ht.innerHTML=`${S.heroLine1||'Fashion That Tells'}<br><em>${S.heroLine2||'Your Story'}</em>`;
+  }
+  const hd=document.querySelector('.hero-desc');
+  if(hd&&S.heroDesc) hd.textContent=S.heroDesc;
+  // Footer tagline
+  const fp=document.querySelector('.footer-brand p');
+  if(fp&&S.footerTagline) fp.textContent=S.footerTagline;
+  // Copyright
+  const cr=document.querySelector('.footer-bottom p');
+  if(cr&&S.copyright) cr.textContent=S.copyright;
+  // About tagline
+  const at=document.querySelector('.about-hero p');
+  if(at&&S.aboutTagline) at.textContent=S.aboutTagline;
+  // Document title
+  if(S.storeName) document.title=S.storeName;
+}
+
+function livePreview(){
+  const v=document.getElementById('s-storeName');
+  if(v&&v.value){
+    const brand=document.querySelector('.nav-brand');
+    if(brand) brand.childNodes[brand.childNodes.length-1].textContent=' '+v.value;
+    document.title=v.value;
+  }
+}
+
+// ════════════════════════════════════════════════
+//  PRODUCT MANAGER
+// ════════════════════════════════════════════════
+let editingProductId=null;
+
+function renderProductManager(){
+  const allProducts=getProducts();
+  const grid=document.getElementById('productManagerGrid');
+  document.getElementById('productCount').textContent=`${allProducts.length} products`;
+  if(!allProducts.length){
+    grid.innerHTML=`<div class="pm-empty"><div style="font-size:48px;margin-bottom:12px">📦</div><div style="font-size:15px;font-weight:500;margin-bottom:6px">No products yet</div><div style="font-size:13px">Click "Add New Product" to add your first item</div></div>`;
+    return;
+  }
+  grid.innerHTML=`<div class="pm-grid">${allProducts.map((p,idx)=>`
+    <div class="pm-card" style="animation-delay:${idx*40}ms">
+      <div class="pm-card-img">
+        ${p.img?`<img src="${p.img}" alt="${esc(p.name)}"/>`:`<span style="font-size:40px">${p.emoji||'📦'}</span>`}
+        ${p.featured?'<div class="pm-featured-badge">⭐ FEATURED</div>':''}
+        ${p.badge?`<div style="position:absolute;top:6px;right:6px;background:${p.badge==='Sale'?'#C0392B':'#1a1208'};color:${p.badge==='Sale'?'#fff':'#C9A84C'};font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px">${p.badge}</div>`:''}
+      </div>
+      <div class="pm-card-body">
+        <div class="pm-card-name" title="${esc(p.name)}">${esc(p.name)}</div>
+        <div class="pm-card-cat">${esc(p.cat)}</div>
+        <div class="pm-card-price">${p.oldPrice?`<span style="font-size:11px;color:var(--muted);text-decoration:line-through;margin-right:4px">TZS ${Number(p.oldPrice).toLocaleString()}</span>`:''}TZS ${Number(p.price).toLocaleString()}</div>
+        <div class="pm-card-actions">
+          <button class="pm-act-btn" onclick="editProduct(${p.id})">✏️ Edit</button>
+          <button class="pm-act-btn" onclick="toggleFeatured(${p.id})" title="${p.featured?'Remove from featured':'Add to featured'}">${p.featured?'★':'☆'}</button>
+          <button class="pm-act-btn del" onclick="deleteProduct(${p.id})">🗑</button>
+        </div>
+      </div>
+    </div>`).join('')}</div>`;
+}
+
+function getProducts(){
+  // Merge default PRODUCTS with custom ones from localStorage
+  const custom=S.customProducts||[];
+  // Start with default, then add custom; custom can override by id
+  const defaults=PRODUCTS.map(p=>({...p}));
+  // Apply any edits saved to defaults
+  const edits=S.productEdits||{};
+  defaults.forEach(p=>{if(edits[p.id])Object.assign(p,edits[p.id]);});
+  const deleted=S.deletedProducts||[];
+  const active=defaults.filter(p=>!deleted.includes(p.id));
+  return [...active,...custom];
+}
+
+function openAddProduct(){
+  editingProductId=null;
+  prodImgData='';
+  document.getElementById('productModalTitle').textContent='Add New Product';
+  document.getElementById('saveProductBtnTxt').textContent='Add Product';
+  document.getElementById('pm-name').value='';
+  document.getElementById('pm-cat').value='';
+  document.getElementById('pm-badge').value='';
+  document.getElementById('pm-price').value='';
+  document.getElementById('pm-oldPrice').value='';
+  document.getElementById('pm-desc').value='';
+  document.getElementById('pm-featured').checked=false;
+  const prev=document.getElementById('prodImgPreview');
+  if(prev) prev.innerHTML=`<div style="width:100%;height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--muted);font-size:13px;cursor:pointer"><div style="font-size:36px">📷</div><div>Click to upload product image</div><div style="font-size:11px;color:var(--muted)">PNG · JPG · max 3MB</div></div>`;
+  document.getElementById('productModal').classList.add('open');
+}
+
+function editProduct(id){
+  const all=getProducts();
+  const p=all.find(x=>x.id===id);if(!p)return;
+  editingProductId=id;
+  prodImgData=p.img||'';
+  document.getElementById('productModalTitle').textContent='Edit Product';
+  document.getElementById('saveProductBtnTxt').textContent='Save Changes';
+  document.getElementById('pm-name').value=p.name||'';
+  document.getElementById('pm-cat').value=p.cat||'';
+  document.getElementById('pm-badge').value=p.badge||'';
+  document.getElementById('pm-price').value=p.price||'';
+  document.getElementById('pm-oldPrice').value=p.oldPrice||'';
+  document.getElementById('pm-desc').value=p.desc||'';
+  document.getElementById('pm-featured').checked=!!p.featured;
+  const prev=document.getElementById('prodImgPreview');
+  if(prev){
+    if(prodImgData) prev.innerHTML=`<img src="${prodImgData}" style="width:100%;height:140px;object-fit:cover;border-radius:8px;display:block"/>`;
+    else prev.innerHTML=`<div style="width:100%;height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--muted);cursor:pointer"><div style="font-size:36px">${p.emoji||'📦'}</div><div style="font-size:12px">Click to change image</div></div>`;
+  }
+  document.getElementById('productModal').classList.add('open');
+}
+
+function saveProduct(){
+  const name=document.getElementById('pm-name').value.trim();
+  const cat=document.getElementById('pm-cat').value;
+  const price=parseInt(document.getElementById('pm-price').value);
+  if(!name||!cat||!price){showToast('⚠ Name, category and price are required');return;}
+  const badge=document.getElementById('pm-badge').value;
+  const oldPrice=parseInt(document.getElementById('pm-oldPrice').value)||0;
+  const desc=document.getElementById('pm-desc').value.trim();
+  const featured=document.getElementById('pm-featured').checked;
+  const emojiMap={'Women':'👗','Men':'👔','Accessories':'💛','Footwear':'👟','Kids':'👚','Other':'📦'};
+
+  if(editingProductId!==null){
+    // Check if default product
+    const isDefault=PRODUCTS.find(p=>p.id===editingProductId);
+    if(isDefault){
+      if(!S.productEdits)S.productEdits={};
+      S.productEdits[editingProductId]={name,cat,badge,price,oldPrice:oldPrice||undefined,desc,featured,img:prodImgData,emoji:emojiMap[cat]||'📦'};
+    } else {
+      // Custom product
+      const idx=(S.customProducts||[]).findIndex(p=>p.id===editingProductId);
+      if(idx>=0) S.customProducts[idx]={...S.customProducts[idx],name,cat,badge,price,oldPrice:oldPrice||undefined,desc,featured,img:prodImgData,emoji:emojiMap[cat]||'📦'};
+    }
+    showToast('✓ Product updated');
+  } else {
+    if(!S.customProducts)S.customProducts=[];
+    const newId=Date.now();
+    S.customProducts.push({id:newId,name,cat,badge,price,oldPrice:oldPrice||undefined,desc,featured,img:prodImgData,emoji:emojiMap[cat]||'📦'});
+    showToast('✓ Product added');
+  }
+  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+  closeProductModal();
+  renderProductManager();
+  renderFeatured();
+  renderShop();
+}
+
+function deleteProduct(id){
+  if(!confirm('Delete this product? This cannot be undone.'))return;
+  const isDefault=PRODUCTS.find(p=>p.id===id);
+  if(isDefault){
+    if(!S.deletedProducts)S.deletedProducts=[];
+    if(!S.deletedProducts.includes(id))S.deletedProducts.push(id);
+  } else {
+    S.customProducts=(S.customProducts||[]).filter(p=>p.id!==id);
+  }
+  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+  renderProductManager();renderFeatured();renderShop();
+  showToast('Product deleted');
+}
+
+function toggleFeatured(id){
+  const all=getProducts();
+  const p=all.find(x=>x.id===id);if(!p)return;
+  const newFeatured=!p.featured;
+  const isDefault=PRODUCTS.find(x=>x.id===id);
+  if(isDefault){
+    if(!S.productEdits)S.productEdits={};
+    S.productEdits[id]={...(S.productEdits[id]||{}),featured:newFeatured};
+  } else {
+    const cp=(S.customProducts||[]).find(x=>x.id===id);
+    if(cp) cp.featured=newFeatured;
+  }
+  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+  renderProductManager();renderFeatured();
+  showToast(newFeatured?'⭐ Added to featured':'Removed from featured');
+}
+
+function closeProductModal(){document.getElementById('productModal').classList.remove('open');}
+
+// ════════════════════════════════════════════════
 //  SETTINGS UI
 // ════════════════════════════════════════════════
 function renderSettingsInputs(){
-  document.getElementById('s-storeName').value=S.storeName||'';
-  document.getElementById('s-address').value=S.address||'';
-  document.getElementById('s-phone').value=S.phone||'';
-  document.getElementById('s-email').value=S.email||'';
-  document.getElementById('s-heroTag').value=S.heroTag||'';
-  document.getElementById('s-freeDelivery').value=S.freeDelivery||50000;
-  document.getElementById('s-deliveryFee').value=S.deliveryFee||5000;
-  document.getElementById('s-waConfirm').checked=S.waConfirm!==false;
-  document.getElementById('s-autoInvoice').checked=S.autoInvoice!==false;
-  document.getElementById('s-invPrefix').value=S.invPrefix||'DODO';
-  document.getElementById('s-invTIN').value=S.invTIN||'';
-  document.getElementById('s-invNote').value=S.invNote||'';
+  // Branding tab
+  const sn=document.getElementById('s-storeName');if(sn)sn.value=S.storeName||'';
+  const hl1=document.getElementById('s-heroLine1');if(hl1)hl1.value=S.heroLine1||'';
+  const hl2=document.getElementById('s-heroLine2');if(hl2)hl2.value=S.heroLine2||'';
+  const hd=document.getElementById('s-heroDesc');if(hd)hd.value=S.heroDesc||'';
+  const ht=document.getElementById('s-heroTag');if(ht)ht.value=S.heroTag||'';
+  const ac=document.getElementById('s-accentColor');if(ac)ac.value=S.accentColor||'#C9A84C';
+  const dc=document.getElementById('s-darkColor');if(dc)dc.value=S.darkColor||'#1a1208';
+  const at=document.getElementById('s-aboutTagline');if(at)at.value=S.aboutTagline||'';
+  const ft=document.getElementById('s-footerTagline');if(ft)ft.value=S.footerTagline||'';
+  const cp=document.getElementById('s-copyright');if(cp)cp.value=S.copyright||'';
+  // Icon/banner previews
+  renderIconPreview();renderBannerPreview();
 
-  document.getElementById('bankLinksGrid').innerHTML=BANKS.map(b=>{
+  // Store tab
+  const addr=document.getElementById('s-address');if(addr)addr.value=S.address||'';
+  const ph=document.getElementById('s-phone');if(ph)ph.value=S.phone||'';
+  const em=document.getElementById('s-email');if(em)em.value=S.email||'';
+  const hr=document.getElementById('s-hours');if(hr)hr.value=S.hours||'';
+  const fd=document.getElementById('s-freeDelivery');if(fd)fd.value=S.freeDelivery||50000;
+  const df=document.getElementById('s-deliveryFee');if(df)df.value=S.deliveryFee||5000;
+  const wc=document.getElementById('s-waConfirm');if(wc)wc.checked=S.waConfirm!==false;
+
+  // Invoice tab
+  const ip=document.getElementById('s-invPrefix');if(ip)ip.value=S.invPrefix||'DODO';
+  const it=document.getElementById('s-invTIN');if(it)it.value=S.invTIN||'';
+  const inn=document.getElementById('s-invNote');if(inn)inn.value=S.invNote||'';
+  const ai=document.getElementById('s-autoInvoice');if(ai)ai.checked=S.autoInvoice!==false;
+
+  // Payment grids
+  renderBankGrid();renderMomoGrid();renderSocialGrid();
+}
+
+function renderBankGrid(){
+  const el=document.getElementById('bankLinksGrid');if(!el)return;
+  el.innerHTML=BANKS.map(b=>{
     const v=S.banks[b.id]||'';
     return `<div class="link-card"><div class="link-card-hd"><div class="link-badge" style="background:${b.color}22">${b.icon}</div><div><div class="link-card-name">${b.name}</div><div class="link-card-sub">${b.sub}</div></div></div>
     <div class="link-status ${v?'on':'off'}" id="bstat-${b.id}">${v?'✓ Active':'Not set'}</div>
     <input class="link-input" type="url" id="bank-${b.id}" value="${esc(v)}" placeholder="${b.placeholder}" oninput="updateStat('bstat-${b.id}',this.value)"/>
-    <button class="link-test" onclick="window.open(document.getElementById('bank-${b.id}').value||'${b.placeholder}','_blank')">Open portal →</button></div>`;
+    <button class="link-test" onclick="window.open(document.getElementById('bank-${b.id}').value||'#','_blank')">Open portal →</button></div>`;
   }).join('');
+}
 
-  document.getElementById('momoLinksGrid').innerHTML=MOMOS.map(m=>{
+function renderMomoGrid(){
+  const el=document.getElementById('momoLinksGrid');if(!el)return;
+  el.innerHTML=MOMOS.map(m=>{
     const v=S.momos[m.id]||'';
     return `<div class="link-card"><div class="link-card-hd"><div class="link-badge" style="background:${m.color}22">${m.icon}</div><div><div class="link-card-name">${m.name}</div><div class="link-card-sub">${m.sub}</div></div></div>
     <div class="link-status ${v?'on':'off'}" id="mstat-${m.id}">${v?'✓ Active':'Not set'}</div>
     <input class="link-input" type="tel" id="momo-${m.id}" value="${esc(v)}" placeholder="e.g. 255712345678" oninput="updateStat('mstat-${m.id}',this.value)"/>
     <button class="link-test" onclick="testMomo('${m.id}')">Test USSD dial →</button></div>`;
   }).join('');
+}
 
-  document.getElementById('socialLinksGrid').innerHTML=SOCIALS.map(s=>{
+function renderSocialGrid(){
+  const el=document.getElementById('socialLinksGrid');if(!el)return;
+  const placeholders={whatsapp:'255712345678 or https://wa.me/255...',facebook:'https://facebook.com/yourpage',instagram:'https://instagram.com/yourhandle',tiktok:'https://tiktok.com/@yourhandle',x:'https://x.com/yourhandle',snapchat:'yourusername',youtube:'https://youtube.com/@yourchannel',telegram:'yourusername or https://t.me/...',linkedin:'https://linkedin.com/in/yourprofile',pinterest:'https://pinterest.com/yourprofile'};
+  el.innerHTML=SOCIALS.map(s=>{
     const v=S.socials[s.id]||'';
-    const placeholders={
-      whatsapp:'255712345678 or https://wa.me/255...',
-      facebook:'https://facebook.com/yourpage',
-      instagram:'https://instagram.com/yourhandle',
-      tiktok:'https://tiktok.com/@yourhandle',
-      x:'https://x.com/yourhandle',
-      snapchat:'yourusername or https://snapchat.com/add/...',
-      youtube:'https://youtube.com/@yourchannel',
-      telegram:'yourusername or https://t.me/...',
-      linkedin:'https://linkedin.com/in/yourprofile',
-      pinterest:'https://pinterest.com/yourprofile',
-    };
     return `<div class="soc-link-card">
       <div class="soc-link-icon" style="background:${s.bg};width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
         <span style="width:20px;height:20px;color:${s.color};display:flex;align-items:center;justify-content:center">${s.svg}</span>
@@ -1625,26 +2223,45 @@ function testMomo(id){
   if(ussd)window.open('tel:'+encodeURIComponent(ussd),'_self');
 }
 
+function resetAllSettings(){
+  if(!confirm('Reset ALL settings, products, and customizations? This cannot be undone!'))return;
+  try{localStorage.removeItem('dodoS3');}catch(e){}
+  location.reload();
+}
+
 function saveSettings(){
-  S.storeName=document.getElementById('s-storeName').value.trim()||S.storeName;
-  S.address=document.getElementById('s-address').value.trim()||S.address;
-  S.phone=document.getElementById('s-phone').value.trim()||S.phone;
-  S.email=document.getElementById('s-email').value.trim()||S.email;
-  S.heroTag=document.getElementById('s-heroTag').value.trim()||S.heroTag;
-  S.freeDelivery=parseInt(document.getElementById('s-freeDelivery').value)||50000;
-  S.deliveryFee=parseInt(document.getElementById('s-deliveryFee').value)||5000;
-  S.waConfirm=document.getElementById('s-waConfirm').checked;
-  S.autoInvoice=document.getElementById('s-autoInvoice').checked;
-  S.invPrefix=document.getElementById('s-invPrefix').value.trim()||'DODO';
-  S.invTIN=document.getElementById('s-invTIN').value.trim();
-  S.invNote=document.getElementById('s-invNote').value.trim();
+  // Branding
+  S.storeName=(document.getElementById('s-storeName')||{}).value||S.storeName;
+  S.heroLine1=(document.getElementById('s-heroLine1')||{}).value||S.heroLine1;
+  S.heroLine2=(document.getElementById('s-heroLine2')||{}).value||S.heroLine2;
+  S.heroDesc=(document.getElementById('s-heroDesc')||{}).value||S.heroDesc;
+  S.heroTag=(document.getElementById('s-heroTag')||{}).value||S.heroTag;
+  S.accentColor=(document.getElementById('s-accentColor')||{}).value||S.accentColor;
+  S.darkColor=(document.getElementById('s-darkColor')||{}).value||S.darkColor;
+  S.aboutTagline=(document.getElementById('s-aboutTagline')||{}).value||S.aboutTagline;
+  S.footerTagline=(document.getElementById('s-footerTagline')||{}).value||S.footerTagline;
+  S.copyright=(document.getElementById('s-copyright')||{}).value||S.copyright;
+  // Store
+  S.address=(document.getElementById('s-address')||{}).value||S.address;
+  S.phone=(document.getElementById('s-phone')||{}).value||S.phone;
+  S.email=(document.getElementById('s-email')||{}).value||S.email;
+  S.hours=(document.getElementById('s-hours')||{}).value||S.hours;
+  S.freeDelivery=parseInt((document.getElementById('s-freeDelivery')||{}).value)||50000;
+  S.deliveryFee=parseInt((document.getElementById('s-deliveryFee')||{}).value)||5000;
+  const wc=document.getElementById('s-waConfirm');S.waConfirm=wc?wc.checked:true;
+  // Invoice
+  S.invPrefix=(document.getElementById('s-invPrefix')||{}).value||'DODO';
+  S.invTIN=(document.getElementById('s-invTIN')||{}).value||'';
+  S.invNote=(document.getElementById('s-invNote')||{}).value||S.invNote;
+  const ai=document.getElementById('s-autoInvoice');S.autoInvoice=ai?ai.checked:true;
+  // Payments
   BANKS.forEach(b=>{S.banks[b.id]=(document.getElementById('bank-'+b.id)||{}).value||'';});
   MOMOS.forEach(m=>{S.momos[m.id]=(document.getElementById('momo-'+m.id)||{}).value||'';});
   SOCIALS.forEach(s=>{S.socials[s.id]=(document.getElementById('soc-'+s.id)||{}).value||'';});
   try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
-  applySettings();
-  const msg=document.getElementById('savedMsg');msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),3500);
-  showToast('✓ Settings saved!');
+  applySettings();applyBranding();
+  const msg=document.getElementById('savedMsg');if(msg){msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),3500);}
+  showToast('✓ All settings saved!');
 }
 
 // ════════════════════════════════════════════════
@@ -1702,6 +2319,7 @@ window.addEventListener('load',()=>{
   renderFeatured();
   updateCartUI();
   applySettings();
+  applyBranding();
   renderSocials();
   observeReveal();
   setTimeout(()=>{
