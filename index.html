@@ -9,6 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -438,7 +441,54 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
 .prod-img-upload{border:2px dashed var(--cream3);border-radius:10px;background:var(--cream);cursor:pointer;transition:.25s;overflow:hidden;min-height:140px;display:flex;align-items:center;justify-content:center}
 .prod-img-upload:hover{border-color:var(--gold)}
 
-/* ── PROMO TICKER ── */
+/* ── SYNC STATUS BAR ── */
+.sync-bar{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:800;display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:30px;font-size:12px;font-weight:500;font-family:'DM Sans',sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:all .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;pointer-events:none;opacity:0;transform:translateX(-50%) translateY(12px)}
+.sync-bar.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all}
+.sync-bar.syncing{background:#1a1208;color:#C9A84C;border:1px solid rgba(201,168,76,.3)}
+.sync-bar.success{background:#1a7a3c;color:#fff}
+.sync-bar.error{background:#C0392B;color:#fff}
+.sync-bar.live{background:rgba(26,18,8,.92);color:rgba(240,232,208,.8);border:1px solid rgba(201,168,76,.15);font-size:11px}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:currentColor;animation:syncPulse 1.2s ease infinite}
+@keyframes syncPulse{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+
+/* ── FIREBASE SETUP SECTION ── */
+.fb-setup-box{background:linear-gradient(135deg,#1a1208,#2a1e0a);border-radius:14px;padding:24px;margin-bottom:20px;border:1px solid rgba(201,168,76,.2)}
+.fb-setup-box h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);font-weight:400;margin-bottom:8px}
+.fb-setup-box p{font-size:13px;color:rgba(240,232,208,.65);line-height:1.7;margin-bottom:16px}
+.fb-input{width:100%;padding:11px 14px;border:1px solid rgba(201,168,76,.25);border-radius:8px;background:rgba(255,255,255,.06);color:rgba(240,232,208,.9);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:10px;transition:.2s}
+.fb-input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.1)}
+.fb-input::placeholder{color:rgba(240,232,208,.35)}
+.fb-connect-btn{background:var(--gold);color:var(--dark);border:none;border-radius:8px;padding:11px 22px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
+.fb-connect-btn:hover{background:var(--gold-light)}
+.fb-connect-btn.secondary{background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold)}
+.fb-connect-btn.secondary:hover{background:rgba(201,168,76,.1)}
+
+/* ── SYNC STATUS BANNER ── */
+.sync-status-banner{display:flex;align-items:center;gap:12px;background:var(--white);border-radius:12px;padding:14px 18px;margin-bottom:20px;border:1px solid var(--cream3);box-shadow:0 2px 10px rgba(26,18,8,.06)}
+.ssb-dot{width:10px;height:10px;border-radius:50%;background:var(--red);flex-shrink:0;animation:pulse 2s ease infinite}
+.ssb-dot.connected{background:var(--green)}
+.ssb-dot.syncing{background:var(--gold)}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.7}}
+.ssb-text{flex:1;font-size:13px;color:var(--muted)}
+.ssb-btn{background:var(--dark);color:var(--gold);border:none;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
+.ssb-btn:hover{background:var(--gold);color:var(--dark)}
+
+/* ── PUBLISH CHECKLIST ── */
+.publish-checklist{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;background:var(--cream);border-radius:10px;padding:14px;border:1px solid var(--cream3)}
+.pc-item{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.fb-status{display:flex;align-items:center;gap:8px;font-size:12px;margin-top:12px;padding:10px 14px;border-radius:8px}
+.fb-status.connected{background:rgba(26,122,60,.15);color:#4ade80}
+.fb-status.disconnected{background:rgba(192,57,43,.12);color:#f87171}
+.fb-status.testing{background:rgba(201,168,76,.1);color:var(--gold)}
+.fb-steps{margin:16px 0;padding:0;list-style:none}
+.fb-steps li{font-size:12px;color:rgba(240,232,208,.55);padding:5px 0;padding-left:20px;position:relative;line-height:1.5}
+.fb-steps li::before{content:counter(step);counter-increment:step;position:absolute;left:0;top:5px;width:14px;height:14px;background:rgba(201,168,76,.2);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.fb-steps{counter-reset:step}
+
+/* ── PUBLISH BUTTON ── */
+.publish-btn{width:100%;background:linear-gradient(135deg,#1a7a3c,#27ae60);color:#fff;border:none;border-radius:12px;padding:16px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.5px;transition:.25s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px}
+.publish-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,122,60,.4)}
+.publish-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .promo-ticker{background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark));color:var(--dark);padding:8px 0;overflow:hidden}
 .ticker-inner{display:flex;gap:60px;animation:ticker 22s linear infinite;width:max-content;white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:2px}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -780,6 +830,7 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
       <button class="dash-tab" onclick="switchTab('socials')">📲 Socials</button>
       <button class="dash-tab" onclick="switchTab('invoice')">🧾 Invoice</button>
       <button class="dash-tab" onclick="switchTab('security')">🔐 Security</button>
+      <button class="dash-tab" onclick="switchTab('sync')">🌐 Publish</button>
     </div>
 
     <!-- ── TAB: BRANDING ── -->
@@ -815,13 +866,13 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
           <div class="s-ico">🖼️</div>
           <div class="s-info">
             <div class="s-label">Hero Banner Image</div>
-            <div class="s-desc">Background image for the homepage hero section. Replaces the animated gradient. Recommended: 400×400px</div>
+            <div class="s-desc">Background image for the homepage hero section. Replaces the animated gradient. Recommended: 1400×800px</div>
             <div class="upload-zone wide" id="bannerUploadZone" onclick="document.getElementById('bannerFileInput').click()">
               <div class="upload-preview" id="bannerPreview">
                 <div class="upload-placeholder">
                   <div style="font-size:32px">🌄</div>
                   <div class="upload-text">Click to upload hero banner</div>
-                  <div class="upload-hint">PNG · JPG · max 5MB · 400×400px recommended</div>
+                  <div class="upload-hint">PNG · JPG · max 5MB · 1400×800px recommended</div>
                 </div>
               </div>
             </div>
@@ -881,7 +932,9 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
         <div class="s-section-hd">📖 About Page Content</div>
         <div class="s-row"><div class="s-ico">📝</div><div class="s-info"><div class="s-label">About Page Tagline</div><div class="s-desc">Subtitle shown below the About headline</div><input class="s-input" id="s-aboutTagline" type="text" placeholder="Born in the vibrant streets of Kariakoo..."/></div></div>
         <div class="s-row"><div class="s-ico">📋</div><div class="s-info"><div class="s-label">Footer Tagline</div><div class="s-desc">Short description shown in website footer</div><textarea class="s-input" id="s-footerTagline" rows="2" placeholder="Your go-to fashion destination in Kariakoo..."></textarea></div></div>
-        <div class="s-row"><div class="s-ico">©️</div><div class="s-info"><div class="s-label">Copyright Text</div><div class="s-desc">Shown at the very bottom of the page</div><input class="s-input" id="s-copyright" type="text" placeholder="© 2026 Dodo Boutique Kariakoo"/></div></div>
+        <div class="s-row"><div class="s-ico">©️</div><div class="s-info"><div class="s-label">Copyright Text</div><div class="s-desc">Shown at the very bottom of the page</div><input class="s-input" id="s-copyright" type="text" placeholder="© 2026
+                                                                                                                                                                                  
+                                                                                                                                                                                  Dodo Boutique Kariakoo"/></div></div>
       </div>
 
     </div>
@@ -973,6 +1026,21 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
         </div></div>
       </div>
       <div class="s-section">
+        <div class="s-section-hd">🚀 Publish & Share Store</div>
+        <div class="s-row"><div class="s-ico">🔗</div><div class="s-info">
+          <div class="s-label">Publish Store to Customers</div>
+          <div class="s-desc">Generates a shareable link that encodes all your settings, products, branding, and prices. Anyone who opens the link sees your exact store — including on other devices.</div>
+          <div id="publishLinkBox" style="display:none;margin:10px 0;background:var(--cream);border:1px solid var(--cream3);border-radius:8px;padding:10px 12px;word-break:break-all;font-size:11px;font-family:monospace;color:var(--dark);line-height:1.5;max-height:60px;overflow-y:auto"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <button onclick="saveAndPublish()" style="background:var(--gold);color:var(--dark);border:none;border-radius:8px;padding:12px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:.2s">🚀 Save & Publish Store</button>
+            <button onclick="publishStore()" style="background:var(--dark);color:var(--gold);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:12px 20px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:.2s">🔗 Get Share Link</button>
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:var(--muted);line-height:1.6;background:rgba(201,168,76,.06);border-radius:8px;padding:10px 12px;border:1px solid rgba(201,168,76,.15)">
+            💡 <strong>How to share:</strong> Click "Save & Publish" → copy the link → send to customers via WhatsApp, Instagram bio, or any platform. The link works on all devices and browsers.
+          </div>
+        </div></div>
+      </div>
+      <div class="s-section">
         <div class="s-section-hd">🗑 Data Management</div>
         <div class="s-row"><div class="s-ico">⚠️</div><div class="s-info">
           <div class="s-label">Reset All Settings</div>
@@ -982,9 +1050,121 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
       </div>
     </div>
 
+    <!-- ── TAB: PUBLISH / SYNC ── -->
+    <div class="dash-panel" id="tab-sync">
+
+      <!-- Live sync status banner -->
+      <div class="sync-status-banner" id="syncStatusBanner">
+        <div class="ssb-dot" id="ssbDot"></div>
+        <div class="ssb-text" id="ssbText">Not connected — buyers only see local changes on this device</div>
+        <button class="ssb-btn" onclick="switchTab('sync');document.getElementById('fb-dbUrl').focus()">Connect →</button>
+      </div>
+
+      <!-- How it works -->
+      <div class="s-section" style="background:linear-gradient(135deg,var(--dark),var(--dark2));color:var(--cream)">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);margin-bottom:10px">🌍 How Buyer Sync Works</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:12px">
+          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:24px;margin-bottom:6px">1️⃣</div>
+            <div style="font-size:12px;font-weight:600;color:var(--gold)">Create Firebase</div>
+            <div style="font-size:11px;color:rgba(240,232,208,.6);margin-top:4px">Free database at console.firebase.google.com</div>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:24px;margin-bottom:6px">2️⃣</div>
+            <div style="font-size:12px;font-weight:600;color:var(--gold)">Paste URL below</div>
+            <div style="font-size:11px;color:rgba(240,232,208,.6);margin-top:4px">Enter your database URL and connect</div>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:24px;margin-bottom:6px">3️⃣</div>
+            <div style="font-size:12px;font-weight:600;color:var(--gold)">Save & Publish</div>
+            <div style="font-size:11px;color:rgba(240,232,208,.6);margin-top:4px">Every save auto-pushes to all buyers live</div>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:24px;margin-bottom:6px">✅</div>
+            <div style="font-size:12px;font-weight:600;color:var(--gold)">Buyers see it</div>
+            <div style="font-size:11px;color:rgba(240,232,208,.6);margin-top:4px">Changes appear instantly on all devices</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:rgba(201,168,76,.7);background:rgba(201,168,76,.08);border-radius:8px;padding:10px 12px;border-left:3px solid var(--gold)">
+          🔒 Your PIN is <strong>never</strong> published. Products, branding, prices, colors, social links, payments — everything else syncs to buyers automatically.
+        </div>
+      </div>
+
+      <!-- Firebase Setup -->
+      <div class="fb-setup-box">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="font-size:20px">🔌</div>
+          <div>
+            <div style="font-weight:600;font-size:15px">Firebase Realtime Database</div>
+            <div style="font-size:12px;color:var(--muted)">Free · No credit card · 1GB storage</div>
+          </div>
+        </div>
+
+        <ol class="fb-steps">
+          <li>Go to <a href="https://console.firebase.google.com" target="_blank" style="color:var(--gold)">console.firebase.google.com</a> → <strong>Add project</strong> → any name → Continue</li>
+          <li>In your project: <strong>Build → Realtime Database → Create Database</strong> → choose any location → <strong>Start in test mode</strong> → Enable</li>
+          <li>Copy the URL shown (looks like: <code style="font-size:10px;background:var(--cream2);padding:2px 6px;border-radius:4px">https://your-app-default-rtdb.firebaseio.com</code>)</li>
+          <li>Paste below and click <strong>🔌 Connect</strong></li>
+        </ol>
+
+        <input class="fb-input" id="fb-dbUrl" type="url" placeholder="https://your-project-default-rtdb.firebaseio.com"/>
+        <input class="fb-input" id="fb-apiKey" type="text" placeholder="API Key (optional — from Project Settings → General → Web App)"/>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="fb-connect-btn" onclick="connectFirebase()">🔌 Connect Firebase</button>
+          <button class="fb-connect-btn secondary" onclick="testFirebaseConnection()">🧪 Test Connection</button>
+        </div>
+        <div class="fb-status disconnected" id="fbStatus">
+          <span>●</span> Not connected — changes only save locally
+        </div>
+      </div>
+
+      <!-- Publish Controls -->
+      <div class="s-section">
+        <div class="s-section-hd">🚀 Publish to All Buyers</div>
+
+        <div class="publish-checklist">
+          <div class="pc-item">✓ Store name, logo & theme colors</div>
+          <div class="pc-item">✓ All products, prices & images</div>
+          <div class="pc-item">✓ Hero text & banner image</div>
+          <div class="pc-item">✓ Social media links</div>
+          <div class="pc-item">✓ Payment methods</div>
+          <div class="pc-item">✓ Contact info & hours</div>
+          <div class="pc-item">✓ About page content</div>
+          <div class="pc-item" style="color:var(--red)">✗ PIN (stays private)</div>
+        </div>
+
+        <button class="publish-btn" id="publishBtn" onclick="publishToFirebase()">
+          🌍 Publish Now — Push to All Buyers
+        </button>
+        <div id="publishStatus" style="margin-top:10px;font-size:12px;color:var(--muted);text-align:center"></div>
+
+        <div style="margin-top:16px;background:var(--cream);border-radius:10px;padding:12px 16px;border:1px solid var(--cream3)">
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px;color:var(--dark)">📅 Last Published</div>
+          <div id="lastPublished" style="font-size:12px;color:var(--muted)">Never published yet — connect Firebase and publish</div>
+        </div>
+      </div>
+
+      <!-- Share Link fallback -->
+      <div class="s-section">
+        <div class="s-section-hd">🔗 Share Link (No Firebase needed)</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">
+          No Firebase? Use this as a backup. It encodes all your settings into the URL itself.<br>
+          <strong>Note:</strong> Each time you change settings you'll need to generate and share a new link. Works great for WhatsApp bio, Instagram link, etc.
+        </p>
+        <div id="shareLinkBox" style="display:none;background:var(--cream);border:1px solid var(--cream3);border-radius:8px;padding:10px 12px;word-break:break-all;font-size:11px;font-family:monospace;color:var(--dark);line-height:1.5;max-height:80px;overflow-y:auto;margin-bottom:10px"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="generateAndShowShareLink()" style="background:var(--dark);color:var(--gold);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:.2s">🔗 Generate Share Link</button>
+          <button onclick="copyShareLink()" id="copyLinkBtn" style="display:none;background:var(--gold);color:var(--dark);border:none;border-radius:8px;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer">📋 Copy Link</button>
+          <button onclick="shareViaWhatsApp()" style="background:#25D366;color:#fff;border:none;border-radius:8px;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer">💬 Share on WhatsApp</button>
+        </div>
+      </div>
+
+    </div>
+
     <div style="height:20px"></div>
-    <button class="save-btn" onclick="saveSettings()"><span>💾 Save & Apply All Settings</span></button>
-    <div class="saved-msg" id="savedMsg">✓ Settings saved and applied across your store!</div>
+    <button class="save-btn" onclick="saveSettings()"><span>💾 Save All Settings</span></button>
+    <button class="publish-btn" onclick="saveAndPublish()" style="margin-top:10px">🚀 Save & Publish to All Buyers</button>
+    <div class="saved-msg" id="savedMsg">✓ Settings saved! Changes pushed to all buyers.</div>
   </div>
 </div>
 
@@ -1093,6 +1273,9 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
     </div>
   </div>
 </div>
+
+<!-- SYNC STATUS BAR -->
+<div class="sync-bar" id="syncBar"></div>
 
 <!-- PIN OVERLAY (rendered by JS) -->
 <div id="pinContainer"></div>
@@ -1232,6 +1415,26 @@ let S = {
   customProducts:[], productEdits:{}, deletedProducts:[],
 };
 try{const sv=localStorage.getItem('dodoS3');if(sv)S={...S,...JSON.parse(sv)};}catch(e){}
+
+// ── URL SETTINGS SYNC ──
+// Load settings from URL hash if present (set by seller's "Publish" action)
+(function loadFromURL(){
+  try{
+    const hash=window.location.hash;
+    if(hash&&hash.startsWith('#s=')){
+      const encoded=hash.slice(3);
+      const json=decodeURIComponent(atob(encoded));
+      const fromURL=JSON.parse(json);
+      // Merge URL settings over localStorage (URL is authoritative for published state)
+      // But don't overwrite PIN with URL data — security
+      const pin=S.pin;
+      S={...S,...fromURL};
+      S.pin=pin; // keep local PIN
+      // Persist to localStorage so it loads fast next time
+      try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+    }
+  }catch(e){console.warn('URL settings parse failed',e);}
+})();
 
 let activeCat='All', cart=[], wishlist=[], selectedPayment=null;
 let lastOrder=null; // store last order for invoice
@@ -1809,32 +2012,253 @@ function renderSocials(){
 }
 
 // ════════════════════════════════════════════════
-//  APPLY SETTINGS
+//  PUBLISH — generate shareable URL with all settings
 // ════════════════════════════════════════════════
-function applySettings(){
-  const ph=S.phone.replace(/[^0-9]/g,'');
-  const phoneDisplay=S.phone.startsWith('+')?S.phone:('+'+S.phone);
-  const ctAddress=document.getElementById('ctAddress');if(ctAddress)ctAddress.textContent=S.address||'Kariakoo Market, Dar es Salaam';
+function generateShareURL(){
+  // Strip PIN from shared data — customers must not see it
+  const shareData={...S};
+  delete shareData.pin;
+  try{
+    const json=JSON.stringify(shareData);
+    const encoded=btoa(encodeURIComponent(json));
+    const base=window.location.href.split('#')[0];
+    return `${base}#s=${encoded}`;
+  }catch(e){
+    showToast('⚠ Settings too large to encode in URL. Try removing large images.');
+    return null;
+  }
+}
+
+function publishStore(){
+  const url=generateShareURL();
+  if(!url)return;
+  // Copy to clipboard
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>{
+      showToast('✓ Share link copied to clipboard!');
+    }).catch(()=>fallbackCopy(url));
+  } else {
+    fallbackCopy(url);
+  }
+  // Show the publish modal
+  showPublishModal(url);
+}
+
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');showToast('✓ Link copied!');}catch(e){}
+  document.body.removeChild(ta);
+}
+
+function showPublishModal(url){
+  const c=document.getElementById('pinContainer');
+  c.innerHTML=`
+  <div class="pin-overlay" id="publishOverlay" onclick="if(event.target===this)document.getElementById('publishOverlay').remove()">
+    <div class="pin-box" style="max-width:480px;text-align:left">
+      <div style="font-size:36px;text-align:center;margin-bottom:12px">🚀</div>
+      <div class="pin-title" style="text-align:center;margin-bottom:6px">Store Published!</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:20px;text-align:center;line-height:1.6">
+        Share this link with your customers. Anyone who opens it will see<br>your latest store design, products, and settings instantly.
+      </div>
+      <div style="background:var(--cream);border:1px solid var(--cream3);border-radius:10px;padding:12px 14px;margin-bottom:16px;word-break:break-all;font-size:11px;color:var(--dark);font-family:monospace;line-height:1.5;max-height:80px;overflow-y:auto">${esc(url)}</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button class="pay-now-btn" onclick="fallbackCopy('${esc(url.replace(/'/g,"\\'"))}');showToast('✓ Copied!')" style="background:var(--dark);color:var(--gold)">📋 Copy Link</button>
+        <button class="pay-now-btn" onclick="window.open('https://wa.me/?text='+encodeURIComponent('Check out my store: ${esc(url.replace(/'/g,"\\'"))}'),'_blank')" style="background:#25D366;color:#fff">💬 Share via WhatsApp</button>
+        <button class="pay-now-btn" onclick="window.open('${esc(url.replace(/'/g,"\\'"))}','_blank')" style="background:var(--gold);color:var(--dark)">👁 Preview as Customer</button>
+        <button class="change-pin-btn" onclick="document.getElementById('publishOverlay').remove()" style="width:100%;text-align:center;padding:10px">✕ Close</button>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:rgba(201,168,76,.08);border-radius:8px;border:1px solid rgba(201,168,76,.2)">
+        <div style="font-size:11px;font-weight:600;color:var(--gold);margin-bottom:4px">💡 How it works</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">Every time you save settings, generate a new link. The link encodes all your store data — products, branding, prices, contacts. Customers open the link and see your exact store.</div>
+      </div>
+    </div>
+  </div>`;
+}
+// ════════════════════════════════════════════════
+//  MASTER APPLY — updates EVERY buyer-visible element
+// ════════════════════════════════════════════════
+function applyAll(){
+  const ph=(S.phone||'255712345678').replace(/[^0-9]/g,'');
+  const phoneDisplay=(S.phone||'').startsWith('+')?S.phone:('+'+S.phone);
+  const accent=S.accentColor||'#C9A84C';
+  const dark=S.darkColor||'#1a1208';
+
+  // ── CSS variables (theme colors propagate everywhere) ──
+  document.documentElement.style.setProperty('--gold',accent);
+  const r=parseInt(accent.slice(1,3),16),g=parseInt(accent.slice(3,5),16),b=parseInt(accent.slice(5,7),16);
+  document.documentElement.style.setProperty('--gold-light',`rgba(${r},${g},${b},0.7)`);
+  document.documentElement.style.setProperty('--dark',dark);
+  document.documentElement.style.setProperty('--dark2',shadeColor(dark,10));
+  document.documentElement.style.setProperty('--dark3',shadeColor(dark,20));
+
+  // ── Browser tab title ──
+  document.title=(S.storeName||'Dodo Boutique')+' | Kariakoo';
+  const metaDesc=document.querySelector('meta[name="description"]');
+  if(metaDesc)metaDesc.content=(S.storeName||'Dodo Boutique')+' – Fashion, Accessories & More';
+
+  // ── NAV brand name ──
+  const navBrand=document.querySelector('.nav-brand');
+  if(navBrand){
+    // Text node (last child after svg/img)
+    const textNode=[...navBrand.childNodes].find(n=>n.nodeType===3);
+    if(textNode) textNode.textContent=' '+(S.storeName||'DODO');
+    else navBrand.appendChild(document.createTextNode(' '+(S.storeName||'DODO')));
+    // Custom icon
+    const oldImg=navBrand.querySelector('img.custom-icon');
+    if(S.appIcon){
+      if(oldImg){oldImg.src=S.appIcon;}
+      else{
+        const img=document.createElement('img');
+        img.src=S.appIcon;img.className='custom-icon';
+        img.style.cssText='width:32px;height:32px;border-radius:8px;object-fit:cover;flex-shrink:0';
+        const svg=navBrand.querySelector('svg');
+        if(svg){svg.style.display='none';navBrand.insertBefore(img,svg);}
+        else navBrand.prepend(img);
+      }
+    } else if(oldImg){
+      oldImg.remove();
+      const svg=navBrand.querySelector('svg');if(svg)svg.style.display='';
+    }
+  }
+
+  // ── Hero section ──
+  const heroEl=document.querySelector('.hero');
+  if(heroEl){
+    if(S.heroBanner){
+      heroEl.style.backgroundImage=`url(${S.heroBanner})`;
+      heroEl.style.backgroundSize='cover';
+      heroEl.style.backgroundPosition='center';
+    } else {
+      heroEl.style.backgroundImage='';
+      heroEl.style.background='';
+    }
+  }
+  const heroTag=document.getElementById('heroTag');
+  if(heroTag)heroTag.textContent=S.heroTag||'✦ New Collection 2026';
+  const heroTitle=document.querySelector('.hero-title');
+  if(heroTitle)heroTitle.innerHTML=`${S.heroLine1||'Fashion That Tells'}<br><em>${S.heroLine2||'Your Story'}</em>`;
+  const heroDesc=document.querySelector('.hero-desc');
+  if(heroDesc)heroDesc.textContent=S.heroDesc||'Discover curated fashion, accessories, and lifestyle pieces from the heart of Kariakoo, Dar es Salaam.';
+  // Hero buttons text
+  const heroBtnShop=document.querySelector('.hero-actions .btn-primary');
+  if(heroBtnShop)heroBtnShop.textContent=S.heroBtn1||'Shop Now';
+  const heroBtnAbout=document.querySelector('.hero-actions .btn-outline');
+  if(heroBtnAbout)heroBtnAbout.textContent=S.heroBtn2||'Our Story';
+
+  // ── Promo banner section ──
+  const promoBannerTitle=document.querySelector('#page-home .section + div .\\[font-family');
+  // Use a data-id approach instead:
+  document.querySelectorAll('[data-promo-title]').forEach(el=>el.textContent=S.promoTitle||'Free Delivery in Kariakoo');
+  document.querySelectorAll('[data-promo-desc]').forEach(el=>el.textContent=S.promoDesc||`Orders above TZS ${Number(S.freeDelivery||50000).toLocaleString()} get free delivery within Kariakoo and surrounding areas.`);
+
+  // ── Splash ──
+  const splashTitle=document.querySelector('.splash-title');
+  if(splashTitle)splashTitle.textContent=S.storeName||'DODO BOUTIQUE';
+  const splashSub=document.querySelector('.splash-sub');
+  if(splashSub&&S.splashSub)splashSub.textContent=S.splashSub;
+
+  // ── Footer ──
+  const footerH2=document.querySelector('.footer-brand h2');
+  if(footerH2)footerH2.textContent='🦤 '+(S.storeName||'DODO BOUTIQUE').toUpperCase();
+  const footerP=document.querySelector('.footer-brand p');
+  if(footerP)footerP.textContent=S.footerTagline||'Your go-to fashion destination in Kariakoo, Dar es Salaam. Quality styles, honest prices, delivered with love.';
+  const footerCopy=document.querySelector('.footer-bottom p:first-child');
+  if(footerCopy)footerCopy.textContent=S.copyright||`© ${new Date().getFullYear()} ${S.storeName||'Dodo Boutique'} Kariakoo. All rights reserved.`;
+  const footerAddr=document.querySelector('.footer-bottom p:last-child');
+  if(footerAddr)footerAddr.textContent='📍 '+(S.address||'Kariakoo Market, Dar es Salaam, Tanzania');
+
+  // ── About page ──
+  const aboutH1=document.querySelector('.about-hero h1');
+  if(aboutH1)aboutH1.innerHTML=`About <em>${S.storeName||'Dodo Boutique'}</em>`;
+  const aboutTagP=document.querySelector('.about-hero p');
+  if(aboutTagP)aboutTagP.textContent=S.aboutTagline||'Born in the vibrant streets of Kariakoo, Dodo Boutique is more than a store — it\'s a celebration of African style, culture, and identity.';
+  const aboutPhoneEl=document.getElementById('aboutPhone');
+  if(aboutPhoneEl)aboutPhoneEl.innerHTML=`<a href="tel:+${ph}" style="color:var(--dark)">${phoneDisplay}</a>`;
+  // About map overlay card
+  const mapOverlay=document.querySelector('.map-overlay-card');
+  if(mapOverlay){
+    const h4=mapOverlay.querySelector('h4');if(h4)h4.textContent='🦤 '+(S.storeName||'Dodo Boutique');
+    const p=mapOverlay.querySelector('p');if(p)p.innerHTML=(S.address||'Kariakoo Market').replace(', ',',<br>');
+  }
+  // About map info row
+  const aboutPhoneInfo=document.querySelector('.map-info-item:nth-child(2) p');
+  if(aboutPhoneInfo)aboutPhoneInfo.innerHTML=`<a href="tel:+${ph}" style="color:var(--dark)">${phoneDisplay}</a>`;
+  // Hours in about
+  document.querySelectorAll('.map-info-item:first-child p').forEach(el=>{
+    if(el.textContent.includes('Mon'))el.innerHTML=(S.hours||'Mon–Sat: 8:00 AM – 7:00 PM<br>Sunday: 10:00 AM – 4:00 PM').replace('|','<br>');
+  });
+
+  // ── Contact page ──
+  const ctAddress=document.getElementById('ctAddress');if(ctAddress)ctAddress.textContent=S.address||'Kariakoo Market, Dar es Salaam, Tanzania';
   const ctPhone=document.getElementById('ctPhone');if(ctPhone){ctPhone.textContent=phoneDisplay;ctPhone.href='tel:+'+ph;}
   const ctWA=document.getElementById('ctWA');if(ctWA){ctWA.textContent=phoneDisplay;ctWA.href=`https://wa.me/${ph}`;}
-  const ctEmail=document.getElementById('ctEmail');if(ctEmail){ctEmail.textContent=S.email;ctEmail.href='mailto:'+S.email;}
-  const aPhone=document.getElementById('aboutPhone');if(aPhone)aPhone.innerHTML=`<a href="tel:+${ph}" style="color:var(--dark)">${phoneDisplay}</a>`;
-  const heroTag=document.getElementById('heroTag');if(heroTag)heroTag.textContent=S.heroTag||'✦ New Collection 2026';
+  const ctEmail=document.getElementById('ctEmail');if(ctEmail){ctEmail.textContent=S.email||'hello@dodoboutique.co.tz';ctEmail.href='mailto:'+(S.email||'');}
+  const ctHours=document.querySelector('#page-contact .ci-txt p');
+  if(ctHours&&ctHours.textContent.includes('Mon'))ctHours.textContent=S.hours||'Mon–Sat: 8am–7pm | Sun: 10am–4pm';
+
+  // ── Mobile menu store name ──
+  document.querySelectorAll('.mobile-menu a:first-child').forEach(a=>{
+    if(a.textContent.includes('Home'))return;
+  });
+
+  // ── Bottom nav ──
+  // (icons remain, no text changes needed)
+
+  // ── Ticker promo ──
+  const ticker=document.getElementById('tickerInner');
+  if(ticker&&S.tickerText){
+    const items=S.tickerText.split('|').filter(Boolean);
+    if(items.length)ticker.innerHTML=[...items,...items].map(t=>`<span>${t.trim()}</span>`).join('');
+  }
+
+  // ── Section subtitles ──
+  const shopSub=document.querySelector('#page-shop .section-sub');
+  if(shopSub&&S.shopSubtitle)shopSub.textContent=S.shopSubtitle;
+
+  // ── Socials everywhere ──
   renderSocials();
+
+  // ── Products grids ──
+  renderFeatured();
+  renderCats();
+  if(document.getElementById('page-shop')&&document.getElementById('page-shop').classList.contains('active')){
+    renderShop();
+  }
+}
+
+// Keep these as aliases so existing calls still work
+function applySettings(){applyAll();}
+function applyBranding(){applyAll();}
+
+// Helper: lighten a hex color by percent
+function shadeColor(hex,percent){
+  try{
+    let r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+    r=Math.min(255,r+Math.round(2.55*percent));
+    g=Math.min(255,g+Math.round(2.55*percent));
+    b=Math.min(255,b+Math.round(2.55*percent));
+    return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+  }catch(e){return hex;}
 }
 
 // ════════════════════════════════════════════════
 //  SELLER DASHBOARD — TABS
 // ════════════════════════════════════════════════
 function switchTab(name){
-  document.querySelectorAll('.dash-tab').forEach((t,i)=>{
-    const tabs=['branding','products','store','payments','socials','invoice','security'];
-    t.classList.toggle('active',tabs[i]===name);
-  });
+  const tabs=['branding','products','store','payments','socials','invoice','security','sync'];
+  document.querySelectorAll('.dash-tab').forEach((t,i)=>t.classList.toggle('active',tabs[i]===name));
   document.querySelectorAll('.dash-panel').forEach(p=>p.classList.remove('active'));
-  const panel=document.getElementById('tab-'+name);
-  if(panel)panel.classList.add('active');
+  const panel=document.getElementById('tab-'+name);if(panel)panel.classList.add('active');
   if(name==='products')renderProductManager();
+  if(name==='sync'){
+    // Populate Firebase inputs from saved config
+    const fbu=document.getElementById('fb-dbUrl');if(fbu&&S.fbDbUrl)fbu.value=S.fbDbUrl;
+    const fba=document.getElementById('fb-apiKey');if(fba&&S.fbApiKey)fba.value=S.fbApiKey;
+    const lp=document.getElementById('lastPublished');if(lp&&S.lastPublished)lp.textContent='Last published: '+S.lastPublished;
+    updateFbStatus(fbConnected);
+  }
 }
 
 // ════════════════════════════════════════════════
@@ -1918,64 +2342,9 @@ function setDark(hex){
   document.getElementById('s-darkColor').value=hex;
   S.darkColor=hex;applyBranding();
 }
-function applyBranding(){
-  const accent=S.accentColor||'#C9A84C';
-  const dark=S.darkColor||'#1a1208';
-  document.documentElement.style.setProperty('--gold',accent);
-  document.documentElement.style.setProperty('--dark',dark);
-  // Apply hero banner
-  const heroBg=document.querySelector('.hero-bg');
-  if(heroBg&&S.heroBanner){
-    document.querySelector('.hero').style.backgroundImage=`url(${S.heroBanner})`;
-    document.querySelector('.hero').style.backgroundSize='cover';
-    document.querySelector('.hero').style.backgroundPosition='center';
-  } else if(heroBg){
-    const hero=document.querySelector('.hero');
-    if(hero){hero.style.backgroundImage='';hero.style.background='';}
-  }
-  // Apply app icon to nav brand
-  const navBrand=document.querySelector('.nav-brand');
-  if(navBrand&&S.appIcon){
-    const existing=navBrand.querySelector('img.custom-icon');
-    if(existing)existing.remove();
-    const img=document.createElement('img');
-    img.src=S.appIcon;img.className='custom-icon';
-    img.style.cssText='width:32px;height:32px;border-radius:8px;object-fit:cover';
-    navBrand.insertBefore(img,navBrand.firstChild);
-    const oldSvg=navBrand.querySelector('svg');if(oldSvg)oldSvg.style.display='none';
-  }
-  // Splash icon
-  const splashLogo=document.querySelector('.splash-logo');
-  if(splashLogo&&S.appIcon){
-    splashLogo.outerHTML=`<img src="${S.appIcon}" class="splash-logo" style="width:120px;height:120px;border-radius:20px;object-fit:cover;margin-bottom:24px"/>`;
-  }
-  // Apply hero text
-  const ht=document.querySelector('.hero-title');
-  if(ht&&(S.heroLine1||S.heroLine2)){
-    ht.innerHTML=`${S.heroLine1||'Fashion That Tells'}<br><em>${S.heroLine2||'Your Story'}</em>`;
-  }
-  const hd=document.querySelector('.hero-desc');
-  if(hd&&S.heroDesc) hd.textContent=S.heroDesc;
-  // Footer tagline
-  const fp=document.querySelector('.footer-brand p');
-  if(fp&&S.footerTagline) fp.textContent=S.footerTagline;
-  // Copyright
-  const cr=document.querySelector('.footer-bottom p');
-  if(cr&&S.copyright) cr.textContent=S.copyright;
-  // About tagline
-  const at=document.querySelector('.about-hero p');
-  if(at&&S.aboutTagline) at.textContent=S.aboutTagline;
-  // Document title
-  if(S.storeName) document.title=S.storeName;
-}
-
 function livePreview(){
   const v=document.getElementById('s-storeName');
-  if(v&&v.value){
-    const brand=document.querySelector('.nav-brand');
-    if(brand) brand.childNodes[brand.childNodes.length-1].textContent=' '+v.value;
-    document.title=v.value;
-  }
+  if(v&&v.value){S.storeName=v.value;applyAll();}
 }
 
 // ════════════════════════════════════════════════
@@ -2229,8 +2598,180 @@ function resetAllSettings(){
   location.reload();
 }
 
+function saveAndPublish(){
+  saveSettings();
+  setTimeout(()=>publishToFirebase(),300);
+}
+
+function buildPublishPayload(){
+  const safe={...S};delete safe.pin;safe.publishedAt=new Date().toISOString();return safe;
+}
+
+function publishToFirebase(){
+  const btn=document.getElementById('publishBtn');
+  const status=document.getElementById('publishStatus');
+  const payload=buildPublishPayload();
+  if(fbDb&&fbConnected){
+    if(btn)btn.disabled=true;
+    if(status)status.textContent='📤 Publishing...';
+    showSyncBar('📤 Publishing to all buyers...','syncing');
+    fbDb.ref('storeConfig').set(payload)
+      .then(()=>{
+        const now=new Date().toLocaleString();S.lastPublished=now;
+        try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+        if(btn)btn.disabled=false;
+        if(status)status.textContent='✓ Published '+now;
+        const lp=document.getElementById('lastPublished');if(lp)lp.textContent='Last published: '+now;
+        showSyncBar('✅ Published! All buyers see changes now','success');
+        showToast('✅ Store published to all buyers!');
+      })
+      .catch(e=>{if(btn)btn.disabled=false;if(status)status.textContent='❌ '+e.message;showSyncBar('❌ Failed: '+e.message,'error');showToast('❌ '+e.message);});
+  } else if(S.fbDbUrl){
+    if(status)status.textContent='📤 Publishing via REST...';
+    showSyncBar('📤 Publishing...','syncing');
+    fetch(S.fbDbUrl+(S.fbDbUrl.endsWith('/')?'':'/')+`storeConfig.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(r=>r.json())
+      .then(()=>{
+        const now=new Date().toLocaleString();S.lastPublished=now;
+        try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+        if(status)status.textContent='✓ Published '+now;
+        showSyncBar('✅ Published to all buyers!','success');showToast('✅ Published!');
+      })
+      .catch(e=>{if(status)status.textContent='❌ '+e.message;showSyncBar('❌ '+e.message,'error');showToast('❌ '+e.message);});
+  } else {
+    showToast('⚠ Connect Firebase first in the 🌐 Publish tab');switchTab('sync');
+  }
+}
+
+// ════════════════════════════════════════════════
+//  FIREBASE REAL-TIME SYNC
+// ════════════════════════════════════════════════
+let fbApp=null,fbDb=null,fbConnected=false;
+
+function connectFirebase(){
+  const dbUrl=(document.getElementById('fb-dbUrl')||{}).value||S.fbDbUrl||'';
+  const apiKey=(document.getElementById('fb-apiKey')||{}).value||S.fbApiKey||'';
+  if(!dbUrl){showToast('⚠ Enter your Firebase Database URL');return;}
+  S.fbDbUrl=dbUrl.trim();S.fbApiKey=apiKey.trim();
+  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+  initFirebase();
+}
+
+function initFirebase(){
+  if(!S.fbDbUrl)return;
+  try{
+    if(!fbApp){
+      const cfg={apiKey:S.fbApiKey||'AIzaSyPlaceholder',databaseURL:S.fbDbUrl,projectId:S.fbDbUrl.replace('https://','').split('.')[0]};
+      try{fbApp=firebase.initializeApp(cfg,'dodo');}catch(e){fbApp=firebase.app('dodo');}
+    }
+    fbDb=firebase.database(fbApp);
+    fbDb.ref('.info/connected').on('value',snap=>{
+      fbConnected=!!snap.val();
+      updateFbStatus(fbConnected);
+      if(fbConnected)listenForSellerUpdates();
+    });
+  }catch(e){updateFbStatus(false,'Error: '+e.message);}
+}
+
+function testFirebaseConnection(){
+  const status=document.getElementById('fbStatus');
+  if(status){status.className='fb-status testing';status.innerHTML='<span>●</span> Testing...';}
+  if(!S.fbDbUrl){showToast('⚠ Enter Firebase URL first');return;}
+  fetch(S.fbDbUrl+'/.json?timeout=5s')
+    .then(r=>{
+      if(r.ok||r.status===401||r.status===403){updateFbStatus(true);showToast('✓ Firebase reachable!');}
+      else{updateFbStatus(false,'HTTP '+r.status);showToast('⚠ Error '+r.status);}
+    }).catch(()=>{updateFbStatus(false,'Cannot reach URL');showToast('⚠ Cannot reach Firebase');});
+}
+
+function updateFbStatus(connected,msg=''){
+  fbConnected=connected;
+  const el=document.getElementById('fbStatus');if(!el)return;
+  if(connected){
+    el.className='fb-status connected';
+    el.innerHTML='<span>●</span> Connected — every Save automatically pushes to ALL buyers in real-time';
+  } else {
+    el.className='fb-status disconnected';
+    el.innerHTML=`<span>●</span> ${msg||'Not connected — saves locally only'}`;
+  }
+  // Update the sync banner at top of Publish tab
+  const dot=document.getElementById('ssbDot');
+  const txt=document.getElementById('ssbText');
+  const btn=document.getElementById('ssb-btn');
+  if(dot){dot.className='ssb-dot'+(connected?' connected':'');}
+  if(txt){txt.textContent=connected
+    ?'🟢 Firebase connected — every Save instantly reaches ALL buyers everywhere'
+    :'⚠️ Not connected — buyers only see local changes. Connect Firebase to sync globally.';}
+}
+
+function shareViaWhatsApp(){
+  const url=window._shareUrl||generateShareURL();
+  if(!url){showToast('⚠ Generate link first');return;}
+  const msg=encodeURIComponent(`🛍 *${S.storeName||'Dodo Boutique'}* — Shop now!\n\n${url}\n\nBrowse our latest collection 👆`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+
+function listenForSellerUpdates(){
+  if(!fbDb)return;
+  fbDb.ref('storeConfig').on('value',snap=>{
+    const data=snap.val();if(!data)return;
+    const pin=S.pin,ctr=S.invoiceCounter;
+    S={...S,...data};S.pin=pin;S.invoiceCounter=ctr;
+    try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+    // Apply ALL buyer-facing changes immediately
+    applyAll();
+    if(document.getElementById('page-shop')&&document.getElementById('page-shop').classList.contains('active')){
+      renderShop();
+    }
+    showSyncBar('🟢 Store updated live by seller — showing latest!','live');
+  });
+}
+
+function buyerLoadFromFirebase(){
+  if(!S.fbDbUrl)return;
+  showSyncBar('🔄 Loading latest store...','syncing');
+  fetch(S.fbDbUrl+(S.fbDbUrl.endsWith('/')?'':'/')+'storeConfig.json')
+    .then(r=>r.ok?r.json():null)
+    .then(data=>{
+      if(!data||typeof data!=='object'){showSyncBar('💾 Using locally saved settings','live');return;}
+      const pin=S.pin,ctr=S.invoiceCounter;
+      S={...S,...data};S.pin=pin;S.invoiceCounter=ctr;
+      try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+      applyAll();
+      if(document.getElementById('page-shop')&&document.getElementById('page-shop').classList.contains('active')){
+        renderShop();
+      }
+      showSyncBar('✅ Showing latest seller updates','success');
+    }).catch(()=>{
+      showSyncBar('💾 Offline — showing cached store','live');
+    });
+}
+
+
+function generateAndShowShareLink(){
+  saveSettings();
+  const url=generateShareURL();if(!url){showToast('⚠ Could not generate link');return;}
+  const box=document.getElementById('shareLinkBox');const copyBtn=document.getElementById('copyLinkBtn');
+  if(box){box.textContent=url;box.style.display='block';}
+  if(copyBtn)copyBtn.style.display='inline-flex';
+  window._shareUrl=url;
+}
+
+function copyShareLink(){
+  const url=window._shareUrl||generateShareURL();if(!url)return;
+  navigator.clipboard.writeText(url).then(()=>showToast('✓ Link copied!')).catch(()=>showToast('Copy the link manually'));
+}
+
+let syncBarTimer=null;
+function showSyncBar(msg,type='syncing'){
+  const bar=document.getElementById('syncBar');if(!bar)return;
+  bar.innerHTML=`${type==='syncing'?'<span class="sync-dot"></span>':''}${msg}`;
+  bar.className='sync-bar '+type+' show';
+  clearTimeout(syncBarTimer);
+  if(type!=='syncing')syncBarTimer=setTimeout(()=>bar.classList.remove('show'),4000);
+}
+
 function saveSettings(){
-  // Branding
   S.storeName=(document.getElementById('s-storeName')||{}).value||S.storeName;
   S.heroLine1=(document.getElementById('s-heroLine1')||{}).value||S.heroLine1;
   S.heroLine2=(document.getElementById('s-heroLine2')||{}).value||S.heroLine2;
@@ -2241,7 +2782,6 @@ function saveSettings(){
   S.aboutTagline=(document.getElementById('s-aboutTagline')||{}).value||S.aboutTagline;
   S.footerTagline=(document.getElementById('s-footerTagline')||{}).value||S.footerTagline;
   S.copyright=(document.getElementById('s-copyright')||{}).value||S.copyright;
-  // Store
   S.address=(document.getElementById('s-address')||{}).value||S.address;
   S.phone=(document.getElementById('s-phone')||{}).value||S.phone;
   S.email=(document.getElementById('s-email')||{}).value||S.email;
@@ -2249,19 +2789,41 @@ function saveSettings(){
   S.freeDelivery=parseInt((document.getElementById('s-freeDelivery')||{}).value)||50000;
   S.deliveryFee=parseInt((document.getElementById('s-deliveryFee')||{}).value)||5000;
   const wc=document.getElementById('s-waConfirm');S.waConfirm=wc?wc.checked:true;
-  // Invoice
   S.invPrefix=(document.getElementById('s-invPrefix')||{}).value||'DODO';
   S.invTIN=(document.getElementById('s-invTIN')||{}).value||'';
   S.invNote=(document.getElementById('s-invNote')||{}).value||S.invNote;
   const ai=document.getElementById('s-autoInvoice');S.autoInvoice=ai?ai.checked:true;
-  // Payments
   BANKS.forEach(b=>{S.banks[b.id]=(document.getElementById('bank-'+b.id)||{}).value||'';});
   MOMOS.forEach(m=>{S.momos[m.id]=(document.getElementById('momo-'+m.id)||{}).value||'';});
   SOCIALS.forEach(s=>{S.socials[s.id]=(document.getElementById('soc-'+s.id)||{}).value||'';});
+  const fbu=document.getElementById('fb-dbUrl');if(fbu&&fbu.value)S.fbDbUrl=fbu.value.trim();
+  const fba=document.getElementById('fb-apiKey');if(fba&&fba.value)S.fbApiKey=fba.value.trim();
+
+  // Save locally
   try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
-  applySettings();applyBranding();
-  const msg=document.getElementById('savedMsg');if(msg){msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),3500);}
-  showToast('✓ All settings saved!');
+
+  // Apply all changes to buyer-facing UI immediately
+  applyAll();
+
+  // Auto-push to Firebase if connected — buyers see changes instantly
+  if(fbConnected && fbDb){
+    showSyncBar('📤 Saving & pushing to all buyers...','syncing');
+    setTimeout(()=>publishToFirebase(),200);
+  } else if(S.fbDbUrl){
+    // REST fallback — try to push even without realtime connection
+    showSyncBar('📤 Pushing to buyers...','syncing');
+    const payload=buildPublishPayload();
+    fetch(S.fbDbUrl+(S.fbDbUrl.endsWith('/')?'':'/')+`storeConfig.json`,{
+      method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
+    }).then(()=>{showSyncBar('✅ Changes pushed to all buyers!','success');})
+      .catch(()=>showSyncBar('💾 Saved locally — connect Firebase to sync to buyers','syncing'));
+  } else {
+    showSyncBar('💾 Saved locally — go to 🌐 Publish tab to share with buyers','syncing');
+  }
+
+  const msg=document.getElementById('savedMsg');
+  if(msg){msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),4000);}
+  showToast(fbConnected||S.fbDbUrl?'✅ Saved & pushed to all buyers!':'💾 Saved locally');
 }
 
 // ════════════════════════════════════════════════
@@ -2300,7 +2862,7 @@ function sendContact(){
 }
 
 // ════════════════════════════════════════════════
-//  SCROLL REVEAL ANIMATIONS
+//  SCROLL REVEAL
 // ════════════════════════════════════════════════
 function observeReveal(){
   const io=new IntersectionObserver((entries)=>{
@@ -2318,10 +2880,14 @@ function observeReveal(){
 window.addEventListener('load',()=>{
   renderFeatured();
   updateCartUI();
-  applySettings();
-  applyBranding();
-  renderSocials();
+  applyAll();
   observeReveal();
+  // Buyers: load latest from Firebase in background
+  buyerLoadFromFirebase();
+  // If Firebase was previously configured, init listener
+  if(S.fbDbUrl){
+    try{initFirebase();}catch(e){}
+  }
   setTimeout(()=>{
     document.getElementById('splash').classList.add('hide');
   },2200);
