@@ -615,11 +615,11 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
   <div class="ticker-inner" id="tickerInner">
     <span>✦ FREE DELIVERY IN KARIAKOO ON ORDERS ABOVE TZS 50,000</span>
     <span>✦ NEW ANKARA COLLECTION NOW IN STORE</span>
-    <span>✦ OPEN SUN–FRI 8AM–7PM | SUN 10AM–4PM</span>
+    <span>✦ OPEN MON–SAT 8AM–7PM | SUN 10AM–4PM</span>
     <span>✦ QUALITY AFRICAN FASHION AT HONEST PRICES</span>
     <span>✦ FREE DELIVERY IN KARIAKOO ON ORDERS ABOVE TZS 50,000</span>
     <span>✦ NEW ANKARA COLLECTION NOW IN STORE</span>
-    <span>✦ OPEN SUN–FRI 8AM–7PM | SUN 10AM–4PM</span>
+    <span>✦ OPEN MON–SAT 8AM–7PM | SUN 10AM–4PM</span>
     <span>✦ QUALITY AFRICAN FASHION AT HONEST PRICES</span>
   </div>
 </div>
@@ -663,7 +663,7 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
     <div class="hero-bg"></div><div class="hero-grid"></div>
     <div class="hero-content">
       <div class="hero-text">
-        <div class="hero-tag" id="heroTag">✦ New Collection 2026</div>
+        <div class="hero-tag" id="heroTag">✦ New Collection 2025</div>
         <h1 class="hero-title">Fashion That Tells<br><em>Your Story</em></h1>
         <p class="hero-desc">Discover curated fashion, accessories, and lifestyle pieces from the heart of Kariakoo, Dar es Salaam. Style that celebrates who you are.</p>
         <div class="hero-actions">
@@ -892,7 +892,7 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
         <div class="s-row"><div class="s-ico">✏️</div><div class="s-info"><div class="s-label">Hero Title Line 1</div><div class="s-desc">Big headline on homepage (first line)</div><input class="s-input" id="s-heroLine1" type="text" placeholder="Fashion That Tells"/></div></div>
         <div class="s-row"><div class="s-ico">✏️</div><div class="s-info"><div class="s-label">Hero Title Line 2 (italic gold)</div><div class="s-desc">Second line shown in italic gold</div><input class="s-input" id="s-heroLine2" type="text" placeholder="Your Story"/></div></div>
         <div class="s-row"><div class="s-ico">📝</div><div class="s-info"><div class="s-label">Hero Description</div><div class="s-desc">Subtitle paragraph below the headline</div><textarea class="s-input" id="s-heroDesc" rows="2" placeholder="Discover curated fashion from Kariakoo..."></textarea></div></div>
-        <div class="s-row"><div class="s-ico">🎯</div><div class="s-info"><div class="s-label">Hero Promo Tag</div><div class="s-desc">Small badge above the headline</div><input class="s-input" id="s-heroTag" type="text" placeholder="✦ New Collection 2026"/></div></div>
+        <div class="s-row"><div class="s-ico">🎯</div><div class="s-info"><div class="s-label">Hero Promo Tag</div><div class="s-desc">Small badge above the headline</div><input class="s-input" id="s-heroTag" type="text" placeholder="✦ New Collection 2025"/></div></div>
         <div class="s-row"><div class="s-ico">🎨</div><div class="s-info">
           <div class="s-label">Theme Accent Color</div>
           <div class="s-desc">Primary brand color used throughout the app (buttons, highlights, gold accents)</div>
@@ -932,9 +932,7 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
         <div class="s-section-hd">📖 About Page Content</div>
         <div class="s-row"><div class="s-ico">📝</div><div class="s-info"><div class="s-label">About Page Tagline</div><div class="s-desc">Subtitle shown below the About headline</div><input class="s-input" id="s-aboutTagline" type="text" placeholder="Born in the vibrant streets of Kariakoo..."/></div></div>
         <div class="s-row"><div class="s-ico">📋</div><div class="s-info"><div class="s-label">Footer Tagline</div><div class="s-desc">Short description shown in website footer</div><textarea class="s-input" id="s-footerTagline" rows="2" placeholder="Your go-to fashion destination in Kariakoo..."></textarea></div></div>
-        <div class="s-row"><div class="s-ico">©️</div><div class="s-info"><div class="s-label">Copyright Text</div><div class="s-desc">Shown at the very bottom of the page</div><input class="s-input" id="s-copyright" type="text" placeholder="© 2026
-                                                                                                                                                                                  
-                                                                                                                                                                                  Dodo Boutique Kariakoo"/></div></div>
+        <div class="s-row"><div class="s-ico">©️</div><div class="s-info"><div class="s-label">Copyright Text</div><div class="s-desc">Shown at the very bottom of the page</div><input class="s-input" id="s-copyright" type="text" placeholder="© 2025 Dodo Boutique Kariakoo"/></div></div>
       </div>
 
     </div>
@@ -1195,11 +1193,41 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
       <div class="form-grid">
         <div class="form-group">
           <label class="form-label">Category *</label>
-          <select class="form-select" id="pm-cat">
+          <select class="form-select" id="pm-cat" onchange="toggleCustomCat(this.value)">
             <option value="">Select category</option>
-            <option>Women</option><option>Men</option><option>Accessories</option>
-            <option>Footwear</option><option>Kids</option><option>Other</option>
+            <optgroup label="Clothing">
+              <option>Women</option>
+              <option>Men</option>
+              <option>Kids</option>
+              <option>Unisex</option>
+              <option>Traditional Wear</option>
+              <option>Casual Wear</option>
+              <option>Formal Wear</option>
+              <option>Sportswear</option>
+              <option>Swimwear</option>
+              <option>Sleepwear</option>
+              <option>Maternity</option>
+              <option>Plus Size</option>
+            </optgroup>
+            <optgroup label="Style">
+              <option>Ankara / Kitenge</option>
+              <option>Dashiki</option>
+              <option>Batik</option>
+              <option>Linen</option>
+              <option>Denim</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option>Accessories</option>
+              <option>Footwear</option>
+              <option>Bags & Handbags</option>
+              <option>Jewellery</option>
+              <option>Headwear</option>
+              <option>Belts & Scarves</option>
+              <option>Other</option>
+              <option value="__custom__">＋ Add custom category...</option>
+            </optgroup>
           </select>
+          <input class="form-input" id="pm-cat-custom" type="text" placeholder="Type custom category name" style="display:none;margin-top:8px" oninput="syncCustomCat(this.value)"/>
         </div>
         <div class="form-group">
           <label class="form-label">Badge</label>
@@ -1321,7 +1349,7 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
       <div class="footer-col"><h4>Follow Us</h4><div id="footerFollowUs" style="display:flex;flex-direction:column;gap:8px;margin-top:2px"></div></div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Dodo Boutique Kariakoo. All rights reserved.</p>
+      <p>© 2025 Dodo Boutique Kariakoo. All rights reserved.</p>
       <p style="font-size:11px;color:rgba(240,232,208,.3)">📍 Kariakoo Market, Dar es Salaam, Tanzania</p>
     </div>
   </div>
@@ -1397,12 +1425,12 @@ const CATS = ['All','Women','Men','Accessories','Footwear','Kids'];
 let S = {
   storeName:'Dodo Boutique', address:'Kariakoo Market, Dar es Salaam, Tanzania',
   phone:'255712345678', email:'hello@dodoboutique.co.tz',
-  heroTag:'✦ New Collection 2026',
+  heroTag:'✦ New Collection 2025',
   heroLine1:'Fashion That Tells', heroLine2:'Your Story',
   heroDesc:'Discover curated fashion, accessories, and lifestyle pieces from the heart of Kariakoo, Dar es Salaam. Style that celebrates who you are.',
   aboutTagline:'Born in the vibrant streets of Kariakoo, Dodo Boutique is more than a store — it\'s a celebration of African style, culture, and identity.',
   footerTagline:'Your go-to fashion destination in Kariakoo, Dar es Salaam. Quality styles, honest prices, delivered with love.',
-  copyright:'© 2026 Dodo Boutique Kariakoo. All rights reserved.',
+  copyright:'© 2025 Dodo Boutique Kariakoo. All rights reserved.',
   hours:'Mon–Sat 8am–7pm | Sun 10am–4pm',
   accentColor:'#C9A84C', darkColor:'#1a1208',
   appIcon:'', heroBanner:'',
@@ -1622,7 +1650,22 @@ function renderShop(){
   document.getElementById('shopGrid').innerHTML=list.map((p,i)=>productCard(p,i*55)).join('');
   document.getElementById('noResults').style.display=list.length?'none':'block';
 }
-function renderCats(){document.getElementById('catPills').innerHTML=CATS.map(c=>`<button class="cat${c===activeCat?' active':''}" onclick="setCat('${c}')">${c}</button>`).join('');}
+function toggleWishlist(){
+  document.getElementById('wishlistOverlay').classList.toggle('open');
+  document.getElementById('wishlistDrawer').classList.toggle('open');
+  renderWishlistDrawer();
+}
+
+function getAllCats(){
+  // Get all unique categories from all products (defaults + custom)
+  const cats=new Set(['All','Women','Men','Accessories','Footwear','Kids']);
+  getProducts().forEach(p=>{if(p.cat)cats.add(p.cat);});
+  return [...cats];
+}
+function renderCats(){
+  const cats=getAllCats();
+  document.getElementById('catPills').innerHTML=cats.map(c=>`<button class="cat${c===activeCat?' active':''}" onclick="setCat('${c}')">${c}</button>`).join('');
+}
 function setCat(c){activeCat=c;renderCats();renderShop();if(!document.getElementById('page-shop').classList.contains('active'))showPage('shop');}
 
 // ════════════════════════════════════════════════
@@ -1636,25 +1679,142 @@ function toggleWish(id){
 }
 function renderWishlistDrawer(){
   const el=document.getElementById('wishlistItems');
-  const items=PRODUCTS.filter(p=>wishlist.includes(p.id));
+  const items=getProducts().filter(p=>wishlist.includes(p.id));
   el.innerHTML=!items.length
     ?`<div class="cart-empty"><div class="cart-empty-icon">♡</div><div>No saved items yet</div></div>`
-    :items.map(i=>`<div class="cart-item"><div class="cart-item-img">${i.emoji}</div><div class="cart-item-info"><div class="cart-item-name">${esc(i.name)}</div><div class="cart-item-price">${fmt(i.price)}</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><button class="add-btn" onclick="addToCart(${i.id})" style="font-size:11px"><span>+ Cart</span></button><button class="cart-remove" onclick="toggleWish(${i.id})">✕</button></div></div>`).join('');
+    :items.map(i=>`<div class="cart-item">
+        <div class="cart-item-img" style="overflow:hidden">${i.img?`<img src="${i.img}" style="width:100%;height:100%;object-fit:cover"/>`:`<span style="font-size:28px">${i.emoji||'📦'}</span>`}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${esc(i.name)}</div>
+          <div class="cart-item-price">${fmt(i.price)}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+          <button class="add-btn" onclick="addToCart(${i.id})" style="font-size:11px"><span>+ Cart</span></button>
+          <button class="cart-remove" onclick="toggleWish(${i.id})">✕</button>
+        </div>
+      </div>`).join('');
 }
-function toggleWishlist(){
-  document.getElementById('wishlistOverlay').classList.toggle('open');
-  document.getElementById('wishlistDrawer').classList.toggle('open');
-  renderWishlistDrawer();
+
+// Open product detail view — buyer sees full info before adding to cart
+function openProduct(id){
+  const p=getProducts().find(x=>x.id===id);
+  if(!p)return;
+  const c=document.getElementById('invoiceContainer');
+  c.innerHTML=`
+  <div class="invoice-overlay" onclick="if(event.target===this)closeProdDetail()" style="align-items:flex-end;padding:0">
+    <div style="background:var(--white);border-radius:20px 20px 0 0;width:100%;max-width:540px;margin:0 auto;max-height:92svh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.34,1.56,.64,1)">
+      <!-- Image -->
+      <div style="width:100%;height:240px;background:var(--cream2);display:flex;align-items:center;justify-content:center;border-radius:20px 20px 0 0;overflow:hidden;position:relative">
+        ${p.img?`<img src="${p.img}" style="width:100%;height:100%;object-fit:cover"/>`:`<span style="font-size:80px">${p.emoji||'📦'}</span>`}
+        ${p.badge?`<div style="position:absolute;top:14px;left:14px;background:${p.badge==='Sale'?'#C0392B':'var(--dark)'};color:${p.badge==='Sale'?'#fff':'var(--gold)'};font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;letter-spacing:2px;text-transform:uppercase">${p.badge}</div>`:''}
+        <button onclick="closeProdDetail()" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.4);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">✕</button>
+      </div>
+      <!-- Info -->
+      <div style="padding:24px 24px 32px">
+        <div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px">${esc(p.cat)}</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--dark);margin-bottom:10px">${esc(p.name)}</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--dark)">${fmt(p.price)}</div>
+          ${p.oldPrice?`<div style="font-size:15px;color:var(--muted);text-decoration:line-through">${fmt(p.oldPrice)}</div><div style="background:#C0392B;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px">SAVE ${Math.round((1-p.price/p.oldPrice)*100)}%</div>`:''}
+        </div>
+        ${p.desc?`<div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px;padding:14px;background:var(--cream);border-radius:10px">${esc(p.desc)}</div>`:''}
+        <!-- Size selector if Women/Men/Kids -->
+        ${['Women','Men','Kids'].includes(p.cat)?`
+        <div style="margin-bottom:20px">
+          <div style="font-size:12px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;font-weight:500">Select Size</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap" id="sizeSelector">
+            ${(p.cat==='Kids'?['2-3Y','4-5Y','6-7Y','8-9Y','10-11Y']:['XS','S','M','L','XL','XXL']).map(s=>`<button onclick="selectSize(this,'${s}')" style="padding:8px 16px;border-radius:8px;border:1.5px solid var(--cream3);background:var(--white);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="if(!this.classList.contains('sz-active'))this.style.borderColor='var(--cream3)'">${s}</button>`).join('')}
+          </div>
+          <div id="sizeWarning" style="display:none;color:var(--red);font-size:12px;margin-top:6px">⚠ Please select a size</div>
+        </div>`:''}
+        <!-- Color/variant if Accessories/Footwear -->
+        ${['Accessories','Footwear'].includes(p.cat)?`
+        <div style="margin-bottom:20px">
+          <div style="font-size:12px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;font-weight:500">${p.cat==='Footwear'?'Select Size':'Color / Variant'}</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap" id="sizeSelector">
+            ${(p.cat==='Footwear'?['36','37','38','39','40','41','42','43','44']:['Black','Brown','Gold','Silver','Multicolor','Natural']).map(s=>`<button onclick="selectSize(this,'${s}')" style="padding:8px 14px;border-radius:8px;border:1.5px solid var(--cream3);background:var(--white);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s">${s}</button>`).join('')}
+          </div>
+        </div>`:''}
+        <!-- Quantity -->
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+          <div style="font-size:12px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;font-weight:500">Quantity</div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--cream);border-radius:10px;padding:6px 12px">
+            <button onclick="pdQty(-1)" style="width:28px;height:28px;border-radius:6px;border:1px solid var(--cream3);background:var(--white);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center">−</button>
+            <span id="pdQtyNum" style="font-size:15px;font-weight:600;min-width:24px;text-align:center">1</span>
+            <button onclick="pdQty(1)" style="width:28px;height:28px;border-radius:6px;border:1px solid var(--cream3);background:var(--white);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center">+</button>
+          </div>
+          <div style="font-size:13px;color:var(--muted)">Total: <strong id="pdTotal" style="color:var(--dark)">${fmt(p.price)}</strong></div>
+        </div>
+        <!-- Actions -->
+        <div style="display:flex;gap:10px">
+          <button onclick="pdAddToCart(${p.id})" style="flex:1;background:var(--dark);color:var(--gold);border:none;border-radius:12px;padding:16px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:.25s;letter-spacing:1px" onmouseover="this.style.background='var(--gold)';this.style.color='var(--dark)'" onmouseout="this.style.background='var(--dark)';this.style.color='var(--gold)'">
+            🛍 Add to Cart
+          </button>
+          <button onclick="toggleWish(${p.id});updateWishBtn(${p.id})" id="wishBtnPD" style="width:52px;height:52px;border-radius:12px;border:1.5px solid var(--cream3);background:var(--white);font-size:22px;cursor:pointer;transition:.25s;flex-shrink:0" title="${wishlist.includes(p.id)?'Remove from saved':'Save to wishlist'}">${wishlist.includes(p.id)?'♥':'♡'}</button>
+        </div>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:12px">Free delivery on orders above ${fmt(S.freeDelivery||50000)}</p>
+      </div>
+    </div>
+  </div>`;
+  // Init quantity tracker
+  window._pdQty=1;
+  window._pdPrice=p.price;
+}
+
+let _pdSelectedSize='';
+function selectSize(btn,size){
+  document.querySelectorAll('#sizeSelector button').forEach(b=>{
+    b.style.borderColor='var(--cream3)';b.style.background='var(--white)';b.style.color='var(--dark)';
+    b.classList.remove('sz-active');
+  });
+  btn.style.borderColor='var(--gold)';btn.style.background='var(--dark)';btn.style.color='var(--gold)';
+  btn.classList.add('sz-active');
+  _pdSelectedSize=size;
+  const w=document.getElementById('sizeWarning');if(w)w.style.display='none';
+}
+function pdQty(delta){
+  window._pdQty=Math.max(1,Math.min(99,(window._pdQty||1)+delta));
+  const n=document.getElementById('pdQtyNum');if(n)n.textContent=window._pdQty;
+  const t=document.getElementById('pdTotal');if(t)t.textContent=fmt((window._pdPrice||0)*window._pdQty);
+}
+function pdAddToCart(id){
+  // Check if size required
+  const sel=document.getElementById('sizeSelector');
+  if(sel){
+    const active=sel.querySelector('.sz-active');
+    if(!active){const w=document.getElementById('sizeWarning');if(w)w.style.display='block';return;}
+  }
+  const p=getProducts().find(x=>x.id===id);if(!p)return;
+  const qty=window._pdQty||1;
+  const ex=cart.find(x=>x.id===id);
+  if(ex)ex.qty+=qty;
+  else cart.push({id:p.id,name:p.name+(_pdSelectedSize?' ('+_pdSelectedSize+')':''),price:p.price,emoji:p.emoji||'📦',img:p.img||'',cat:p.cat,qty});
+  _pdSelectedSize='';
+  updateCartUI();
+  showToast('✓ '+p.name+(qty>1?' ×'+qty:'')+' added!');
+  const cc=document.getElementById('cartCount');cc.classList.remove('bump');void cc.offsetWidth;cc.classList.add('bump');
+  closeProdDetail();
+}
+function updateWishBtn(id){
+  const btn=document.getElementById('wishBtnPD');
+  if(btn)btn.textContent=wishlist.includes(id)?'♥':'♡';
+}
+function closeProdDetail(){
+  const c=document.getElementById('invoiceContainer');
+  const o=c.querySelector('.invoice-overlay');
+  if(o){o.style.opacity='0';o.style.transition='.25s';}
+  setTimeout(()=>{if(c)c.innerHTML='';},250);
 }
 
 // ════════════════════════════════════════════════
 //  CART
 // ════════════════════════════════════════════════
 function addToCart(id){
-  const p=PRODUCTS.find(x=>x.id===id);
+  const p=getProducts().find(x=>x.id===id);
+  if(!p){showToast('⚠ Product not found');return;}
   const ex=cart.find(x=>x.id===id);
-  if(ex)ex.qty++;else cart.push({...p,qty:1});
-  updateCartUI();showToast('✓ '+p.name+' added');
+  if(ex)ex.qty++;else cart.push({id:p.id,name:p.name,price:p.price,emoji:p.emoji||'📦',img:p.img||'',cat:p.cat,qty:1});
+  updateCartUI();showToast('✓ '+p.name+' added to cart');
   const cc=document.getElementById('cartCount');
   cc.classList.remove('bump');void cc.offsetWidth;cc.classList.add('bump');
 }
@@ -2015,33 +2175,41 @@ function renderSocials(){
 //  PUBLISH — generate shareable URL with all settings
 // ════════════════════════════════════════════════
 function generateShareURL(){
-  // Strip PIN from shared data — customers must not see it
+  // Strip PIN and large base64 images — keeps URL small
   const shareData={...S};
   delete shareData.pin;
+  // Remove base64 images (they make URLs massive — use Firebase instead)
+  if(shareData.appIcon&&shareData.appIcon.startsWith('data:'))delete shareData.appIcon;
+  if(shareData.heroBanner&&shareData.heroBanner.startsWith('data:'))delete shareData.heroBanner;
+  // Remove images from custom products
+  if(shareData.customProducts){
+    shareData.customProducts=shareData.customProducts.map(p=>{
+      const c={...p};
+      if(c.img&&c.img.startsWith('data:'))delete c.img;
+      return c;
+    });
+  }
+  shareData.publishedAt=new Date().toISOString();
   try{
     const json=JSON.stringify(shareData);
     const encoded=btoa(encodeURIComponent(json));
     const base=window.location.href.split('#')[0];
-    return `${base}#s=${encoded}`;
+    const url=`${base}#s=${encoded}`;
+    // Warn if still large
+    if(url.length>8000)showToast('⚠ Link is large — use Firebase for best results');
+    return url;
   }catch(e){
-    showToast('⚠ Settings too large to encode in URL. Try removing large images.');
-    return null;
+    showToast('⚠ Could not generate link');return null;
   }
 }
 
-function publishStore(){
-  const url=generateShareURL();
-  if(!url)return;
-  // Copy to clipboard
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(url).then(()=>{
-      showToast('✓ Share link copied to clipboard!');
-    }).catch(()=>fallbackCopy(url));
-  } else {
-    fallbackCopy(url);
-  }
-  // Show the publish modal
-  showPublishModal(url);
+function shareViaWhatsApp(){
+  const url=window._shareUrl||generateShareURL();
+  if(!url){showToast('⚠ Generate link first');return;}
+  // Ultra-compact WhatsApp message — just store name + link
+  const name=S.storeName||'Dodo Boutique';
+  const msg=encodeURIComponent(`🛍 *${name}*\n${url}`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
 }
 
 function fallbackCopy(text){
@@ -2065,7 +2233,7 @@ function showPublishModal(url){
       <div style="background:var(--cream);border:1px solid var(--cream3);border-radius:10px;padding:12px 14px;margin-bottom:16px;word-break:break-all;font-size:11px;color:var(--dark);font-family:monospace;line-height:1.5;max-height:80px;overflow-y:auto">${esc(url)}</div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <button class="pay-now-btn" onclick="fallbackCopy('${esc(url.replace(/'/g,"\\'"))}');showToast('✓ Copied!')" style="background:var(--dark);color:var(--gold)">📋 Copy Link</button>
-        <button class="pay-now-btn" onclick="window.open('https://wa.me/?text='+encodeURIComponent('Check out my store: ${esc(url.replace(/'/g,"\\'"))}'),'_blank')" style="background:#25D366;color:#fff">💬 Share via WhatsApp</button>
+        <button class="pay-now-btn" onclick="shareViaWhatsApp()" style="background:#25D366;color:#fff">💬 Share via WhatsApp</button>
         <button class="pay-now-btn" onclick="window.open('${esc(url.replace(/'/g,"\\'"))}','_blank')" style="background:var(--gold);color:var(--dark)">👁 Preview as Customer</button>
         <button class="change-pin-btn" onclick="document.getElementById('publishOverlay').remove()" style="width:100%;text-align:center;padding:10px">✕ Close</button>
       </div>
@@ -2136,7 +2304,7 @@ function applyAll(){
     }
   }
   const heroTag=document.getElementById('heroTag');
-  if(heroTag)heroTag.textContent=S.heroTag||'✦ New Collection 2026';
+  if(heroTag)heroTag.textContent=S.heroTag||'✦ New Collection 2025';
   const heroTitle=document.querySelector('.hero-title');
   if(heroTitle)heroTitle.innerHTML=`${S.heroLine1||'Fashion That Tells'}<br><em>${S.heroLine2||'Your Story'}</em>`;
   const heroDesc=document.querySelector('.hero-desc');
@@ -2253,11 +2421,16 @@ function switchTab(name){
   const panel=document.getElementById('tab-'+name);if(panel)panel.classList.add('active');
   if(name==='products')renderProductManager();
   if(name==='sync'){
-    // Populate Firebase inputs from saved config
     const fbu=document.getElementById('fb-dbUrl');if(fbu&&S.fbDbUrl)fbu.value=S.fbDbUrl;
     const fba=document.getElementById('fb-apiKey');if(fba&&S.fbApiKey)fba.value=S.fbApiKey;
     const lp=document.getElementById('lastPublished');if(lp&&S.lastPublished)lp.textContent='Last published: '+S.lastPublished;
     updateFbStatus(fbConnected);
+    // If URL saved but not yet connected, try auto-connect
+    if(S.fbDbUrl && !fbConnected){
+      setTimeout(()=>{
+        try{initFirebase();}catch(e){}
+      },500);
+    }
   }
 }
 
@@ -2418,7 +2591,14 @@ function editProduct(id){
   document.getElementById('productModalTitle').textContent='Edit Product';
   document.getElementById('saveProductBtnTxt').textContent='Save Changes';
   document.getElementById('pm-name').value=p.name||'';
-  document.getElementById('pm-cat').value=p.cat||'';
+  // Set category — handle custom categories not in the select options
+  const catSel=document.getElementById('pm-cat');
+  const catCustom=document.getElementById('pm-cat-custom');
+  if(catSel){
+    const opts=[...catSel.options].map(o=>o.value);
+    if(opts.includes(p.cat)){catSel.value=p.cat;if(catCustom)catCustom.style.display='none';}
+    else{catSel.value='__custom__';if(catCustom){catCustom.style.display='block';catCustom.value=p.cat||'';}}
+  }
   document.getElementById('pm-badge').value=p.badge||'';
   document.getElementById('pm-price').value=p.price||'';
   document.getElementById('pm-oldPrice').value=p.oldPrice||'';
@@ -2434,38 +2614,60 @@ function editProduct(id){
 
 function saveProduct(){
   const name=document.getElementById('pm-name').value.trim();
-  const cat=document.getElementById('pm-cat').value;
+  const cat=getSelectedCat();
   const price=parseInt(document.getElementById('pm-price').value);
   if(!name||!cat||!price){showToast('⚠ Name, category and price are required');return;}
   const badge=document.getElementById('pm-badge').value;
   const oldPrice=parseInt(document.getElementById('pm-oldPrice').value)||0;
   const desc=document.getElementById('pm-desc').value.trim();
   const featured=document.getElementById('pm-featured').checked;
-  const emojiMap={'Women':'👗','Men':'👔','Accessories':'💛','Footwear':'👟','Kids':'👚','Other':'📦'};
+  const emojiMap={
+    'Women':'👗','Men':'👔','Kids':'👚','Unisex':'👕',
+    'Traditional Wear':'🪭','Casual Wear':'👕','Formal Wear':'🤵',
+    'Sportswear':'🏃','Swimwear':'🩱','Sleepwear':'🌙',
+    'Maternity':'🤰','Plus Size':'👗',
+    'Ankara / Kitenge':'🌺','Dashiki':'🟠','Batik':'🌊','Linen':'🌿','Denim':'👖',
+    'Accessories':'💛','Footwear':'👟','Bags & Handbags':'👜',
+    'Jewellery':'💍','Headwear':'👒','Belts & Scarves':'🧣','Other':'📦'
+  };
 
   if(editingProductId!==null){
-    // Check if default product
     const isDefault=PRODUCTS.find(p=>p.id===editingProductId);
     if(isDefault){
       if(!S.productEdits)S.productEdits={};
       S.productEdits[editingProductId]={name,cat,badge,price,oldPrice:oldPrice||undefined,desc,featured,img:prodImgData,emoji:emojiMap[cat]||'📦'};
     } else {
-      // Custom product
       const idx=(S.customProducts||[]).findIndex(p=>p.id===editingProductId);
       if(idx>=0) S.customProducts[idx]={...S.customProducts[idx],name,cat,badge,price,oldPrice:oldPrice||undefined,desc,featured,img:prodImgData,emoji:emojiMap[cat]||'📦'};
     }
-    showToast('✓ Product updated');
+    showToast('✓ Product updated — buyers see it now');
   } else {
     if(!S.customProducts)S.customProducts=[];
     const newId=Date.now();
     S.customProducts.push({id:newId,name,cat,badge,price,oldPrice:oldPrice||undefined,desc,featured,img:prodImgData,emoji:emojiMap[cat]||'📦'});
-    showToast('✓ Product added');
+    showToast('✓ Product added — buyers see it now');
   }
+
+  // Save locally
   try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+
+  // Refresh all buyer-facing product displays immediately
   closeProductModal();
   renderProductManager();
   renderFeatured();
+  renderCats();   // picks up any new custom category
   renderShop();
+
+  // Push to Firebase if connected so ALL buyers see the new product instantly
+  if(fbConnected&&fbDb){
+    showSyncBar('📤 Pushing new product to all buyers...','syncing');
+    setTimeout(()=>publishToFirebase(),200);
+  } else if(S.fbDbUrl){
+    const payload=buildPublishPayload();
+    fetch(S.fbDbUrl+(S.fbDbUrl.endsWith('/')?'':'/')+`storeConfig.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(()=>showSyncBar('✅ Product pushed to all buyers!','success'))
+      .catch(()=>showSyncBar('💾 Saved locally — connect Firebase to sync','syncing'));
+  }
 }
 
 function deleteProduct(id){
@@ -2497,6 +2699,25 @@ function toggleFeatured(id){
   try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
   renderProductManager();renderFeatured();
   showToast(newFeatured?'⭐ Added to featured':'Removed from featured');
+}
+
+function toggleCustomCat(val){
+  const inp=document.getElementById('pm-cat-custom');
+  if(!inp)return;
+  inp.style.display=val==='__custom__'?'block':'none';
+  if(val!=='__custom__')inp.value='';
+}
+function syncCustomCat(val){
+  // Custom cat field syncs its value back so saveProduct reads it
+  window._customCatValue=val;
+}
+function getSelectedCat(){
+  const sel=document.getElementById('pm-cat');
+  if(!sel)return '';
+  if(sel.value==='__custom__'){
+    return (document.getElementById('pm-cat-custom')||{}).value||window._customCatValue||'';
+  }
+  return sel.value;
 }
 
 function closeProductModal(){document.getElementById('productModal').classList.remove('open');}
@@ -2649,59 +2870,103 @@ function publishToFirebase(){
 let fbApp=null,fbDb=null,fbConnected=false;
 
 function connectFirebase(){
-  const dbUrl=(document.getElementById('fb-dbUrl')||{}).value||S.fbDbUrl||'';
-  const apiKey=(document.getElementById('fb-apiKey')||{}).value||S.fbApiKey||'';
-  if(!dbUrl){showToast('⚠ Enter your Firebase Database URL');return;}
-  S.fbDbUrl=dbUrl.trim();S.fbApiKey=apiKey.trim();
+  const dbUrl=((document.getElementById('fb-dbUrl')||{}).value||'').trim();
+  const apiKey=((document.getElementById('fb-apiKey')||{}).value||'').trim();
+  if(!dbUrl){showToast('⚠ Paste your Firebase Database URL first');return;}
+  if(!dbUrl.includes('firebaseio.com')){showToast('⚠ URL must end in .firebaseio.com');return;}
+
+  const btn=document.querySelector('.fb-connect-btn');
+  if(btn){btn.textContent='🔄 Connecting...';btn.disabled=true;}
+
+  S.fbDbUrl=dbUrl;if(apiKey)S.fbApiKey=apiKey;
   try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
-  initFirebase();
+
+  // Test the URL first with a quick fetch before initialising SDK
+  fetch(dbUrl+'/.json?shallow=true',{signal:AbortSignal.timeout?AbortSignal.timeout(6000):undefined})
+    .then(r=>{
+      if(btn){btn.textContent='🔌 Connect Firebase';btn.disabled=false;}
+      if(r.ok||r.status===401||r.status===403){
+        // URL is reachable — initialise
+        initFirebase();
+        showToast('✅ Firebase connected!');
+      } else {
+        updateFbStatus(false,'Error '+r.status+' — check your URL and database rules');
+        showToast('⚠ Check your Firebase URL and rules');
+      }
+    })
+    .catch(()=>{
+      if(btn){btn.textContent='🔌 Connect Firebase';btn.disabled=false;}
+      updateFbStatus(false,'Cannot reach URL — check internet or URL');
+      showToast('⚠ Cannot reach Firebase — check URL');
+    });
 }
 
 function initFirebase(){
   if(!S.fbDbUrl)return;
   try{
-    if(!fbApp){
-      const cfg={apiKey:S.fbApiKey||'AIzaSyPlaceholder',databaseURL:S.fbDbUrl,projectId:S.fbDbUrl.replace('https://','').split('.')[0]};
-      try{fbApp=firebase.initializeApp(cfg,'dodo');}catch(e){fbApp=firebase.app('dodo');}
-    }
+    const cfg={
+      apiKey:S.fbApiKey||'placeholder-key',
+      databaseURL:S.fbDbUrl.endsWith('/')?S.fbDbUrl.slice(0,-1):S.fbDbUrl,
+      projectId:S.fbDbUrl.replace('https://','').split('.')[0]
+    };
+    try{fbApp=firebase.initializeApp(cfg,'dodo');}
+    catch(e){fbApp=firebase.app('dodo');}  // already initialised
     fbDb=firebase.database(fbApp);
     fbDb.ref('.info/connected').on('value',snap=>{
-      fbConnected=!!snap.val();
-      updateFbStatus(fbConnected);
-      if(fbConnected)listenForSellerUpdates();
+      const connected=!!snap.val();
+      fbConnected=connected;
+      updateFbStatus(connected);
+      if(connected){
+        showSyncBar('🟢 Firebase connected — all saves push to buyers instantly','success');
+        listenForSellerUpdates();
+      }
     });
-  }catch(e){updateFbStatus(false,'Error: '+e.message);}
+  }catch(e){
+    updateFbStatus(false,'Init error: '+e.message);
+    showToast('❌ Firebase error: '+e.message);
+  }
 }
 
 function testFirebaseConnection(){
+  const urlInput=document.getElementById('fb-dbUrl');
+  const url=(urlInput?urlInput.value:S.fbDbUrl||'').trim();
+  if(!url){showToast('⚠ Enter Firebase URL first');return;}
   const status=document.getElementById('fbStatus');
-  if(status){status.className='fb-status testing';status.innerHTML='<span>●</span> Testing...';}
-  if(!S.fbDbUrl){showToast('⚠ Enter Firebase URL first');return;}
-  fetch(S.fbDbUrl+'/.json?timeout=5s')
+  if(status){status.className='fb-status testing';status.innerHTML='<span>●</span> Testing connection...';}
+  fetch(url+'/.json?shallow=true&timeout=5s')
     .then(r=>{
-      if(r.ok||r.status===401||r.status===403){updateFbStatus(true);showToast('✓ Firebase reachable!');}
-      else{updateFbStatus(false,'HTTP '+r.status);showToast('⚠ Error '+r.status);}
-    }).catch(()=>{updateFbStatus(false,'Cannot reach URL');showToast('⚠ Cannot reach Firebase');});
+      if(r.ok||r.status===401||r.status===403){
+        if(status){status.className='fb-status connected';status.innerHTML='<span>●</span> ✅ Reachable! Click Connect to activate real-time sync.';}
+        showToast('✅ Firebase URL is valid and reachable!');
+      } else {
+        if(status){status.className='fb-status disconnected';status.innerHTML=`<span>●</span> ❌ Got HTTP ${r.status} — check URL`;}
+        showToast('⚠ Got HTTP '+r.status);
+      }
+    }).catch(()=>{
+      if(status){status.className='fb-status disconnected';status.innerHTML='<span>●</span> ❌ Cannot reach — check internet or URL';}
+      showToast('⚠ Cannot reach this URL');
+    });
 }
 
 function updateFbStatus(connected,msg=''){
   fbConnected=connected;
-  const el=document.getElementById('fbStatus');if(!el)return;
-  if(connected){
-    el.className='fb-status connected';
-    el.innerHTML='<span>●</span> Connected — every Save automatically pushes to ALL buyers in real-time';
-  } else {
-    el.className='fb-status disconnected';
-    el.innerHTML=`<span>●</span> ${msg||'Not connected — saves locally only'}`;
+  const el=document.getElementById('fbStatus');
+  if(el){
+    if(connected){
+      el.className='fb-status connected';
+      el.innerHTML='<span>●</span> ✅ Connected — every Save instantly pushes to ALL buyers in real-time';
+    } else {
+      el.className='fb-status disconnected';
+      el.innerHTML=`<span>●</span> ${msg||'Not connected — saves locally only'}`;
+    }
   }
-  // Update the sync banner at top of Publish tab
+  // Sync banner
   const dot=document.getElementById('ssbDot');
   const txt=document.getElementById('ssbText');
-  const btn=document.getElementById('ssb-btn');
-  if(dot){dot.className='ssb-dot'+(connected?' connected':'');}
-  if(txt){txt.textContent=connected
+  if(dot)dot.className='ssb-dot'+(connected?' connected':'');
+  if(txt)txt.textContent=connected
     ?'🟢 Firebase connected — every Save instantly reaches ALL buyers everywhere'
-    :'⚠️ Not connected — buyers only see local changes. Connect Firebase to sync globally.';}
+    :'⚠️ Not connected — buyers only see local changes. Connect Firebase to sync globally.';
 }
 
 function shareViaWhatsApp(){
@@ -2751,8 +3016,13 @@ function buyerLoadFromFirebase(){
 function generateAndShowShareLink(){
   saveSettings();
   const url=generateShareURL();if(!url){showToast('⚠ Could not generate link');return;}
-  const box=document.getElementById('shareLinkBox');const copyBtn=document.getElementById('copyLinkBtn');
-  if(box){box.textContent=url;box.style.display='block';}
+  const box=document.getElementById('shareLinkBox');
+  const copyBtn=document.getElementById('copyLinkBtn');
+  const kb=Math.round(url.length/1024*10)/10;
+  if(box){
+    box.innerHTML=`<div style="word-break:break-all;font-size:11px;font-family:monospace">${esc(url)}</div><div style="margin-top:6px;font-size:11px;color:var(--muted)">Size: ~${kb}KB${kb>5?' · ⚠ Large — use Firebase for better results':'  · ✓ Good size'}</div>`;
+    box.style.display='block';
+  }
   if(copyBtn)copyBtn.style.display='inline-flex';
   window._shareUrl=url;
 }
