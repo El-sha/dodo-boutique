@@ -9,9 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<!-- Sync: pure REST, no SDK needed -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -615,11 +613,11 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
   <div class="ticker-inner" id="tickerInner">
     <span>✦ FREE DELIVERY IN KARIAKOO ON ORDERS ABOVE TZS 50,000</span>
     <span>✦ NEW ANKARA COLLECTION NOW IN STORE</span>
-    <span>✦ OPEN SUN–FRI 8AM–7PM | SUN 08AM–4PM</span>
+    <span>✦ OPEN MON–SAT 8AM–7PM | SUN 10AM–4PM</span>
     <span>✦ QUALITY AFRICAN FASHION AT HONEST PRICES</span>
     <span>✦ FREE DELIVERY IN KARIAKOO ON ORDERS ABOVE TZS 50,000</span>
     <span>✦ NEW ANKARA COLLECTION NOW IN STORE</span>
-    <span>✦ OPEN SUN–FRI 8AM–7PM | SUN 08AM–4PM</span>
+    <span>✦ OPEN MON–SAT 8AM–7PM | SUN 10AM–4PM</span>
     <span>✦ QUALITY AFRICAN FASHION AT HONEST PRICES</span>
   </div>
 </div>
@@ -773,7 +771,7 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
         <div class="map-overlay-card"><h4>🦤 Dodo Boutique</h4><p>Kariakoo Market<br>Dar es Salaam, Tanzania</p><a class="map-dir-btn" href="https://maps.google.com/?q=Kariakoo+Market+Dar+es+Salaam" target="_blank">📍 Get Directions</a></div>
       </div>
       <div class="map-info-row">
-        <div class="map-info-item"><div class="map-info-icon">🕐</div><div><h4>Opening Hours</h4><p>SUN–FRI: 8:00 AM – 7:00 PM<br>Sunday: 10:00 AM – 4:00 PM</p></div></div>
+        <div class="map-info-item"><div class="map-info-icon">🕐</div><div><h4>Opening Hours</h4><p>Mon–Sat: 8:00 AM – 7:00 PM<br>Sunday: 10:00 AM – 4:00 PM</p></div></div>
         <div class="map-info-item"><div class="map-info-icon">📞</div><div><h4>Call / WhatsApp</h4><p id="aboutPhone"><a href="#" style="color:var(--dark)">+255 712 345 678</a></p></div></div>
         <div class="map-info-item"><div class="map-info-icon">🚖</div><div><h4>Getting Here</h4><p>Accessible by daladala, tuk-tuk, or boda boda from Posta/Mnazi Mmoja</p></div></div>
       </div>
@@ -792,7 +790,7 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
         <div class="contact-item"><div class="ci-icon">📞</div><div class="ci-txt"><h4>Phone</h4><a id="ctPhone" href="tel:+255712345678">+255 712 345 678</a></div></div>
         <div class="contact-item"><div class="ci-icon">💬</div><div class="ci-txt"><h4>WhatsApp</h4><a id="ctWA" href="#" target="_blank">+255 712 345 678</a></div></div>
         <div class="contact-item"><div class="ci-icon">📧</div><div class="ci-txt"><h4>Email</h4><a id="ctEmail" href="mailto:hello@dodoboutique.co.tz">hello@dodoboutique.co.tz</a></div></div>
-        <div class="contact-item"><div class="ci-icon">🕐</div><div class="ci-txt"><h4>Hours</h4><p>SUN–FRI: 8am–7pm | Sun: 10am–4pm</p></div></div>
+        <div class="contact-item"><div class="ci-icon">🕐</div><div class="ci-txt"><h4>Hours</h4><p>Mon–Sat: 8am–7pm | Sun: 10am–4pm</p></div></div>
         <div style="margin-top:20px"><div style="font-size:11px;letter-spacing:1.5px;color:var(--muted);margin-bottom:10px;text-transform:uppercase">Connect With Us</div><div class="social-row" id="contactSocials"></div></div>
         <div style="margin-top:24px"><div style="font-size:11px;letter-spacing:1.5px;color:var(--muted);margin-bottom:10px;text-transform:uppercase">We Accept</div><div id="contactPayMethods" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
       </div>
@@ -956,7 +954,7 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
         <div class="s-row"><div class="s-ico">📍</div><div class="s-info"><div class="s-label">Address / Location</div><div class="s-desc">Shown on contact and about pages</div><input class="s-input" id="s-address" type="text" placeholder="Kariakoo Market, Dar es Salaam"/></div></div>
         <div class="s-row"><div class="s-ico">📞</div><div class="s-info"><div class="s-label">Phone / WhatsApp Number</div><div class="s-desc">With country code, e.g. 255712345678</div><input class="s-input" id="s-phone" type="tel" placeholder="255712345678"/></div></div>
         <div class="s-row"><div class="s-ico">📧</div><div class="s-info"><div class="s-label">Email Address</div><div class="s-desc">Business email shown on contact page</div><input class="s-input" id="s-email" type="email" placeholder="hello@dodoboutique.co.tz"/></div></div>
-        <div class="s-row"><div class="s-ico">🕐</div><div class="s-info"><div class="s-label">Opening Hours</div><div class="s-desc">Displayed on About and Contact pages</div><input class="s-input" id="s-hours" type="text" placeholder="SUN–FRI 8am–7pm | SUN 08AM–4pm"/></div></div>
+        <div class="s-row"><div class="s-ico">🕐</div><div class="s-info"><div class="s-label">Opening Hours</div><div class="s-desc">Displayed on About and Contact pages</div><input class="s-input" id="s-hours" type="text" placeholder="Mon–Sat 8am–7pm | Sun 10am–4pm"/></div></div>
       </div>
       <div class="s-section">
         <div class="s-section-hd">🚚 Delivery Settings</div>
@@ -1094,25 +1092,27 @@ input:checked+.tog-slider::before{transform:translateX(20px)}
           <div style="font-size:20px">🔌</div>
           <div>
             <div style="font-weight:600;font-size:15px">Firebase Realtime Database</div>
-            <div style="font-size:12px;color:var(--muted)">Free · No credit card · 1GB storage</div>
+            <div style="font-size:12px;color:var(--muted)">Free · No credit card · No API key needed · Works on ALL devices</div>
           </div>
         </div>
 
         <ol class="fb-steps">
-          <li>Go to <a href="https://console.firebase.google.com" target="_blank" style="color:var(--gold)">console.firebase.google.com</a> → <strong>Add project</strong> → any name → Continue</li>
-          <li>In your project: <strong>Build → Realtime Database → Create Database</strong> → choose any location → <strong>Start in test mode</strong> → Enable</li>
-          <li>Copy the URL shown (looks like: <code style="font-size:10px;background:var(--cream2);padding:2px 6px;border-radius:4px">https://your-app-default-rtdb.firebaseio.com</code>)</li>
-          <li>Paste below and click <strong>🔌 Connect</strong></li>
+          <li>Go to <a href="https://console.firebase.google.com" target="_blank" style="color:var(--gold)">console.firebase.google.com</a> → <strong>Add project</strong> → any name → Continue → Create project</li>
+          <li>In your project sidebar: <strong>Build → Realtime Database → Create Database</strong> → pick any location → ⚠️ <strong>Start in TEST MODE</strong> → Enable</li>
+          <li>Copy the database URL at the top of the page: <code style="font-size:10px;background:var(--cream2);padding:2px 6px;border-radius:4px">https://your-project-default-rtdb.firebaseio.com</code></li>
+          <li>Paste below → click <strong>🔌 Connect</strong> — done! No API key needed.</li>
         </ol>
 
         <input class="fb-input" id="fb-dbUrl" type="url" placeholder="https://your-project-default-rtdb.firebaseio.com"/>
-        <input class="fb-input" id="fb-apiKey" type="text" placeholder="API Key (optional — from Project Settings → General → Web App)"/>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="fb-connect-btn" onclick="connectFirebase()">🔌 Connect Firebase</button>
-          <button class="fb-connect-btn secondary" onclick="testFirebaseConnection()">🧪 Test Connection</button>
+          <button class="fb-connect-btn" onclick="connectFirebase()">🔌 Connect</button>
+          <button class="fb-connect-btn secondary" onclick="testFirebaseConnection()">🧪 Test URL first</button>
         </div>
         <div class="fb-status disconnected" id="fbStatus">
-          <span>●</span> Not connected — changes only save locally
+          <span>●</span> Not connected — paste your database URL above and click Connect
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:rgba(201,168,76,.8);background:rgba(201,168,76,.08);border-radius:8px;padding:10px 12px;border-left:3px solid var(--gold)">
+          ⚠️ <strong>Must choose "Start in test mode"</strong> when creating the database — this allows the app to sync without any extra code. You can restrict access later in Firebase Console → Rules.
         </div>
       </div>
 
@@ -1431,7 +1431,7 @@ let S = {
   aboutTagline:'Born in the vibrant streets of Kariakoo, Dodo Boutique is more than a store — it\'s a celebration of African style, culture, and identity.',
   footerTagline:'Your go-to fashion destination in Kariakoo, Dar es Salaam. Quality styles, honest prices, delivered with love.',
   copyright:'© 2025 Dodo Boutique Kariakoo. All rights reserved.',
-  hours:'SUN–FRI 8am–7pm | SUN 08AM–4pm',
+  hours:'Mon–Sat 8am–7pm | Sun 10am–4pm',
   accentColor:'#C9A84C', darkColor:'#1a1208',
   appIcon:'', heroBanner:'',
   freeDelivery:50000, deliveryFee:5000, waConfirm:true,
@@ -2355,7 +2355,7 @@ function applyAll(){
   if(aboutPhoneInfo)aboutPhoneInfo.innerHTML=`<a href="tel:+${ph}" style="color:var(--dark)">${phoneDisplay}</a>`;
   // Hours in about
   document.querySelectorAll('.map-info-item:first-child p').forEach(el=>{
-    if(el.textContent.includes('Mon'))el.innerHTML=(S.hours||'SUN–FRI: 8:00 AM – 7:00 PM<br>Sunday: 10:00 AM – 4:00 PM').replace('|','<br>');
+    if(el.textContent.includes('Mon'))el.innerHTML=(S.hours||'Mon–Sat: 8:00 AM – 7:00 PM<br>Sunday: 10:00 AM – 4:00 PM').replace('|','<br>');
   });
 
   // ── Contact page ──
@@ -2364,7 +2364,7 @@ function applyAll(){
   const ctWA=document.getElementById('ctWA');if(ctWA){ctWA.textContent=phoneDisplay;ctWA.href=`https://wa.me/${ph}`;}
   const ctEmail=document.getElementById('ctEmail');if(ctEmail){ctEmail.textContent=S.email||'hello@dodoboutique.co.tz';ctEmail.href='mailto:'+(S.email||'');}
   const ctHours=document.querySelector('#page-contact .ci-txt p');
-  if(ctHours&&ctHours.textContent.includes('Mon'))ctHours.textContent=S.hours||'SUN–FRI: 8am–7pm | Sun: 10am–4pm';
+  if(ctHours&&ctHours.textContent.includes('Mon'))ctHours.textContent=S.hours||'Mon–Sat: 8am–7pm | Sun: 10am–4pm';
 
   // ── Mobile menu store name ──
   document.querySelectorAll('.mobile-menu a:first-child').forEach(a=>{
@@ -2421,16 +2421,7 @@ function switchTab(name){
   const panel=document.getElementById('tab-'+name);if(panel)panel.classList.add('active');
   if(name==='products')renderProductManager();
   if(name==='sync'){
-    const fbu=document.getElementById('fb-dbUrl');if(fbu&&S.fbDbUrl)fbu.value=S.fbDbUrl;
-    const fba=document.getElementById('fb-apiKey');if(fba&&S.fbApiKey)fba.value=S.fbApiKey;
-    const lp=document.getElementById('lastPublished');if(lp&&S.lastPublished)lp.textContent='Last published: '+S.lastPublished;
-    updateFbStatus(fbConnected);
-    // If URL saved but not yet connected, try auto-connect
-    if(S.fbDbUrl && !fbConnected){
-      setTimeout(()=>{
-        try{initFirebase();}catch(e){}
-      },500);
-    }
+    initSyncTab();
   }
 }
 
@@ -2658,15 +2649,12 @@ function saveProduct(){
   renderCats();   // picks up any new custom category
   renderShop();
 
-  // Push to Firebase if connected so ALL buyers see the new product instantly
-  if(fbConnected&&fbDb){
+  // Push to Firebase so ALL buyers see the new product instantly
+  if(S.fbDbUrl){
     showSyncBar('📤 Pushing new product to all buyers...','syncing');
-    setTimeout(()=>publishToFirebase(),200);
-  } else if(S.fbDbUrl){
-    const payload=buildPublishPayload();
-    fetch(S.fbDbUrl+(S.fbDbUrl.endsWith('/')?'':'/')+`storeConfig.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-      .then(()=>showSyncBar('✅ Product pushed to all buyers!','success'))
-      .catch(()=>showSyncBar('💾 Saved locally — connect Firebase to sync','syncing'));
+    fbWrite(buildPublishPayload())
+      .then(()=>{fbConnected=true;showSyncBar('✅ Product visible to all buyers!','success');})
+      .catch(()=>showSyncBar('💾 Saved locally — check Firebase connection','syncing'));
   }
 }
 
@@ -2867,150 +2855,222 @@ function publishToFirebase(){
 // ════════════════════════════════════════════════
 //  FIREBASE REAL-TIME SYNC
 // ════════════════════════════════════════════════
-let fbApp=null,fbDb=null,fbConnected=false;
+// ════════════════════════════════════════════════
+//  SYNC ENGINE — Pure REST, no SDK, no API key
+//  Works on every device with just the database URL
+// ════════════════════════════════════════════════
+let fbConnected=false;
+let _pollTimer=null;
+let _lastHash='';
+let _isseller=false; // set true after PIN unlock
 
-function connectFirebase(){
-  const dbUrl=((document.getElementById('fb-dbUrl')||{}).value||'').trim();
-  const apiKey=((document.getElementById('fb-apiKey')||{}).value||'').trim();
-  if(!dbUrl){showToast('⚠ Paste your Firebase Database URL first');return;}
-  if(!dbUrl.includes('firebaseio.com')){showToast('⚠ URL must end in .firebaseio.com');return;}
-
-  const btn=document.querySelector('.fb-connect-btn');
-  if(btn){btn.textContent='🔄 Connecting...';btn.disabled=true;}
-
-  S.fbDbUrl=dbUrl;if(apiKey)S.fbApiKey=apiKey;
-  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
-
-  // Test the URL first with a quick fetch before initialising SDK
-  fetch(dbUrl+'/.json?shallow=true',{signal:AbortSignal.timeout?AbortSignal.timeout(6000):undefined})
-    .then(r=>{
-      if(btn){btn.textContent='🔌 Connect Firebase';btn.disabled=false;}
-      if(r.ok||r.status===401||r.status===403){
-        // URL is reachable — initialise
-        initFirebase();
-        showToast('✅ Firebase connected!');
-      } else {
-        updateFbStatus(false,'Error '+r.status+' — check your URL and database rules');
-        showToast('⚠ Check your Firebase URL and rules');
-      }
-    })
-    .catch(()=>{
-      if(btn){btn.textContent='🔌 Connect Firebase';btn.disabled=false;}
-      updateFbStatus(false,'Cannot reach URL — check internet or URL');
-      showToast('⚠ Cannot reach Firebase — check URL');
-    });
+// ── Normalize URL ──
+function fbUrl(path){
+  const base=(S.fbDbUrl||'').replace(/\/+$/,'');
+  return `${base}/${path}.json`;
 }
 
-function initFirebase(){
-  if(!S.fbDbUrl)return;
-  try{
-    const cfg={
-      apiKey:S.fbApiKey||'placeholder-key',
-      databaseURL:S.fbDbUrl.endsWith('/')?S.fbDbUrl.slice(0,-1):S.fbDbUrl,
-      projectId:S.fbDbUrl.replace('https://','').split('.')[0]
-    };
-    try{fbApp=firebase.initializeApp(cfg,'dodo');}
-    catch(e){fbApp=firebase.app('dodo');}  // already initialised
-    fbDb=firebase.database(fbApp);
-    fbDb.ref('.info/connected').on('value',snap=>{
-      const connected=!!snap.val();
-      fbConnected=connected;
-      updateFbStatus(connected);
-      if(connected){
-        showSyncBar('🟢 Firebase connected — all saves push to buyers instantly','success');
-        listenForSellerUpdates();
-      }
-    });
-  }catch(e){
-    updateFbStatus(false,'Init error: '+e.message);
-    showToast('❌ Firebase error: '+e.message);
-  }
+// ── WRITE (seller) ──
+async function fbWrite(data){
+  const url=fbUrl('storeConfig');
+  const r=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return r.json();
 }
 
-function testFirebaseConnection(){
-  const urlInput=document.getElementById('fb-dbUrl');
-  const url=(urlInput?urlInput.value:S.fbDbUrl||'').trim();
-  if(!url){showToast('⚠ Enter Firebase URL first');return;}
-  const status=document.getElementById('fbStatus');
-  if(status){status.className='fb-status testing';status.innerHTML='<span>●</span> Testing connection...';}
-  fetch(url+'/.json?shallow=true&timeout=5s')
-    .then(r=>{
-      if(r.ok||r.status===401||r.status===403){
-        if(status){status.className='fb-status connected';status.innerHTML='<span>●</span> ✅ Reachable! Click Connect to activate real-time sync.';}
-        showToast('✅ Firebase URL is valid and reachable!');
-      } else {
-        if(status){status.className='fb-status disconnected';status.innerHTML=`<span>●</span> ❌ Got HTTP ${r.status} — check URL`;}
-        showToast('⚠ Got HTTP '+r.status);
-      }
-    }).catch(()=>{
-      if(status){status.className='fb-status disconnected';status.innerHTML='<span>●</span> ❌ Cannot reach — check internet or URL';}
-      showToast('⚠ Cannot reach this URL');
-    });
+// ── READ once ──
+async function fbRead(){
+  const r=await fetch(fbUrl('storeConfig'));
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return r.json();
 }
 
-function updateFbStatus(connected,msg=''){
-  fbConnected=connected;
-  const el=document.getElementById('fbStatus');
-  if(el){
-    if(connected){
-      el.className='fb-status connected';
-      el.innerHTML='<span>●</span> ✅ Connected — every Save instantly pushes to ALL buyers in real-time';
-    } else {
-      el.className='fb-status disconnected';
-      el.innerHTML=`<span>●</span> ${msg||'Not connected — saves locally only'}`;
-    }
-  }
-  // Sync banner
-  const dot=document.getElementById('ssbDot');
-  const txt=document.getElementById('ssbText');
-  if(dot)dot.className='ssb-dot'+(connected?' connected':'');
-  if(txt)txt.textContent=connected
-    ?'🟢 Firebase connected — every Save instantly reaches ALL buyers everywhere'
-    :'⚠️ Not connected — buyers only see local changes. Connect Firebase to sync globally.';
-}
-
-function shareViaWhatsApp(){
-  const url=window._shareUrl||generateShareURL();
-  if(!url){showToast('⚠ Generate link first');return;}
-  const msg=encodeURIComponent(`🛍 *${S.storeName||'Dodo Boutique'}* — Shop now!\n\n${url}\n\nBrowse our latest collection 👆`);
-  window.open(`https://wa.me/?text=${msg}`,'_blank');
-}
-
-function listenForSellerUpdates(){
-  if(!fbDb)return;
-  fbDb.ref('storeConfig').on('value',snap=>{
-    const data=snap.val();if(!data)return;
-    const pin=S.pin,ctr=S.invoiceCounter;
-    S={...S,...data};S.pin=pin;S.invoiceCounter=ctr;
-    try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
-    // Apply ALL buyer-facing changes immediately
-    applyAll();
-    if(document.getElementById('page-shop')&&document.getElementById('page-shop').classList.contains('active')){
-      renderShop();
-    }
-    showSyncBar('🟢 Store updated live by seller — showing latest!','live');
-  });
-}
-
-function buyerLoadFromFirebase(){
-  if(!S.fbDbUrl)return;
-  showSyncBar('🔄 Loading latest store...','syncing');
-  fetch(S.fbDbUrl+(S.fbDbUrl.endsWith('/')?'':'/')+'storeConfig.json')
-    .then(r=>r.ok?r.json():null)
-    .then(data=>{
-      if(!data||typeof data!=='object'){showSyncBar('💾 Using locally saved settings','live');return;}
+// ── POLL for buyer live updates (every 5s) ──
+function startPolling(){
+  stopPolling();
+  _pollTimer=setInterval(async()=>{
+    try{
+      const data=await fbRead();
+      if(!data||typeof data!=='object')return;
+      // Simple change detection via JSON hash
+      const h=JSON.stringify(data).length+'|'+(data.publishedAt||'');
+      if(h===_lastHash)return; // nothing changed
+      _lastHash=h;
       const pin=S.pin,ctr=S.invoiceCounter;
       S={...S,...data};S.pin=pin;S.invoiceCounter=ctr;
       try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
       applyAll();
-      if(document.getElementById('page-shop')&&document.getElementById('page-shop').classList.contains('active')){
-        renderShop();
+      showSyncBar('🟢 Store updated — showing latest from seller','success');
+    }catch(e){/* silent on poll error */}
+  },5000);
+}
+
+function stopPolling(){
+  if(_pollTimer){clearInterval(_pollTimer);_pollTimer=null;}
+}
+
+// ── Connect ──
+function connectFirebase(){
+  const inp=document.getElementById('fb-dbUrl');
+  const dbUrl=(inp?inp.value:'').trim();
+  if(!dbUrl){showToast('⚠ Paste your Firebase Database URL first');return;}
+  if(!dbUrl.includes('firebaseio.com')&&!dbUrl.includes('firebase')){
+    showToast('⚠ URL must be a Firebase Realtime Database URL');return;
+  }
+
+  const btn=document.querySelector('.fb-connect-btn');
+  if(btn){btn.textContent='🔄 Testing...';btn.disabled=true;}
+  updateFbStatus('testing','🔄 Testing connection...');
+
+  const cleanUrl=dbUrl.replace(/\/+$/,'');
+  S.fbDbUrl=cleanUrl;
+  try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+
+  fetch(cleanUrl+'/storeConfig.json',{method:'GET'})
+    .then(async r=>{
+      if(btn){btn.textContent='🔌 Connect Firebase';btn.disabled=false;}
+      if(r.ok||r.status===401||r.status===403){
+        fbConnected=true;
+        updateFbStatus('connected');
+        showToast('✅ Connected! Changes now sync to all devices');
+        showSyncBar('🟢 Connected to Firebase — changes push to all buyers','success');
+        startPolling();
+      } else {
+        updateFbStatus('error','❌ Error '+r.status+' — set database rules to test mode');
+        showToast('⚠ Got error '+r.status+'. Make sure database is in test mode');
+        if(btn){btn.disabled=false;}
       }
-      showSyncBar('✅ Showing latest seller updates','success');
-    }).catch(()=>{
-      showSyncBar('💾 Offline — showing cached store','live');
+    })
+    .catch(()=>{
+      if(btn){btn.textContent='🔌 Connect Firebase';btn.disabled=false;}
+      updateFbStatus('error','❌ Cannot reach database — check URL and internet');
+      showToast('⚠ Cannot reach this URL');
     });
 }
+
+// ── Test only ──
+function testFirebaseConnection(){
+  const inp=document.getElementById('fb-dbUrl');
+  const url=(inp?inp.value:S.fbDbUrl||'').trim();
+  if(!url){showToast('⚠ Enter Firebase URL first');return;}
+  updateFbStatus('testing','🔄 Testing...');
+  fetch(url.replace(/\/+$/,'')+'/storeConfig.json')
+    .then(r=>{
+      if(r.ok||r.status===401||r.status===403){
+        updateFbStatus('ok-test','✅ URL reachable! Now click 🔌 Connect to activate sync');
+        showToast('✅ URL is valid — click Connect to activate');
+      } else {
+        updateFbStatus('error','❌ HTTP '+r.status+' — check database rules (set to test mode)');
+        showToast('⚠ HTTP '+r.status);
+      }
+    }).catch(()=>{
+      updateFbStatus('error','❌ Cannot reach URL');
+      showToast('⚠ Cannot reach this URL');
+    });
+}
+
+// ── Status display ──
+function updateFbStatus(state, msg=''){
+  const el=document.getElementById('fbStatus');
+  const dot=document.getElementById('ssbDot');
+  const txt=document.getElementById('ssbText');
+
+  const states={
+    connected:{cls:'connected',icon:'🟢',text:'Connected — saves instantly push to ALL buyers on all devices'},
+    testing:  {cls:'testing', icon:'🔄',text:msg||'Testing connection...'},
+    'ok-test':{cls:'connected',icon:'✅',text:msg},
+    error:    {cls:'disconnected',icon:'❌',text:msg||'Connection failed'},
+    disconnected:{cls:'disconnected',icon:'●',text:msg||'Not connected — saves locally only'},
+  };
+  const s=states[state]||states.disconnected;
+
+  if(el){el.className='fb-status '+s.cls;el.innerHTML=`<span>${s.icon}</span> ${s.text}`;}
+  if(dot)dot.className='ssb-dot'+(state==='connected'?' connected':state==='testing'?' syncing':'');
+  if(txt)txt.textContent=state==='connected'
+    ?'🟢 Connected — every Save instantly reaches ALL buyers on every device'
+    :'⚠️ Not connected — buyers only see local changes. Connect Firebase to sync globally.';
+}
+
+// ── Publish ──
+function buildPublishPayload(){
+  const safe={...S};delete safe.pin;safe.publishedAt=new Date().toISOString();return safe;
+}
+
+async function publishToFirebase(){
+  const btn=document.getElementById('publishBtn');
+  const status=document.getElementById('publishStatus');
+  if(!S.fbDbUrl){showToast('⚠ Connect Firebase first in the 🌐 Publish tab');switchTab('sync');return;}
+  if(btn){btn.disabled=true;btn.textContent='📤 Publishing...';}
+  if(status)status.textContent='📤 Pushing to all buyers...';
+  showSyncBar('📤 Publishing...','syncing');
+  try{
+    await fbWrite(buildPublishPayload());
+    const now=new Date().toLocaleString();
+    S.lastPublished=now;
+    try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+    if(btn){btn.disabled=false;btn.textContent='🌍 Publish Now — Push to All Buyers';}
+    if(status)status.textContent='✅ Published '+now;
+    const lp=document.getElementById('lastPublished');if(lp)lp.textContent='Last published: '+now;
+    showSyncBar('✅ All buyers now see your latest store!','success');
+    showToast('✅ Published to all buyers!');
+    fbConnected=true;updateFbStatus('connected');
+  }catch(e){
+    if(btn){btn.disabled=false;btn.textContent='🌍 Publish Now — Push to All Buyers';}
+    if(status)status.textContent='❌ '+e.message;
+    showSyncBar('❌ Failed: '+e.message,'error');
+    showToast('❌ Publish failed: '+e.message);
+  }
+}
+
+function saveAndPublish(){saveSettings();setTimeout(()=>publishToFirebase(),300);}
+
+// ── Buyer load on page open ──
+function buyerLoadFromFirebase(){
+  if(!S.fbDbUrl)return;
+  showSyncBar('🔄 Loading latest store...','syncing');
+  fbRead()
+    .then(data=>{
+      if(!data||typeof data!=='object'){showSyncBar('','');return;}
+      _lastHash=JSON.stringify(data).length+'|'+(data.publishedAt||'');
+      const pin=S.pin,ctr=S.invoiceCounter;
+      S={...S,...data};S.pin=pin;S.invoiceCounter=ctr;
+      try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
+      applyAll();
+      showSyncBar('✅ Latest store loaded from seller','success');
+      fbConnected=true;
+      startPolling(); // keep watching for live changes
+    })
+    .catch(()=>{
+      showSyncBar('','');
+    });
+}
+
+// ── When seller opens sync tab ──
+function initSyncTab(){
+  const fbu=document.getElementById('fb-dbUrl');if(fbu&&S.fbDbUrl)fbu.value=S.fbDbUrl;
+  const lp=document.getElementById('lastPublished');if(lp&&S.lastPublished)lp.textContent='Last published: '+S.lastPublished;
+  if(fbConnected){updateFbStatus('connected');}
+  else if(S.fbDbUrl){
+    // Auto-reconnect if URL saved
+    updateFbStatus('testing','🔄 Reconnecting...');
+    fetch(S.fbDbUrl.replace(/\/+$/,'')+'/storeConfig.json')
+      .then(r=>{if(r.ok||r.status===401||r.status===403){fbConnected=true;updateFbStatus('connected');startPolling();}
+               else updateFbStatus('error','❌ HTTP '+r.status);})
+      .catch(()=>updateFbStatus('disconnected'));
+  } else {
+    updateFbStatus('disconnected');
+  }
+}
+
+// ── Share link helpers ──
+function shareViaWhatsApp(){
+  const url=window._shareUrl||generateShareURL();
+  if(!url){showToast('⚠ Generate link first');return;}
+  const name=S.storeName||'Dodo Boutique';
+  window.open(`https://wa.me/?text=${encodeURIComponent('🛍 *'+name+'*\n'+url)}`,'_blank');
+}
+
+function listenForSellerUpdates(){startPolling();} // alias kept for compatibility
 
 
 function generateAndShowShareLink(){
@@ -3067,7 +3127,6 @@ function saveSettings(){
   MOMOS.forEach(m=>{S.momos[m.id]=(document.getElementById('momo-'+m.id)||{}).value||'';});
   SOCIALS.forEach(s=>{S.socials[s.id]=(document.getElementById('soc-'+s.id)||{}).value||'';});
   const fbu=document.getElementById('fb-dbUrl');if(fbu&&fbu.value)S.fbDbUrl=fbu.value.trim();
-  const fba=document.getElementById('fb-apiKey');if(fba&&fba.value)S.fbApiKey=fba.value.trim();
 
   // Save locally
   try{localStorage.setItem('dodoS3',JSON.stringify(S));}catch(e){}
@@ -3076,17 +3135,14 @@ function saveSettings(){
   applyAll();
 
   // Auto-push to Firebase if connected — buyers see changes instantly
-  if(fbConnected && fbDb){
+  if(S.fbDbUrl){
     showSyncBar('📤 Saving & pushing to all buyers...','syncing');
-    setTimeout(()=>publishToFirebase(),200);
-  } else if(S.fbDbUrl){
-    // REST fallback — try to push even without realtime connection
-    showSyncBar('📤 Pushing to buyers...','syncing');
-    const payload=buildPublishPayload();
-    fetch(S.fbDbUrl+(S.fbDbUrl.endsWith('/')?'':'/')+`storeConfig.json`,{
-      method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
-    }).then(()=>{showSyncBar('✅ Changes pushed to all buyers!','success');})
-      .catch(()=>showSyncBar('💾 Saved locally — connect Firebase to sync to buyers','syncing'));
+    fbWrite(buildPublishPayload())
+      .then(()=>{
+        fbConnected=true;updateFbStatus('connected');
+        showSyncBar('✅ Changes pushed to all buyers!','success');
+      })
+      .catch(()=>showSyncBar('💾 Saved locally — check Firebase connection','syncing'));
   } else {
     showSyncBar('💾 Saved locally — go to 🌐 Publish tab to share with buyers','syncing');
   }
